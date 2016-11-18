@@ -16,6 +16,10 @@
   hyphens:         auto;
 }
 
+.text-sm {
+  font-size: 12px;
+}
+
 @each $label, $color in $pallet-colors {
   .text-#{$label} {
     color: $color !important;
@@ -23,6 +27,10 @@
   .#{$label} {
     background-color: $color !important;
   }
+}
+
+.primary a {
+  color: $white;
 }
 
 @each $label, $color in $grays {
@@ -36,4 +44,28 @@
 
 .text-muted {
   color: $text-muted !important;
+}
+
+.truncate {
+  white-space:   nowrap;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+
+.hr-divider {
+  position:       relative;
+  font-size:      12px;
+  line-height:    20px;
+  text-align:     center;
+  text-transform: uppercase;
+
+  &:before {
+    position:         absolute;
+    top:              50%;
+    display:          block;
+    content:          "";
+    width:            100%;
+    height:           1px;
+    background-color: $gray-dark;
+  }
 }

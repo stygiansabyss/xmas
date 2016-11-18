@@ -10,7 +10,14 @@
         "nukacode/core": "^3.0",
         "nukacode/menu": "^1.0",
         "laravelcollective/html": "^5.2",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "nukacode/users": "^3.0",
+        "snipe/banbuilder": "^2.2",
+        "jenssegers/model": "^1.1",
+        "thujohn/twitter": "^2.2",
+        "guzzlehttp/guzzle": "^6.2",
+        "maatwebsite/excel": "^2.1",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

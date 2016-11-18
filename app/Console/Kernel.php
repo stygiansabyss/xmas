@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
+        \App\Console\Commands\GetDonations::class,
+        \App\Console\Commands\GetTweets::class,
+        \App\Console\Commands\SetNewDayTotal::class,
     ];
 
     /**
@@ -24,8 +26,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        if (date('m') !== '12') {
+            $filePath = storage_path('logs/cronlog');
+
+            $schedule->command('jj:donations')->everyMinute()->sendOutputTo($filePath .'_donations');
+            $schedule->command('jj:tweets')->everyFiveMinutes()->sendOutputTo($filePath .'_tweets');
+            $schedule->command('jj:new-day-total')->hourly()->sendOutputTo($filePath .'_new_day');
+        }
     }
 
     /**

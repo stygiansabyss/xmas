@@ -1,0 +1,150 @@
+ul.nav-wizard {
+  background-color: #f1f1f1;
+  border:           1px solid #d4d4d4;
+  border-left:      none;
+  position:         relative;
+  overflow:         hidden;
+  display:          table;
+  width:            100%;
+
+  &:before {
+    position: absolute;
+  }
+
+  &:after {
+    display:       block;
+    position:      absolute;
+    left:          0px;
+    right:         0px;
+    top:           138px;
+    height:        47px;
+    border-top:    1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    z-index:       11;
+    content:       " ";
+  }
+
+  li {
+    display:          table-cell;
+    table-layout:     fixed;
+    position:         relative;
+    float:            left;
+    height:           46px;
+    display:          inline-block;
+    text-align:       center;
+    padding:          0 20px 0 30px;
+    margin:           0;
+    font-size:        16px;
+    line-height:      46px;
+    background-color: $brand-primary-light;
+
+    a {
+      color:   $brand-primary;
+      padding: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &:before {
+      position:     absolute;
+      display:      block;
+      border:       24px solid transparent;
+      border-left:  16px solid #d4d4d4;
+      border-right: 0;
+      top:          -1px;
+      z-index:      10;
+      content:      '';
+      right:        -16px;
+    }
+
+    &:after {
+      position:     absolute;
+      display:      block;
+      border:       24px solid transparent;
+      border-left:  16px solid #c8cfda;
+      border-right: 0;
+      top:          -1px;
+      z-index:      10;
+      content:      '';
+      right:        -15px;
+    }
+
+    &.active {
+      color:      $white;
+      background: $brand-primary;
+
+      &:after {
+        border-left: 16px solid $brand-primary;
+      }
+
+      a {
+        color:      $white;
+        background: $brand-primary;
+
+        &:active, &:visited, &:focus {
+          color:      $white;
+          background: $brand-primary;
+        }
+      }
+    }
+  }
+  .active ~ li {
+    color:      #999999;
+    background: #f9f9f9;
+
+    &:after {
+      border-left: 16px solid #f9f9f9;
+    }
+
+    a {
+      color:      #999999;
+      background: #f9f9f9;
+
+      &:active, &:visited, &:focus {
+        color:      #999999;
+        background: #f9f9f9;
+      }
+    }
+  }
+  &.nav-wizard-backnav {
+    li:hover {
+      color:      #468847;
+      background: #f6fbfd;
+
+      &:after {
+        border-left: 16px solid #f6fbfd;
+      }
+
+      a {
+        color:      #468847;
+        background: #f6fbfd;
+
+        &:active, &:visited, &:focus {
+          color:      #468847;
+          background: #f6fbfd;
+        }
+      }
+    }
+
+    .active ~ li {
+      color:      #999999;
+      background: #ededed;
+
+      &:after {
+        border-left: 16px solid #ededed;
+      }
+
+      a {
+        color:      #999999;
+        background: #ededed;
+
+        &:active, &:visited, &:focus {
+          color:      #999999;
+          background: #ededed;
+        }
+      }
+    }
+  }
+}

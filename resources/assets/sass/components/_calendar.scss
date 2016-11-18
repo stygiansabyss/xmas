@@ -1,0 +1,56 @@
+.calendar {
+  .row {
+    [class*='col-xs-'], [class*='col-sm-'], [class*='col-md-'], [class*='col-lg-'] {
+      border:     1px solid $gray-light;
+      min-height: 100px;
+      padding:    2px;
+
+      .details {
+        height:         25px;
+        width:          100%;
+        display:        flex;
+        flex-direction: row;
+
+        .date {
+          flex:       1;
+          text-align: left;
+        }
+        .action {
+          width:      25px;
+          text-align: right;
+
+          .btn {
+            padding: 1px;
+          }
+        }
+      }
+    }
+
+    .not-in-month {
+      background: $gray-light;
+      color:      $gray-dark;
+    }
+
+    .event {
+      border-radius: $border-radius-base;
+      background:    $brand-primary;
+      padding-left:  5px;
+      color:         $white;
+
+      &.continued {
+        border-top-right-radius:    0;
+        border-bottom-right-radius: 0;
+        margin-right:               -3px;
+        float:                      left;
+        z-index:                    100;
+      }
+
+      &.continuing {
+        border-top-left-radius:    0;
+        border-bottom-left-radius: 0;
+        margin-left:               -3px;
+        z-index:                   99;
+      }
+    }
+  }
+}

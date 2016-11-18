@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -7,6 +6,7 @@
 
 require('./bootstrap');
 require('./global');
+require('./delete-link')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,8 +14,28 @@ require('./global');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+import Manage from './Components/Manage.vue'
 
 var app = new Vue({
-    el: 'body'
+  el: 'body',
+
+  ready() {
+    if (Laravel.userId !== null) {
+      Echo.private('App.Models.User.' + Laravel.userId)
+          .notification((notification) =>
+          {
+            $.notify({
+              message: notification.message,
+              icon:    notification.icon
+            }, {
+              // settings
+              type: notification.level
+            })
+          })
+    }
+  },
+
+  components: {
+    'manage-dashboard': Manage,
+  }
 });

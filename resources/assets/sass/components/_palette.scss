@@ -1,0 +1,43 @@
+.palette {
+  font-size:      14px;
+  line-height:    1.214;
+  margin:         0;
+  padding:        15px;
+  text-transform: uppercase;
+  height:         65px;
+  text-align:     center;
+  vertical-align: middle;
+}
+
+.palette-table {
+  table-layout: fixed;
+  tr {
+    &:first-child {
+      td {
+        border-top: none;
+      }
+    }
+    td:first-child {
+      width: 10%;
+    }
+  }
+}
+
+.swatch-color {
+  background:    black;
+  display:       block;
+  height:        100px;
+  margin-bottom: $grid-gutter-width / 3;
+  width:         100%;
+}
+
+.swatch-name {
+  font-weight:    bold;
+  text-transform: uppercase;
+}
+
+.swatch-hex {
+  @extend .text-muted;
+  font-family:    $font-family-monospace;
+  text-transform: uppercase;
+}

@@ -184,6 +184,9 @@ return [
          */
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        AdamWathan\BootForms\BootFormsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -232,9 +235,11 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         // Extras
-        'HTML'      => Collective\Html\HtmlFacade::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Str'       => Illuminate\Support\Str::class,
+        'HTML'         => Collective\Html\HtmlFacade::class,
+        'Form'         => Collective\Html\FormFacade::class,
+        'BootForm'     => AdamWathan\BootForms\Facades\BootForm::class,
+        'Str'          => Illuminate\Support\Str::class,
+        'Excel'        => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

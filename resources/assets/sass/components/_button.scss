@@ -1,0 +1,11 @@
+@each $label, $color in $grays {
+  .btn-#{$label} {
+    @include button-variant(invert($color), $color, darken($color, 10%));
+  }
+}
+
+.btn {
+  &.btn-box {
+    border-radius: 0;
+  }
+}

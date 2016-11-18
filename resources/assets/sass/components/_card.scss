@@ -1,0 +1,87 @@
+.card-row {
+  background-color: $white;
+  display:          flex;
+  flex-direction:   row;
+  flex-wrap:        wrap;
+
+  [class*='col-xs-'], [class*='col-sm-'], [class*='col-md-'], [class*='col-lg-'] {
+    display: flex;
+  }
+
+  &:last-of-type {
+    padding-bottom: 1rem;
+  }
+
+  article.card {
+    border:         1px solid $gray-lighter;
+    box-shadow:     2px 4px 5px 0px $gray-lighter;
+    display:        flex;
+    flex-direction: column;
+    width:          100%;
+
+    img {
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        height: 207px;
+      }
+
+      @media (min-width: $screen-md-min) {
+        height: 207px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        height: 207px;
+      }
+    }
+
+    .card-icon {
+      width:         3rem;
+      height:        3rem;
+      border-radius: 50%;
+      margin-top:    -1.5rem;
+      margin-left:   1.5rem;
+
+      @each $label, $map in $brands {
+        &.#{$label} {
+          background-color: map-get($map, bgColor);
+
+          i {
+            color: map-get($map, color);
+          }
+        }
+      }
+
+      i {
+        margin-top:  .9rem;
+        margin-left: .9rem;
+      }
+    }
+
+    .card-title {
+      font-size: 2.4rem;
+      color:     $brand-danger;
+      padding:   0 1.25rem;
+    }
+
+    .card-body {
+      font-size: 1.6rem;
+      color:     #757d75;
+      flex:      1;
+      padding:   1.25rem;
+
+      table {
+        width: 100%;
+
+        tr td:first-child {
+          vertical-align: top;
+          width:          22px;
+        }
+      }
+    }
+
+    .card-footer {
+      padding: 1.25rem;
+    }
+  }
+}
