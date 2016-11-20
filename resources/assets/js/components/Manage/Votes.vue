@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default" :class="{ 'panel-primary': voteShow }">
+  <div class="panel panel-default" :class="{ 'panel-primary': vote !== null }">
     <div class="panel-heading">
       <div class="panel-title clearfix">
         <div class="pull-left">Current Vote</div>
@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="panel-body" v-if="vote === null && voteShow">
-      <a href="/vote/create" class="btn btn-block btn-primary">Create a new Vote</a>
+      <a href="/vote/create" class="btn btn-block btn-info">Create a new Vote</a>
     </div>
   </div>
 </template>

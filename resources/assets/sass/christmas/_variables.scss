@@ -1,0 +1,47 @@
+// Colors
+$blue: #092344;
+$lightGrey: #e1e1e1;
+$darkGrey: #1f1f1f;
+
+// Vote Bars
+$vote-border-color: $lightGrey;
+
+$vote-question-background: url(../img/Overlay/Total.png);
+$vote-question-color: $lightGrey;
+
+$vote-1-background: url(../img/Overlay/Pattern_Blue.png);
+$vote-2-background: url(../img/Overlay/Pattern_Turquoise.png);
+$vote-3-background: url(../img/Overlay/Pattern_Purple.png);
+$vote-4-background: url(../img/Overlay/Pattern_Red.png);
+$vote-5-background: url(../img/Overlay/Pattern_Orange.png);
+$vote-6-background: url(../img/Overlay/Pattern_Lime.png);
+$vote-7-background: lighten($blue, 5%);
+$vote-8-background: lighten($blue, 10%);
+$vote-9-background: lighten($blue, 15%);
+$vote-10-background: lighten($blue, 20%);
+$vote-11-background: lighten($blue, 25%);
+$vote-12-background: lighten($blue, 30%);
+
+// Goal Bar
+$goal-background: transparent;
+$goal-border-color: $lightGrey;
+
+$goal-progress: url(../img/Overlay/Pattern_Money.png);
+$goal-progress-text-color: $lightGrey;
+
+$goal-reached: url(../img/Overlay/Pattern_Money_Gold.png);
+$goal-reached-text-color: $darkGrey;
+
+$goal-total-background: url(../img/Overlay/Goal.png);
+$goal-total-color: $lightGrey;
+
+// Scroll
+$scroll-background: transparent;
+$scroll-border-color: $lightGrey;
+$scroll-text-color: $darkGrey;
+$scroll-link-color: $darkGrey;
+
+// General
+$total-background: url(../img/Overlay/Total.png);
+$total-text-color: $lightGrey;
+$total-border-color: $lightGrey;

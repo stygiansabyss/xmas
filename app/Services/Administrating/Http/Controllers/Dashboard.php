@@ -14,13 +14,8 @@ use App\Services\Voting\Models\Vote;
 
 class Dashboard extends BaseController
 {
-    public function __construct()
-    {
-    }
-
     public function __invoke()
     {
-
         $activeGoal      = Goal::active()->first();
         $activeIncentive = Incentive::active()->first();
         $activeRaffle    = Raffle::active()->first();

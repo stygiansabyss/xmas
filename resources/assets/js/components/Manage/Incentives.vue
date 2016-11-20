@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default" :class="{ 'panel-primary': incentiveShow }">
+  <div class="panel panel-default" :class="{ 'panel-primary': incentive !== null }">
     <div class="panel-heading">
       <div class="panel-title clearfix">
         <div class="pull-left">Current Incentive</div>
@@ -18,7 +18,7 @@
         <div v-if="incentive === null">
           <div class="form-group">
             <div class="col-md-12">
-              <a href="/incentive/create" class="btn btn-block btn-primary">
+              <a href="/incentive/create" class="btn btn-block btn-info">
                 Create a new Incentive
               </a>
             </div>

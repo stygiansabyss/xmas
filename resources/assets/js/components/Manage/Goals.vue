@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default" :class="{ 'panel-primary': goalShow }">
+  <div class="panel panel-default" :class="{ 'panel-primary': goal !== null }">
     <div class="panel-heading">
       <div class="panel-title clearfix">
         <div class="pull-left">Current Goal</div>
@@ -18,7 +18,7 @@
         <div v-if="goal === null">
           <div class="form-group">
             <div class="col-md-12">
-              <a href="/goal/create" class="btn btn-block btn-primary">Create a new Goal</a>
+              <a href="/goal/create" class="btn btn-block btn-info">Create a new Goal</a>
             </div>
           </div>
         </div>

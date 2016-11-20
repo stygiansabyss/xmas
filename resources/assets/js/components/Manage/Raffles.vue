@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default" :class="{ 'panel-primary': raffleShow }">
+  <div class="panel panel-default" :class="{ 'panel-primary': raffle !== null }">
     <div class="panel-heading">
       <div class="panel-title clearfix">
         <div class="pull-left">Current Raffle</div>
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="panel-body" v-show="raffle === null && raffleShow">
-      <a href="/raffle/create" class="btn btn-block btn-primary">Create a new Raffle</a>
+      <a href="/raffle/create" class="btn btn-block btn-info">Create a new Raffle</a>
     </div>
   </div>
 </template>

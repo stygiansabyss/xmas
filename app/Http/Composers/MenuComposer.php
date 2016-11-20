@@ -73,6 +73,11 @@ class MenuComposer
             });
         });
 
+        $leftMenu->link('assets', function (Link $link) {
+            $link->name = 'Assets';
+            $link->url  = route('administrating.asset');
+        });
+
         $leftMenu->link('spreadsheets', function (Link $link) {
             $link->name = 'Spreadsheets';
             $link->url  = null;

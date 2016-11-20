@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $providers = [
         \App\Http\Routes\Home::class,
-        \App\Http\Routes\Admin::class,
+        //\App\Http\Routes\Admin::class,
 
         \App\Services\Administrating\Http\Routes\Setting::class,
         \App\Services\Administrating\Http\Routes\Assets::class,
