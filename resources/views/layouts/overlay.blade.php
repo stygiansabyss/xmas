@@ -4,7 +4,7 @@
     @include('layouts.partials.header')
   </head>
 
-  <body>
+  <body class="overlay-body">
 
     <div class=container" id="content">
       @if (isset($content))
