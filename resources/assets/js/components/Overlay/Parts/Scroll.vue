@@ -23,7 +23,9 @@
         settings: app.settings,
       }
     },
-
+    ready: function() {
+      _settingsEcho.bind(this)();
+    },
     components: {
       'scroll-text':      ScrollText,
       'scroll-raffle':    ScrollRaffle,

@@ -25,6 +25,16 @@ class VoteWasUpdated implements ShouldBroadcast
     {
         $this->vote = $vote;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['vote' => $this->votes];
+    }
 
     /**
      * Get the channels the event should be broadcast on.
@@ -33,6 +43,6 @@ class VoteWasUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

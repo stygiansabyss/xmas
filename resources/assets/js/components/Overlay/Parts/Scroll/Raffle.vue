@@ -14,6 +14,10 @@
         raffle:   app.raffle,
         settings: app.settings,
       }
+    },
+    ready: function() {
+      _settingsEcho.bind(this)();
+      _christmasEcho.bind(this)('Raffling', 'RaffleEntryAdded', 'raffle');
     }
   }
 </script>

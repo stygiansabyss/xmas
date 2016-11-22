@@ -23,6 +23,9 @@
       return {
         settings: app.settings,
       }
+    },
+    ready: function() {
+      _settingsEcho.bind(this)();
     }
   }
 </script>

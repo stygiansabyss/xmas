@@ -24,7 +24,10 @@
         settings: app.settings,
       }
     },
-
+    ready: function() {
+      _settingsEcho.bind(this)();
+      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote');
+    },
     methods: {
       checkVoteBar() {
         if (this.settings.goal_mode == 'vote') {

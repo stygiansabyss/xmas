@@ -17,7 +17,8 @@
         "thujohn/twitter": "^2.2",
         "guzzlehttp/guzzle": "^6.2",
         "maatwebsite/excel": "^2.1",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

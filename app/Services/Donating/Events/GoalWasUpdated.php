@@ -24,6 +24,16 @@ class GoalWasUpdated implements ShouldBroadcast
     {
         $this->goal = $goal;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['goal' => $this->goal];
+    }
 
     /**
      * Get the channels the event should be broadcast on.

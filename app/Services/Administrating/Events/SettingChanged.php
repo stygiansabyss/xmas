@@ -25,6 +25,16 @@ class SettingChanged implements ShouldBroadcast
     {
         $this->setting = $setting;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['setting' => $this->setting];
+    }
 
     /**
      * Get the channels the event should be broadcast on.
@@ -33,6 +43,6 @@ class SettingChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

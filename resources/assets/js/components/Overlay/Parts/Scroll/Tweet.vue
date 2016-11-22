@@ -15,7 +15,22 @@
         settings: app.settings,
       }
     },
+    ready: function() {
+      Echo.channel('christmas')
+        .listen('.App.Services.Administrating.Events.SettingChanged', (e) => {
+            Vue.set(this.settings, e.setting.name, e.setting.value);
+            if (this.settings.scroll_mode == 'twitter')
+            {
+              this.setTweets();
+            }
 
+            if (this.settings.scroll_mode == 'donations')
+            {
+              this.setDonations();
+            }
+        });
+
+    },
     methods: {
       getTweets() {
         self = this;

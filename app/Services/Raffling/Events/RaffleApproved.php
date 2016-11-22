@@ -24,6 +24,16 @@ class RaffleApproved implements ShouldBroadcast
     {
         $this->tiers = $tiers;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['tiers' => $this->tiers];
+    }
 
     /**
      * Get the channels the event should be broadcast on.
@@ -32,6 +42,6 @@ class RaffleApproved implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

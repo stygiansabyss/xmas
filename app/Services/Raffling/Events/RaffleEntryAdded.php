@@ -25,6 +25,16 @@ class RaffleEntryAdded implements ShouldBroadcast
     {
         $this->raffle = $raffle;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['raffle' => $this->raffle];
+    }
 
     /**
      * Get the channels the event should be broadcast on.
@@ -33,6 +43,6 @@ class RaffleEntryAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

@@ -23,6 +23,20 @@ import OverlayRight from './components/Overlay/Right.vue'
 import OverlayTotal from './components/Overlay/Total.vue'
 import OverlayVertical from './components/Overlay/Vertical.vue'
 
+window._settingsEcho = function() {
+  Echo.channel('christmas')
+    .listen('.App.Services.Administrating.Events.SettingChanged', (e) => {
+      Vue.set(this.settings, e.setting.name, e.setting.value);
+  });
+};
+
+window._christmasEcho = function(service, event, thing) {
+  Echo.channel('christmas')
+      .listen('.App.Services.' + service + '.Events.' + event, (e) => {
+        this[thing] = e[thing];
+  });
+};
+
 var app = new Vue({
   el: 'body',
 

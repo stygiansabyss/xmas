@@ -21,6 +21,10 @@
         goal:     app.goal,
         settings: app.settings,
       }
+    },
+    ready: function() {
+      _settingsEcho.bind(this)();
+      _christmasEcho.bind(this)('Donating', 'GoalWasUpdated', 'goal');
     }
   }
 </script>

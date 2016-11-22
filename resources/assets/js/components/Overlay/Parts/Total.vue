@@ -7,7 +7,12 @@
     data() {
       return {
         total: app.total,
+        settings: app.settings,
       }
+    },
+    ready: function() {
+      _settingsEcho.bind(this)();
+      _christmasEcho.bind(this)('Donating', 'TotalWasChanged', 'total');
     }
   }
 </script>

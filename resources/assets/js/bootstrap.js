@@ -39,9 +39,11 @@ Vue.http.interceptors.push(function (request, next) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from "laravel-echo"
+window.io = require('socket.io-client');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+import Echo from "laravel-echo";
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: 'http://xmas.live:6001'
+});

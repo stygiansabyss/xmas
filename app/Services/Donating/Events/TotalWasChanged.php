@@ -11,18 +11,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class TotalWasChanged implements ShouldBroadcast
 {
     use SerializesModels;
-
+    
     /**
      * @var \App\Services\Donating\Models\Total
      */
     public $total;
-
+    
     public $commentCount;
-
+    
     public $shownCount;
-
+    
     public $readCount;
-
+    
     /**
      * Create a new event instance.
      *
@@ -35,7 +35,22 @@ class TotalWasChanged implements ShouldBroadcast
         $this->shownCount   = Donation::shown()->count();
         $this->readCount    = Donation::read()->count();
     }
-
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return [
+            'total'        => $this->total,
+            'commentCount' => $this->commentCount,
+            'shownCount'   => $this->shownCount,
+            'readCount'    => $this->readCount,
+        ];
+    }
+    
     /**
      * Get the channels the event should be broadcast on.
      *
@@ -43,6 +58,6 @@ class TotalWasChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

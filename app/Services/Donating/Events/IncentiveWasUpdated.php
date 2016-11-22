@@ -25,7 +25,17 @@ class IncentiveWasUpdated implements ShouldBroadcast
     {
         $this->incentive = $incentive;
     }
-
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['incentive' => $this->incentive];
+    }
+    
     /**
      * Get the channels the event should be broadcast on.
      *
@@ -33,6 +43,6 @@ class IncentiveWasUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('christmas');
+        return ['christmas'];
     }
 }

@@ -15,7 +15,20 @@
         settings:  app.settings,
       }
     },
+    ready: function() {
+      Echo.channel('christmas')
+        .listen('.App.Services.Administrating.Events.SettingChanged', (e) => {
+            Vue.set(this.settings, e.setting.name, e.setting.value);
 
+            if (this.settings.scroll_mode == 'donations')
+            {
+              this.setDonations();
+            }
+        })
+        .listen('.App.Services.Donating.Events.DonationWasReceived', (e) => {
+          this.donations.push(e.donation);
+        });
+    },
     methods: {
       getDonations() {
         self = this;

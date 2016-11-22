@@ -23,6 +23,16 @@ class DonationWasRead implements ShouldBroadcast
     {
         $this->donation = $donation;
     }
+    
+    /**
+     * Data to broadcast with.
+     *
+     * @return mixed
+     */
+    public function broadcastWith()
+    {
+        return ['donation' => $this->donation];
+    }
 
     /**
      * Get the channels the event should be broadcast on.
