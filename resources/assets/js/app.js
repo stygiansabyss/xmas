@@ -17,6 +17,11 @@ require('./transitions')
 
 import Manage from './components/Manage.vue'
 import OverlayAll from './components/Overlay/All.vue'
+import OverlayBottom from './components/Overlay/Bottom.vue'
+import OverlayHorizontal from './components/Overlay/Horizontal.vue'
+import OverlayRight from './components/Overlay/Right.vue'
+import OverlayTotal from './components/Overlay/Total.vue'
+import OverlayVertical from './components/Overlay/Vertical.vue'
 
 var app = new Vue({
   el: 'body',
@@ -38,7 +43,12 @@ var app = new Vue({
   },
 
   components: {
-    'manage-dashboard': Manage,
-    'overlay-all':      OverlayAll,
+    'manage-dashboard':   Manage,
+    'overlay-all':        OverlayAll,
+    'overlay-bottom':     OverlayBottom,
+    'overlay-horizontal': OverlayHorizontal,
+    'overlay-right':      OverlayRight,
+    'overlay-total':      OverlayTotal,
+    'overlay-vertical':   OverlayVertical,
   }
 });
