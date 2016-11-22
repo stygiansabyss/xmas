@@ -4,9 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-require('./global');
+require('./bootstrap')
+require('./global')
 require('./delete-link')
+require('./transitions')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,7 +15,8 @@ require('./delete-link')
  * the application, or feel free to tweak this setup for your needs.
  */
 
-import Manage from './Components/Manage.vue'
+import Manage from './components/Manage.vue'
+import OverlayAll from './components/Overlay/All.vue'
 
 var app = new Vue({
   el: 'body',
@@ -37,5 +39,6 @@ var app = new Vue({
 
   components: {
     'manage-dashboard': Manage,
+    'overlay-all':      OverlayAll,
   }
 });
