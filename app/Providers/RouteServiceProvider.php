@@ -31,6 +31,9 @@ class RouteServiceProvider extends ServiceProvider
         \App\Services\Raffling\Http\Routes\Winners::class,
 
         \App\Services\Voting\Http\Routes\Votes::class,
+        
+        \App\Services\StreamLabs\Http\Routes\Admin::class,
+        \App\Services\StreamLabs\Http\Routes\Alerts::class,
     ];
 
     /**

@@ -45,6 +45,17 @@ class MenuComposer
                 $link->url  = route('donation.search');
             });
         });
+    
+        $leftMenu->dropDown('stream-labs', 'Stream Labs', function (DropDown $dropDown) {
+            $dropDown->link('stream-labs_token', function (Link $link) {
+                $link->name = 'Tokens';
+                $link->url  = route('stream-labs.token.index');
+            });
+            $dropDown->link('stream-labs_alerts', function (Link $link) {
+                $link->name = 'Alerts';
+                $link->url  = route('stream-labs.alerts.index');
+            });
+        });
 
         $leftMenu->dropDown('overlay', 'Overlay', function (DropDown $dropDown) {
             $dropDown->link('overlay_main', function (Link $link) {
