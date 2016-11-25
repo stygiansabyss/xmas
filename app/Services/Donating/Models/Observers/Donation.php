@@ -4,6 +4,7 @@ namespace App\Services\Donating\Models\Observers;
 
 use App\Services\Donating\Models\Incentive;
 use App\Services\Raffling\Models\Tier;
+use App\Services\StreamLabs\Jobs\AlertStreamLabs;
 use App\Services\Voting\Models\Vote;
 
 class Donation
@@ -31,5 +32,7 @@ class Donation
                 $activeVote->donationReceived($model);
             }
         }
+        
+        dispatch(new AlertStreamLabs($model));
     }
 }

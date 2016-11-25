@@ -30,6 +30,13 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="api_token" class="control-label col-xs-4 col-md-2">Template</label>
+        <div class="col-xs-8 col-md-10">
+            {!! Form::text('template', $alert->template, ['class' => 'form-control']) !!}
+            <p class="help-block"><code>{name}</code> for donor name and <code>{amount}</code> for donor amount (includes $ automatically). Use * for special text (e.g. *{name}* )</p>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-sm-offset-4 col-md-offset-2 col-sm-8 col-md-10">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
             <a href="{{ route('stream-labs.token.index') }}" class="btn btn-default">Cancel</a>

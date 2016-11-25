@@ -15,6 +15,7 @@ class Alert extends BaseModel
         'sound_href',
         'image_href',
         'minimum_amount',
+        'template',
     ];
     
     public function setMinimumAmountAttribute($value)

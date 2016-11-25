@@ -6,6 +6,7 @@
             <th class="text-center">Sound URL</th>
             <th class="text-center">Image URL</th>
             <th class="text-center">Minimum Donation Amount (USD)</th>
+            <th class="text-center">Template</th>
             <th class="text-right">
                 <a href="{{ route('stream-labs.alerts.create') }}" class="btn btn-primary">
                     Add Amount
@@ -27,6 +28,9 @@
                 </td>
                 <td class="text-center">
                     {{ $alert->minimum_amount }}
+                </td>
+                <td class="text-center">
+                    {{ $alert->template }}
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
