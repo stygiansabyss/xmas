@@ -3,6 +3,7 @@
 namespace App\Services\Donating\Events;
 
 use App\Services\Donating\Models\Donation;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -10,7 +11,9 @@ class DonationWasReceived implements ShouldBroadcast
 {
     use SerializesModels;
 
-    /** @var  \App\Services\Donating\Models\Donation */
+    /**
+     * @var  \App\Services\Donating\Models\Donation
+     */
     public $donation;
     
     /**
@@ -40,6 +43,6 @@ class DonationWasReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['channel'];
+        return new Channel('channel');
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Apis\StreamLabs;
 
-use App\Apis\StreamLabs\Models\Donation;
-
 class Alerts extends Client
 {
     protected $section = 'alerts';

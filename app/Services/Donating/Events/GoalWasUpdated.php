@@ -3,6 +3,7 @@
 namespace App\Services\Donating\Events;
 
 use App\Services\Donating\Models\Goal;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -42,6 +43,6 @@ class GoalWasUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }

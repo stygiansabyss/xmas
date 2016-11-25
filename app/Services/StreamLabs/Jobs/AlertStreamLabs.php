@@ -14,13 +14,17 @@ use Illuminate\Queue\SerializesModels;
 class AlertStreamLabs implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
-    
-    /** @var  \App\Services\Donating\Models\Donation */
+
+    /**
+     * @var  \App\Services\Donating\Models\Donation
+     */
     public $donation;
-    
-    /** @var \App\Services\StreamLabs\Models\Token */
+
+    /**
+     * @var \App\Services\StreamLabs\Models\Token
+     */
     public $channel;
-    
+
     /**
      * Create a new job instance.
      *
@@ -31,7 +35,7 @@ class AlertStreamLabs implements ShouldQueue
         $this->donation = $donation;
         $this->channel  = Token::whereChannel(config('services.stream-labs.alert_channel'))->first();
     }
-    
+
     /**
      * Execute the job.
      *
@@ -39,12 +43,12 @@ class AlertStreamLabs implements ShouldQueue
      */
     public function handle()
     {
-        if(is_null($this->channel)) {
+        if (is_null($this->channel)) {
             return;
         }
-        
+
         $alert = Alert::getByDonation($this->donation);
-        
+
         (new Alerts)
             ->setDetails($this->channel)
             ->createAlert([

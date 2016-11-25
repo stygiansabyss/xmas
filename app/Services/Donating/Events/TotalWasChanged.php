@@ -4,6 +4,7 @@ namespace App\Services\Donating\Events;
 
 use App\Services\Donating\Models\Donation;
 use App\Services\Donating\Models\Total;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -58,6 +59,6 @@ class TotalWasChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }

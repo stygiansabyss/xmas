@@ -3,7 +3,7 @@
 namespace App\Services\Donating\Events;
 
 use App\Services\Donating\Models\Incentive;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -43,6 +43,6 @@ class IncentiveWasUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }

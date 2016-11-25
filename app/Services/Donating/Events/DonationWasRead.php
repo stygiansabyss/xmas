@@ -3,7 +3,7 @@
 namespace App\Services\Donating\Events;
 
 use App\Services\Donating\Models\Donation;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -41,6 +41,6 @@ class DonationWasRead implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('donation_read');
+        return new Channel('donation_read');
     }
 }
