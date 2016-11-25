@@ -22,19 +22,24 @@ import OverlayHorizontal from './components/Overlay/Horizontal.vue'
 import OverlayRight from './components/Overlay/Right.vue'
 import OverlayTotal from './components/Overlay/Total.vue'
 import OverlayVertical from './components/Overlay/Vertical.vue'
+import RaffleCreate from './components/Raffle/Create.vue'
 
-window._settingsEcho = function() {
+window._settingsEcho = function ()
+{
   Echo.channel('christmas')
-    .listen('.App.Services.Administrating.Events.SettingChanged', (e) => {
-      Vue.set(this.settings, e.setting.name, e.setting.value);
-  });
+      .listen('.App.Services.Administrating.Events.SettingChanged', (e) =>
+      {
+        Vue.set(this.settings, e.setting.name, e.setting.value);
+      });
 };
 
-window._christmasEcho = function(service, event, thing) {
+window._christmasEcho = function (service, event, thing)
+{
   Echo.channel('christmas')
-      .listen('.App.Services.' + service + '.Events.' + event, (e) => {
+      .listen('.App.Services.' + service + '.Events.' + event, (e) =>
+      {
         this[thing] = e[thing];
-  });
+      });
 };
 
 var app = new Vue({
@@ -64,5 +69,6 @@ var app = new Vue({
     'overlay-right':      OverlayRight,
     'overlay-total':      OverlayTotal,
     'overlay-vertical':   OverlayVertical,
+    'raffle-create':      RaffleCreate,
   }
 });

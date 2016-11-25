@@ -22,7 +22,7 @@ class Raffles extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -37,44 +37,44 @@ class Raffles extends BaseRoutes implements Routes
     {
         $router->get('create')
                ->name('raffle.create')
-               ->uses('Raffles@create');
+               ->uses('Raffle@create');
         $router->post('create')
                ->name('raffle.create')
-               ->uses('Raffles@store');
+               ->uses('Raffle@store');
 
         $router->get('edit/{id}')
                ->name('raffle.edit')
-               ->uses('Raffles@edit');
+               ->uses('Raffle@edit');
         $router->post('edit/{id}')
                ->name('raffle.edit')
-               ->uses('Raffles@update');
+               ->uses('Raffle@update');
 
         $router->get('winner/{id}')
                ->name('raffle.winner')
-               ->uses('Raffles@winner');
+               ->uses('Raffle@winner');
 
         $router->get('preview/{id}')
                ->name('raffle.preview')
-               ->uses('Raffles@preview');
+               ->uses('Raffle@preview');
 
-        $router->get('approve/{id}')
+        $router->post('approve/{id}')
                ->name('raffle.approve')
-               ->uses('Raffles@approve');
+               ->uses('Raffle@approve');
 
         $router->get('watch/{id}')
                ->name('raffle.watch')
-               ->uses('Raffles@watch');
+               ->uses('Raffle@watch');
 
         $router->get('finished/{id}')
                ->name('raffle.finished')
-               ->uses('Raffles@finished');
+               ->uses('Raffle@finished');
 
         $router->get('{raffleId}/status/{statusId}')
                ->name('raffle.status')
-               ->uses('Raffles@status');
+               ->uses('Raffle@status');
 
         $router->get('/')
                ->name('raffle.index')
-               ->uses('Raffles@index');
+               ->uses('Raffle@index');
     }
 }
