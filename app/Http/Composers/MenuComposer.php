@@ -35,6 +35,8 @@ class MenuComposer
             $link->url  = route('administrating.dashboard');
         });
 
+        $this->overlayDropDown($leftMenu);
+
         $leftMenu->dropDown('donation', 'Donations', function (DropDown $dropDown) {
             $dropDown->link('donation_index', function (Link $link) {
                 $link->name = 'Donations';
@@ -57,6 +59,19 @@ class MenuComposer
             });
         });
 
+        $leftMenu->link('assets', function (Link $link) {
+            $link->name = 'Assets';
+            $link->url  = route('administrating.asset');
+        });
+
+        $leftMenu->link('spreadsheets', function (Link $link) {
+            $link->name = 'Spreadsheets';
+            $link->url  = null;
+        });
+    }
+
+    private function overlayDropDown($leftMenu)
+    {
         $leftMenu->dropDown('overlay', 'Overlay', function (DropDown $dropDown) {
             $dropDown->link('overlay_main', function (Link $link) {
                 $link->name = 'Overlay';
@@ -82,16 +97,6 @@ class MenuComposer
                 $link->name = 'Overlay Total';
                 $link->url  = route('administrating.overlay.total');
             });
-        });
-
-        $leftMenu->link('assets', function (Link $link) {
-            $link->name = 'Assets';
-            $link->url  = route('administrating.asset');
-        });
-
-        $leftMenu->link('spreadsheets', function (Link $link) {
-            $link->name = 'Spreadsheets';
-            $link->url  = null;
         });
     }
 
