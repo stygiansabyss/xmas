@@ -22,11 +22,8 @@
             <td>{{ $image->width }}px</td>
             <td>{{ $image->height }}px</td>
             <td class="text-right">
-              <a href="{{ route('administrating.asset.edit', $image->id) }}" class="btn btn-sm btn-link btn-info">
+              <a href="{{ route('administrating.asset.edit', $image->id) }}" class="btn btn-sm btn-info">
                 <i class="fa fa-fw fa-edit"></i>&nbsp;Edit
-              </a>
-              <a href="" class="btn btn-sm btn-link btn-danger text-danger" data-method="delete">
-                <i class="fa fa-fw fa-edit"></i>&nbsp;Delete
               </a>
             </td>
           @endforeach

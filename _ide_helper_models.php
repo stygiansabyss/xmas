@@ -249,6 +249,66 @@ namespace App\Services\Raffling\Models{
 	class Tier extends \Eloquent {}
 }
 
+namespace App\Services\StreamLabs\Models{
+/**
+ * App\Services\StreamLabs\Models\Alert
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $sound_href
+ * @property string $image_href
+ * @property int $minimum_amount
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $minimum_amount_raw
+ * @property mixed $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereSoundHref($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereImageHref($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereMinimumAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ */
+	class Alert extends \Eloquent {}
+}
+
+namespace App\Services\StreamLabs\Models{
+/**
+ * App\Services\StreamLabs\Models\Token
+ *
+ * @property integer $id
+ * @property integer $twitch_id
+ * @property string $channel
+ * @property string $api_token
+ * @property string $access_token
+ * @property string $refresh_token
+ * @property \Carbon\Carbon $expires_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property mixed $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereTwitchId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereChannel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereApiToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereAccessToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereRefreshToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereExpiresAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Token whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ * @mixin \Eloquent
+ */
+	class Token extends \Eloquent {}
+}
+
 namespace App\Services\Tweeting\Models{
 /**
  * App\Services\Tweeting\Models\Tweet
