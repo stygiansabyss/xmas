@@ -2,8 +2,8 @@
   window.Laravel = <?php echo json_encode([
           'csrfToken'  => csrf_token(),
           'userId'     => auth()->id(),
-          'host'       => env('APP_URL'),
-          'socketPort' => env('NODE_PORT'),
+          'host'       => config('app.url'),
+          'socketPort' => config('app.node_port'),
   ]); ?>
 </script>
 
