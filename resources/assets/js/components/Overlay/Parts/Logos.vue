@@ -3,13 +3,7 @@
        v-if="settings.goal_mode == 'logos'"
        transition="fade"
   >
-    <img src="/img/overlay/Charities/Oxfam.png" />
-    <img src="/img/overlay/Charities/CancerResearch.png" />
-    <img src="/img/overlay/Charities/MentalHealth.png" />
-    <img src="/img/overlay/Charities/SpecialEffect.png" />
-    <img src="/img/overlay/Charities/MSF.png" />
-    <img src="/img/overlay/Charities/GamesAid.png" />
-    <img src="/img/overlay/Charities/Fauna.png" />
+    <img v-for="logo in logos" :src="logo.path" />
   </div>
 </template>
 <style>
@@ -21,6 +15,7 @@
   export default {
     data() {
       return {
+        logos:    app.logos,
         settings: app.settings,
       }
     },

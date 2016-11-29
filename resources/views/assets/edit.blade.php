@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-offset-4 col-md-4 gray p-a-1">
-      <img src="/{{ $image->path }}" alt="" class="img-responsive m-x-auto" />
+      <img src="{{ $image->path }}" alt="" class="img-responsive m-x-auto" />
     </div>
   </div>
   <div class="row">
@@ -30,7 +30,7 @@
       <div class="m-x-auto" style="width: {{ $image->width }}px; max-width: 650px;">
         <div class="fileinput fileinput-new" data-provides="fileinput">
           <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: {{ $image->width }}px; max-width: 650px;height: {{ $image->height }}px; max-height: 400px;">
-            <img src="/{{ $image->path }}" alt="">
+            <img src="{{ $image->path }}" alt="">
           </div>
           <div>
           <span class="btn btn-default btn-file btn-block">

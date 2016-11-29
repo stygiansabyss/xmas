@@ -30,7 +30,7 @@ class Assets extends BaseController
 
     public function index()
     {
-        $images = $this->assets->orderByNameAsc()->get();
+        $images = $this->assets->where('charity_flag', 0)->orderByNameAsc()->get();
 
         $this->setViewData(compact('images'));
 

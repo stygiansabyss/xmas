@@ -3,6 +3,7 @@
 namespace App\Services\Administrating\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
+use App\Services\Administrating\Models\Asset;
 use App\Services\Administrating\Models\Setting;
 use App\Services\Donating\Models\Goal;
 use App\Services\Donating\Models\Incentive;
@@ -21,13 +22,14 @@ class Overlay extends BaseController
     {
         $settings = $this->getSettings();
 
+        $logos     = $this->getLogos();
         $goal      = $this->getActiveGoal();
         $incentive = $this->getActiveIncentive();
         $raffle    = $this->getActiveRaffle();
         $vote      = $this->getActiveVote();
         $total     = $this->getCurrentTotal();
 
-        $this->setJavascriptData(compact('settings', 'goal', 'incentive', 'raffle', 'vote', 'total'));
+        $this->setJavascriptData(compact('settings', 'logos', 'goal', 'incentive', 'raffle', 'vote', 'total'));
 
         return $this->view();
     }
@@ -140,5 +142,13 @@ class Overlay extends BaseController
     private function getCurrentTotal()
     {
         return Total::orderBy('id', 'desc')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getLogos()
+    {
+        return Asset::where('charity_flag', 1)->get();
     }
 }

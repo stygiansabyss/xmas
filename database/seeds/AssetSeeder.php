@@ -20,7 +20,11 @@ class AssetSeeder extends BaseSeeder
 
         $images = File::allFiles(public_path('img/overlay'));
 
-        $this->saveImages($images);
+        $this->saveImages($images, 0);
+
+        $images = File::allFiles(public_path('img/charities'));
+
+        $this->saveImages($images, 1);
     }
 
     private function getImageName(SplFileInfo $image)
@@ -34,7 +38,7 @@ class AssetSeeder extends BaseSeeder
     /**
      * @param $images
      */
-    private function saveImages($images)
+    private function saveImages($images, $charityFlag)
     {
         foreach ($images as $image) {
             $file = $image->getPath() . '/' . $image->getFilename();
@@ -43,10 +47,11 @@ class AssetSeeder extends BaseSeeder
             $file = Image::make($file);
 
             $attributes = [
-                'name'   => $this->getImageName($image),
-                'path'   => $path,
-                'width'  => $file->width(),
-                'height' => $file->height(),
+                'name'         => $this->getImageName($image),
+                'path'         => $path,
+                'width'        => $file->width(),
+                'height'       => $file->height(),
+                'charity_flag' => $charityFlag,
             ];
 
             Asset::create($attributes);

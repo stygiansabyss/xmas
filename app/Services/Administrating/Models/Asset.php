@@ -12,6 +12,7 @@ class Asset extends BaseModel
         'name',
         'path',
         'width',
-        'height'
+        'height',
+        'charity_flag',
     ];
 }

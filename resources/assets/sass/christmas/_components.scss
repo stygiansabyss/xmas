@@ -220,7 +220,7 @@
     background-color: $scroll-background;
     position:         absolute;
     left:             10px;
-    bottom:           7px;
+    bottom:           20px;
     height:           53px;
     width:            1189px;
     padding:          5px;
@@ -260,9 +260,9 @@
     background-size: 100% 100%;
     border-radius:   4px;
     right:           10px;
-    bottom:          10px;
+    bottom:          5px;
     font-size:       50px;
-    padding:         5px 10px;
+    padding:         0 10px;
   }
 
   .jingle {
@@ -278,8 +278,8 @@
 
   .logo {
     position: absolute;
-    right:    30px;
-    top:      85px;
+    right:    6px;
+    top:      -7px;
 
     img {
       display:       block;
