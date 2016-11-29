@@ -1,7 +1,7 @@
 <template>
   <div class="goal"
        v-if="settings.goal_mode == 'goal' && goal != null"
-       v-transition="fade"
+       transition="fade"
   >
     <div class="goal-target">
       <div class="goal-total">${{ goal.goal }}</div>

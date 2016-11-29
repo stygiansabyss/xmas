@@ -1,5 +1,5 @@
 <template>
-  <div class="incentive" :class="settings.scroll_speed" v-transition="fade" style="margin-top: -4px;">
+  <div class="incentive" :class="settings.scroll_speed" transition="fade" style="margin-top: -4px;">
     {{ incentive.reward }}: {{ incentive.count }} / {{ incentive.target }}
   </div>
 </template>

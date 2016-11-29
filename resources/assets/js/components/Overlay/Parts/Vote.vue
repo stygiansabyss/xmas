@@ -1,7 +1,7 @@
 <template>
   <div class="vote"
        v-if="settings.goal_mode == 'vote' && vote != null"
-       v-transition="fade"
+       transition="fade"
   >
     <div class="vote-question">
       <div class="vote-text">{{ vote.name }}</div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="tweets" id="donations" :class="settings.scroll_speed" v-transition="fade">
+  <div class="tweets" id="donations" :class="settings.scroll_speed" transition="fade">
     <div v-for="donation in donations">
       {{ donation.comment }} ~<span style="color: #54515b;">{{ donation.name }}</span>
       <span><i class="fa fa-tree"></i></span>

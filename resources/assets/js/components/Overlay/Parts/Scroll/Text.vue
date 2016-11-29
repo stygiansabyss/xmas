@@ -1,5 +1,5 @@
 <template>
-  <div class="plain-text" :class="settings.scroll_speed" v-transition="fade">
+  <div class="plain-text" :class="settings.scroll_speed" transition="fade">
     {{ settings.scroll_text }}
   </div>
 </template>

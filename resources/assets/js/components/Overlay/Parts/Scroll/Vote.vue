@@ -1,5 +1,5 @@
 <template>
-  <div class="plain-text" :class="settings.scroll_speed" v-transition="fade" style="margin-top: -4px;">
+  <div class="plain-text" :class="settings.scroll_speed" transition="fade" style="margin-top: -4px;">
     Donate now with the words {{ vote.options_readable }} to vote!
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="logo"
        v-if="settings.goal_mode == 'logos'"
-       v-transition="fade"
+       transition="fade"
   >
     <img src="/img/charity/Oxfam.png" />
     <img src="/img/charity/CancerResearch.png" />

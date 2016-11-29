@@ -1,5 +1,5 @@
 <template>
-  <div class="tweets" id="tweets" :class="settings.scroll_speed" v-transition="fade">
+  <div class="tweets" id="tweets" :class="settings.scroll_speed" transition="fade">
     <div v-for="tweet in tweets" id="{{ tweet.id }}">
       {{ tweet.text }} ~@{{ tweet.name }}
       <span><i class="fa fa-twitter text-twitter"></i></span>
