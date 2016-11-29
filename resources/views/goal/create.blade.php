@@ -1,25 +1,13 @@
 <div class="container-fluid">
-    {!! Form::open() !!}
     <div class="lead">Create New Goal</div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Starting Value</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('start_value', $total->raised, ['class' => 'form-control']) !!}
-            <p class="help-block">Current total: {{ $total->raised }}</p>
+    {!! BootForm::openHorizontal(['xs' => [4, 8], 'md' => [2, 10]]) !!}
+        {!! BootForm::text('Starting Value', 'start_value', $total->raised)->helpBlock('Current total: '. $total->raised) !!}
+        {!! BootForm::text('Goal', 'goal', null) !!}
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-md-offset-2 col-sm-8 col-md-10">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                <a href="{{ route('administrating.dashboard') }}" class="btn btn-link">Cancel</a>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Goal</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('goal', null, ['class' => 'form-control']) !!}
-            <p class="help-block"></p>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-md-offset-2 col-sm-8 col-md-10">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-            <a href="{{ route('stream-labs.alerts.index') }}" class="btn btn-default">Cancel</a>
-        </div>
-    </div>
-    {!! Form::close() !!}
+    {!! BootForm::close() !!}
 </div>
