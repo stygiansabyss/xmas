@@ -3,10 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Apis\HumbleBundle\Client;
-use App\Services\Donating\Events\GoalWasUpdated;
 use App\Services\Donating\Events\IncentiveWasUpdated;
 use App\Services\Donating\Events\TotalWasChanged;
 use App\Services\Donating\Models\Donation;
+use App\Services\Goals\Events\GoalWasUpdated;
 use App\Services\Goals\Models\Goal;
 use App\Services\Donating\Models\Incentive;
 use App\Services\Donating\Models\Total;
