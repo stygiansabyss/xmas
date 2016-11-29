@@ -36,4 +36,34 @@ class Assets extends BaseController
 
         return $this->view();
     }
+
+    public function edit($id)
+    {
+        $this->setViewData('image', $this->assets->find($id));
+
+        return $this->view();
+    }
+
+    public function update($id)
+    {
+        // check that new image exists
+        if (! request()->hasFile('image')) {
+            return redirect(route('administrating.asset.edit', $id))
+                ->with('error', 'No image submitted.');
+        }
+
+        $asset = $this->assets->find($id);
+        $image = $this->images->make(request()->file('image'));
+
+        // check that new image is the same dimensions as the original
+        if ($image->width() !== $asset->width || $image->height() !== $asset->height) {
+            return redirect(route('administrating.asset.edit', $id))
+                ->with('error', 'Image must be the same dimensions ('. $asset->width .'px wide and '. $asset->height .'px tall).');
+        }
+
+        $image->save($asset->path);
+
+        return redirect(route('administrating.asset'))
+            ->with('message', 'New image successfully added.');
+    }
 }

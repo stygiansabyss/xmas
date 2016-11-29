@@ -12,6 +12,9 @@ require('bootstrap-sass/assets/javascripts/bootstrap');
 require('bootbox');
 require('bootstrap-notify');
 
+
+window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
+
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean

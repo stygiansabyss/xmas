@@ -29,11 +29,20 @@ class Assets extends BaseRoutes implements Routes
 
     public function patterns()
     {
-        return [];
+        return [
+            'id' => '[0-9]+',
+        ];
     }
 
     public function routes(Router $router)
     {
+        $router->get('{id}/edit')
+               ->name('administrating.asset.edit')
+               ->uses('Assets@edit');
+        $router->post('{id}/edit')
+               ->name('administrating.asset.edit')
+               ->uses('Assets@update');
+
         $router->get('/')
                ->name('administrating.asset')
                ->uses('Assets@index');
