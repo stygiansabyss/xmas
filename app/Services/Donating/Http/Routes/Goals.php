@@ -22,7 +22,7 @@ class Goals extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -37,24 +37,24 @@ class Goals extends BaseRoutes implements Routes
     {
         $router->get('create')
                ->name('goal.create')
-               ->uses('Goals@create');
+               ->uses('Goal@create');
         $router->post('create')
                ->name('goal.create')
-               ->uses('Goals@store');
+               ->uses('Goal@store');
 
         $router->get('edit/{id}')
                ->name('goal.edit')
-               ->uses('Goals@edit');
+               ->uses('Goal@edit');
         $router->post('edit/{id}')
                ->name('goal.edit')
-               ->uses('Goals@update');
+               ->uses('Goal@update');
 
         $router->get('reached/{id?}')
                ->name('goal.reached')
-               ->uses('Goals@reached');
+               ->uses('Goal@reached');
 
         $router->get('/')
                ->name('goal.index')
-               ->uses('Goals@index');
+               ->uses('Goal@index');
     }
 }
