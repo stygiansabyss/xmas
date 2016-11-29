@@ -3,7 +3,7 @@
 namespace App\Services\Administrating\Events;
 
 use App\Services\Administrating\Models\Setting;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -43,6 +43,6 @@ class SettingChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }

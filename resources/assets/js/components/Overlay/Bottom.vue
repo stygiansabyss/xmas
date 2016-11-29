@@ -12,6 +12,12 @@
   import Total from './Parts/Total.vue'
 
   export default {
+    data() {
+      return {
+        order: null,
+      }
+    },
+
     components: {
       'scroll': Scroll,
       'total':  Total,

@@ -12,9 +12,10 @@
         settings: app.settings,
       }
     },
-    ready: function() {
-      _settingsEcho.bind(this)();
-      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote');
+
+    ready() {
+      _settingsEcho.bind(this)()
+      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote')
     }
   }
 </script>

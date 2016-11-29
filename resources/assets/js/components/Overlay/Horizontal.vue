@@ -9,6 +9,12 @@
   import Scroll from './Parts/Scroll.vue'
 
   export default {
+    data() {
+      return {
+        order: null,
+      }
+    },
+
     components: {
       'scroll': Scroll,
     }

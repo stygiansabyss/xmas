@@ -24,8 +24,9 @@
         settings: app.settings,
       }
     },
-    ready: function() {
-      _settingsEcho.bind(this)();
-    }
+
+    ready() {
+      _settingsEcho.bind(this)()
+    },
   }
 </script>

@@ -13,6 +13,12 @@
   import Vote from './Parts/Vote.vue'
 
   export default {
+    data() {
+      return {
+        order: null,
+      }
+    },
+
     components: {
       'logos': Logos,
       'goal':  Goal,

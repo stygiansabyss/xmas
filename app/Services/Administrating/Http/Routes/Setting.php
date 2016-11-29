@@ -22,7 +22,7 @@ class Setting extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -33,7 +33,7 @@ class Setting extends BaseRoutes implements Routes
 
     public function routes(Router $router)
     {
-        $router->post('edit')
+        $router->any('edit')
                ->name('setting.edit')
                ->uses('Setting@update');
     }

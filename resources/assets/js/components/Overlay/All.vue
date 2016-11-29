@@ -18,6 +18,12 @@
   import Total from './Parts/Total.vue'
 
   export default {
+    data() {
+      return {
+        order: null,
+      }
+    },
+
     components: {
       'logos':  Logos,
       'goal':   Goal,

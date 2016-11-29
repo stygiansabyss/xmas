@@ -12,9 +12,10 @@
         settings:  app.settings,
       }
     },
-    ready: function() {
-      _settingsEcho.bind(this)();
-      _christmasEcho.bind(this)('Donating', 'IncentiveWasUpdated', 'incentive');
+
+    ready() {
+      _settingsEcho.bind(this)()
+      _christmasEcho.bind(this)('Donating', 'IncentiveWasUpdated', 'incentive')
     }
   }
 </script>
