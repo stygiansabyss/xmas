@@ -3,6 +3,7 @@
 namespace App\Services\Goals\Models;
 
 use App\Models\BaseModel;
+use App\Services\Donating\Models\Total;
 
 class Goal extends BaseModel
 {
