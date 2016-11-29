@@ -3,7 +3,7 @@
        v-if="settings.goal_mode == 'logos'"
        transition="fade"
   >
-    <img v-for="logo in logos" :src="logo.path" :style="{ height: logoHeight + 'px !important' }" />
+    <img v-for="logo in logos" :src="logo.path" :style="{ height: logoHeight + 'px' }" />
   </div>
 </template>
 <style>

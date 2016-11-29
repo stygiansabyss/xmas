@@ -7,6 +7,8 @@
 <!-- Local styles -->
 {!! HTML::style('css/app.css') !!}
 
+<script src="{{ env('NODE_SERVER') }}:{{ env('NODE_PORT') }}/socket.io/socket.io.js"></script>
+
 <!-- Css -->
 @section('css')
 @show
