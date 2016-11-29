@@ -23,6 +23,8 @@ import OverlayRight from './components/Overlay/Right.vue'
 import OverlayTotal from './components/Overlay/Total.vue'
 import OverlayVertical from './components/Overlay/Vertical.vue'
 import RaffleCreate from './components/Raffle/Create.vue'
+import RaffleEdit from './components/Raffle/Edit.vue'
+import RaffleWatch from './components/Raffle/Watch.vue'
 
 window._settingsEcho = function ()
 {
@@ -70,5 +72,7 @@ var app = new Vue({
     'overlay-total':      OverlayTotal,
     'overlay-vertical':   OverlayVertical,
     'raffle-create':      RaffleCreate,
+    'raffle-edit':        RaffleEdit,
+    'raffle-watch':       RaffleWatch,
   }
 });

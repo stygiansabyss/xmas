@@ -68,14 +68,14 @@ class Raffle extends BaseModel
 
     public function updateTiers($tiers)
     {
-        foreach ($tiers as $tierId => $tier) {
+        foreach ($tiers as $tier) {
             $tierData = [
                 'raffle_id' => $this->id,
                 'minimum'   => $tier['minimum'],
                 'reward'    => $tier['reward'],
             ];
 
-            $tier = Tier::find($tierId);
+            $tier = Tier::find($tier['id']);
             $tier->update($tierData);
         }
 

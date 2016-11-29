@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p class="lead">Create a new raffle</p>
+    <p class="lead">Editing Raffle: {{ form.name }}</p>
     <form class="form-horizontal" method="POST" @submit.prevent="onSubmit">
       <div class="form-group">
         <label class="col-md-3 control-label">Raffle Name</label>
@@ -9,6 +9,7 @@
         </div>
       </div>
       <tier v-for="tier in tierCount" :index="tier" :form="form.tiers[tier]"></tier>
+      <tier v-for="tier in newTierCount" :index="tier + tierCount" :form="form.new_tiers[tier]"></tier>
       <div class="form-group">
         <div class="col-sm-offset-3 col-md-offset-3 col-sm-9 col-md-9">
           <p class="form-control-static">
@@ -35,16 +36,13 @@
   export default {
     data() {
       return {
-        tierCount: 1,
+        tierCount: app.raffle.tiers.length,
+        newTierCount: 0,
         form:      {
           _token: Laravel.csrfToken,
-          name:   null,
-          tiers:  [
-            {
-              minimum: null,
-              reward:  null,
-            }
-          ],
+          name:   app.raffle.name,
+          tiers:  app.raffle.tiers,
+          new_tiers: [],
         }
       }
     },
@@ -55,20 +53,20 @@
 
     methods: {
       addTier() {
-        this.form.tiers.push({
+        this.form.new_tiers.push({
           minimum: null,
           reward:  null,
         })
-        this.$set('tierCount', this.tierCount + 1);
+        this.$set('newTierCount', this.newTierCount + 1);
       },
 
       onSubmit() {
-        this.$http.post('/raffle/create', this.form)
+        this.$http.post('', this.form)
             .then((response) =>
             {
                 if(response.ok)
                 {
-                    window.location.href = '/manage';
+                    window.location.href = '/raffle';
                 } else {
                     window.alert('Error ' + response.status + ' when saving Raffle.');
                 }

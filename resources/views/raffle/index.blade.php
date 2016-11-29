@@ -17,12 +17,12 @@
         @foreach ($raffles as $raffle)
           <tr>
             <td>{{ $raffle->name }}</td>
-            <td>{{ $raffles->tiers()->count() }}</td>
-            <td>{{ $raffles->tiers->winners()->count() }}</td>
+            <td>{{ $raffle->tiers()->count() }}</td>
+            <td>{{ $raffle->tiers->winners()->count() }}</td>
             <td class="text-right">
               <div class="btn-group">
                 <a href="{{ route('raffle.edit', $raffle->id) }}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
-                <a href="{{ route('raffle.winners', $raffle->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-trophy"></i></a>
+                <a href="{{ route('raffle.winner', $raffle->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-trophy"></i></a>
               </div>
             </td>
           </tr>

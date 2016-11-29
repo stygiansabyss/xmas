@@ -50,20 +50,21 @@ class Raffle extends BaseController
 
     public function store()
     {
-        ppd(request()->all());
+        //ppd(request()->all());
         $raffle = $this->raffles->generate(request());
 
         event(new RaffleEntryAdded($raffle));
 
-        return redirect(route('administrating.dashboard'))
-            ->with('message', 'New raffle created');
+        return ['success' => true];
+        //redirect(route('administrating.dashboard'))
+        //    ->with('message', 'New raffle created');
     }
 
     public function edit($id)
     {
         $raffle = $this->raffles->find($id);
 
-        $this->setViewData(compact('raffle'));
+        $this->setJavascriptData(compact('raffle'));
 
         return $this->view();
     }
@@ -88,7 +89,20 @@ class Raffle extends BaseController
 
         $this->setViewData(compact('tiers'));
 
-        $this->setViewLayout('layouts.dark');
+        //$this->setViewLayout('layouts.dark');
+        
+        return $this->view();
+    }
+    
+    public function watch($id)
+    {
+        $tiers = $this->raffles->find($id)->tiers()->whereHas('winners', function ($query) {
+            $query->where('status', 1);
+        })->get();
+    
+        $this->setJavascriptData(compact('tiers'));
+        
+        return $this->view();
     }
 
     public function approve($id)
