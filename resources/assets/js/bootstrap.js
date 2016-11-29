@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -11,7 +10,6 @@ window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass/assets/javascripts/bootstrap');
 require('bootbox');
 require('bootstrap-notify');
-
 
 window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
 
@@ -30,10 +28,11 @@ require('vue-resource');
  * included with Laravel will automatically verify the header's value.
  */
 
-Vue.http.interceptors.push(function (request, next) {
-    request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
+Vue.http.interceptors.push(function (request, next)
+{
+  request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
 
-    next();
+  next();
 });
 
 /**
@@ -47,6 +46,6 @@ window.io = require('socket.io-client');
 import Echo from "laravel-echo";
 
 window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: 'http://xmas.dev:6001'
+  broadcaster: 'socket.io',
+  host:        Laravel.host + ':' + Laravel.socketPort
 });
