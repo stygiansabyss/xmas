@@ -56,12 +56,10 @@
 .marquee-faster-loop {
   -webkit-animation: marquee 15s linear infinite;
   padding-left:      100%;
-
-  div {
-    display:  inline-block;
-    position: relative;
-    bottom:   8px;
-  }
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
 }
 
 .marquee-fast-loop {

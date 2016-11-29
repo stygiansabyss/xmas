@@ -6,7 +6,7 @@ use App\Apis\BaseClient;
 
 class Client extends BaseClient
 {
-    protected $url = 'http://www.humblebundle.com/hbycjj2015';
+    protected $url = 'http://www.humblebundle.com/hbycjj2016';
 
     protected $cacheKey = 'hb:cursor';
 
