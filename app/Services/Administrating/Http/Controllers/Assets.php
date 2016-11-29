@@ -61,7 +61,7 @@ class Assets extends BaseController
                 ->with('error', 'Image must be the same dimensions ('. $asset->width .'px wide and '. $asset->height .'px tall).');
         }
 
-        $image->save($asset->path);
+        $image->save(public_path($asset->path));
 
         return redirect(route('administrating.asset'))
             ->with('message', 'New image successfully added.');

@@ -12,7 +12,7 @@
           </label>
           <div class="col-md-9" v-if="setting.type === 'select'">
             <select :name="setting.name" :id="setting.name" class="form-control" v-model="form.settings[setting.id]">
-              <option v-for="(key, option) in setting.options" :value="key" :selected="key === setting.value">
+              <option v-for="(key, option) in setting.options" :value="key" :selected="key == setting.value">
                 {{ option }}
               </option>
             </select>

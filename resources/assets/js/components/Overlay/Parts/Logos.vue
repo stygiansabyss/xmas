@@ -3,13 +3,13 @@
        v-if="settings.goal_mode == 'logos'"
        transition="fade"
   >
-    <img src="/img/charity/Oxfam.png" />
-    <img src="/img/charity/CancerResearch.png" />
-    <img src="/img/charity/MentalHealth.png" />
-    <img src="/img/charity/SpecialEffect.png" />
-    <img src="/img/charity/MSF.png" />
-    <img src="/img/charity/GamesAid.png" />
-    <img src="/img/charity/Fauna.png" />
+    <img src="/img/overlay/Charities/Oxfam.png" />
+    <img src="/img/overlay/Charities/CancerResearch.png" />
+    <img src="/img/overlay/Charities/MentalHealth.png" />
+    <img src="/img/overlay/Charities/SpecialEffect.png" />
+    <img src="/img/overlay/Charities/MSF.png" />
+    <img src="/img/overlay/Charities/GamesAid.png" />
+    <img src="/img/overlay/Charities/Fauna.png" />
   </div>
 </template>
 <style>
