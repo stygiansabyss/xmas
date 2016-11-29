@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Services\Donating\Http\Controllers;
+namespace App\Services\Goals\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
-use App\Services\Donating\Events\GoalWasUpdated;
-use App\Services\Donating\Models\Goal as GoalModel;
+use App\Services\Goals\Models\Goal as GoalModel;
 use App\Services\Donating\Models\Total;
 
 class Goal extends BaseController
 {
     /**
-     * @var \App\Services\Donating\Models\Goal;
+     * @var \App\Services\Goals\Models\Goal;
      */
     private $goals;
     
@@ -47,9 +46,7 @@ class Goal extends BaseController
     
     public function store()
     {
-        $goal = $this->goals->create(request()->all());
-        
-        event(new GoalWasUpdated($goal));
+        $this->goals->create(request()->all());
         
         return redirect(route('administrating.dashboard'))
             ->with('message', 'New goal created');

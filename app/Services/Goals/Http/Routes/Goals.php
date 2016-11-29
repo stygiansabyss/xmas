@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Donating\Http\Routes;
+namespace App\Services\Goals\Http\Routes;
 
 use NukaCode\Core\Contracts\Routes;
 use NukaCode\Core\Providers\Routes as BaseRoutes;
@@ -10,7 +10,7 @@ class Goals extends BaseRoutes implements Routes
 {
     public function namespacing()
     {
-        return 'App\Services\Donating\Http\Controllers';
+        return 'App\Services\Goals\Http\Controllers';
     }
 
     public function prefix()

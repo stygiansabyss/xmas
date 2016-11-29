@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Donating\Models;
+namespace App\Services\Goals\Models;
 
 use App\Models\BaseModel;
 
@@ -8,6 +8,8 @@ class Goal extends BaseModel
 {
     protected $table = 'donation_goals';
 
+    protected static $observer = \App\Services\Goals\Models\Observers\Goal::class;
+    
     protected $fillable = [
         'start_value',
         'goal',

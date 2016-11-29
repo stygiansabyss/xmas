@@ -6,7 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Services\Administrating\Models\Setting;
 use App\Services\Administrating\Transformers\Setting as SettingTransformer;
 use App\Services\Donating\Models\Donation;
-use App\Services\Donating\Models\Goal;
+use App\Services\Goals\Models\Goal;
 use App\Services\Donating\Models\Incentive;
 use App\Services\Donating\Models\Total;
 use App\Services\Raffling\Models\Raffle;
