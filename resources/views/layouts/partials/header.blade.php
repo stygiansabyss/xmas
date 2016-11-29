@@ -7,7 +7,7 @@
 <!-- Local styles -->
 {!! HTML::style('css/app.css') !!}
 
-<script src="{{ config('app.url') }}:{{ config('app.node_port') }}/socket.io/socket.io.js"></script>
+<script src="{{ config('app.node_server') }}:{{ config('app.node_port') }}/socket.io/socket.io.js"></script>
 
 <!-- Css -->
 @section('css')

@@ -51,8 +51,9 @@ return [
     |
     */
 
-    'url'       => env('APP_URL', 'http://localhost'),
-    'node_port' => env('NODE_PORT', 6001),
+    'url'         => env('APP_URL', 'http://localhost'),
+    'node_server' => env('NODE_SERVER', '//localhost'),
+    'node_port'   => env('NODE_PORT', 6001),
 
     /*
     |--------------------------------------------------------------------------
