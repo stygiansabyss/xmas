@@ -20,20 +20,7 @@ class AssetSeeder extends BaseSeeder
 
         $images = File::allFiles(public_path('img/overlay'));
 
-        foreach ($images as $image) {
-            $file = $image->getPath() . '/' . $image->getFilename();
-
-            $file = Image::make($file);
-
-            $attributes = [
-                'name'   => $this->getImageName($image),
-                'path'   => 'img/overlay/' . $image->getFilename(),
-                'width'  => $file->width(),
-                'height' => $file->height(),
-            ];
-
-            Asset::create($attributes);
-        }
+        $this->saveImages($images);
     }
 
     private function getImageName(SplFileInfo $image)
@@ -42,5 +29,27 @@ class AssetSeeder extends BaseSeeder
         $replace = ['', ' '];
 
         return Str::title(str_replace($find, $replace, $image->getFilename()));
+    }
+
+    /**
+     * @param $images
+     */
+    private function saveImages($images)
+    {
+        foreach ($images as $image) {
+            $file = $image->getPath() . '/' . $image->getFilename();
+            $path = str_replace(public_path(), '', $file);
+
+            $file = Image::make($file);
+
+            $attributes = [
+                'name'   => $this->getImageName($image),
+                'path'   => $path,
+                'width'  => $file->width(),
+                'height' => $file->height(),
+            ];
+
+            Asset::create($attributes);
+        }
     }
 }
