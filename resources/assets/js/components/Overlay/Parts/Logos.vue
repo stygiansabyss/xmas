@@ -3,7 +3,7 @@
        v-if="settings.goal_mode == 'logos'"
        transition="fade"
   >
-    <img v-for="logo in logos" :src="logo.path" />
+    <img v-for="logo in logos" :src="logo.path" :style="{ height: logoHeight + 'px !important' }" />
   </div>
 </template>
 <style>
@@ -15,8 +15,9 @@
   export default {
     data() {
       return {
-        logos:    app.logos,
-        settings: app.settings,
+        logos:      app.logos,
+        logoHeight: app.logoHeight,
+        settings:   app.settings,
       }
     },
 

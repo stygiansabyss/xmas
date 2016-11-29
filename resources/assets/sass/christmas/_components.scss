@@ -263,7 +263,6 @@
     bottom:          5px;
     font-size:       50px;
     padding:         0 10px;
-    min-width:       300px;
   }
 
   .jingle {
@@ -280,11 +279,16 @@
   .logo {
     position: absolute;
     right:    6px;
-    top:      -7px;
+    top:      10px;
+    height:   980px;
 
     img {
       display:       block;
       margin-bottom: 20px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
   }
 }

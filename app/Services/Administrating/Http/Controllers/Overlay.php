@@ -22,14 +22,15 @@ class Overlay extends BaseController
     {
         $settings = $this->getSettings();
 
-        $logos     = $this->getLogos();
+        list($logos, $logoHeight) = $this->getLogos();
+
         $goal      = $this->getActiveGoal();
         $incentive = $this->getActiveIncentive();
         $raffle    = $this->getActiveRaffle();
         $vote      = $this->getActiveVote();
         $total     = $this->getCurrentTotal();
 
-        $this->setJavascriptData(compact('settings', 'logos', 'goal', 'incentive', 'raffle', 'vote', 'total'));
+        $this->setJavascriptData(compact('settings', 'logos', 'logoHeight', 'goal', 'incentive', 'raffle', 'vote', 'total'));
 
         return $this->view();
     }
@@ -149,6 +150,12 @@ class Overlay extends BaseController
      */
     private function getLogos()
     {
-        return Asset::where('charity_flag', 1)->get();
+        $assets = Asset::where('charity_flag', 1)->get();
+        $count = count($assets);
+
+        return [
+            $assets,
+            (980 - (20 * $count)) / $count,
+        ];
     }
 }
