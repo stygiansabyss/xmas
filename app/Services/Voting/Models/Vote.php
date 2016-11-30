@@ -36,9 +36,13 @@ class Vote extends BaseModel
         $vote = static::create(['name' => $name]);
 
         foreach ($options as $option) {
+            if (is_null($option['key_word'])) {
+                continue;
+            }
+
             $data = [
-                'vote_id' => $vote->id,
-                'keyWord' => $option['keyWord'],
+                'vote_id'  => $vote->id,
+                'key_word' => $option['key_word'],
             ];
 
             Option::create($data);
@@ -49,13 +53,12 @@ class Vote extends BaseModel
 
     public function updateOptions($options)
     {
-        foreach ($options as $optionId => $option) {
+        foreach ($options as $option) {
             $optionData = [
-                'vote_id' => $this->id,
-                'keyWord' => $option['keyWord'],
+                'key_word' => $option['key_word'],
             ];
 
-            $option = Option::find($optionId);
+            $option = Option::find($option['id']);
             $option->update($optionData);
         }
     }
@@ -64,8 +67,8 @@ class Vote extends BaseModel
     {
         foreach ($options as $option) {
             $optionData = [
-                'vote_id' => $this->id,
-                'keyWord' => $option['keyWord'],
+                'vote_id'  => $this->id,
+                'key_word' => $option['key_word'],
             ];
 
             Option::create($optionData);
@@ -74,11 +77,11 @@ class Vote extends BaseModel
 
     public function donationReceived($donation)
     {
-        $expression = str_replace('#', '\#', implode('|', $this->options->keyWord->toArray()));
+        $expression = str_replace('#', '\#', implode('|', $this->options->key_word->toArray()));
         preg_match("/($expression)/i", $donation->comment, $matches);
 
         if (count($matches) > 0) {
-            $option = $this->options()->where('keyWord', $matches[0])->first();
+            $option = $this->options()->where('key_word', $matches[0])->first();
             $option->increment('votes');
         }
     }
@@ -118,7 +121,7 @@ class Vote extends BaseModel
 
     public function getOptionsReadableAttribute()
     {
-        return humanReadableImplode($this->options->keyWord->toArray(), 'or');
+        return humanReadableImplode($this->options->key_word->toArray(), 'or');
     }
 
     public function options()

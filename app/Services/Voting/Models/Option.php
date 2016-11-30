@@ -10,7 +10,7 @@ class Option extends BaseModel
 
     protected $fillable = [
         'vote_id',
-        'keyWord',
+        'key_word',
         'votes',
     ];
 
@@ -29,7 +29,7 @@ class Option extends BaseModel
 
     public function getPercentOverlayAttribute()
     {
-        return $this->percent . '% ' . $this->keyWord;
+        return $this->percent . '% ' . $this->key_word;
     }
 
     public function vote()

@@ -30,7 +30,7 @@
       </thead>
       <tbody>
         <tr v-for="option in vote.options">
-          <td>{{ option.keyWord }}</td>
+          <td>{{ option.key_word }}</td>
           <td class="text-center">{{ option.votes }}</td>
           <td class="text-center">{{ option.percent }}</td>
         </tr>
@@ -40,9 +40,9 @@
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
           <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span v-if="vote.status === 0">Inactive</span>
-            <span v-if="vote.status === 1">Active</span>
-            <span v-if="vote.status === 2">Finished</span>
+            <span v-if="vote.status == 0">Inactive</span>
+            <span v-if="vote.status == 1">Active</span>
+            <span v-if="vote.status == 2">Finished</span>
             <i class="fa fa-chevron-down"></i>
           </a>
           <ul class="dropdown-menu">
@@ -54,8 +54,8 @@
         </div>
         <div class="btn-group">
           <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span v-if="vote.accepting_flag === 0">Not Accepting Votes</span>
-            <span v-if="vote.accepting_flag === 1">Accepting Votes</span>
+            <span v-if="vote.accepting_flag == 0">Not Accepting Votes</span>
+            <span v-if="vote.accepting_flag == 1">Accepting Votes</span>
             <i class="fa fa-chevron-down"></i>
           </a>
           <ul class="dropdown-menu">
@@ -85,5 +85,27 @@
         voteShow: true,
       }
     },
+
+    ready() {
+      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote')
+    },
+
+    methods: {
+      toggleVoteStatus(voteId, statusId) {
+        this.$http.get('/vote/' + voteId + '/status/' + statusId)
+            .then((data) =>
+            {
+              this.vote = data.body
+            })
+      },
+
+      toggleVoteAcceptance(voteId, statusId) {
+        this.$http.get('/vote/' + voteId + '/acceptance/' + statusId)
+            .then((data) =>
+            {
+              this.vote = data.body
+            })
+      },
+    }
   }
 </script>

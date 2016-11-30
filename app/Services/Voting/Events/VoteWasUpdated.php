@@ -3,7 +3,7 @@
 namespace App\Services\Voting\Events;
 
 use App\Services\Voting\Models\Vote;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -25,7 +25,7 @@ class VoteWasUpdated implements ShouldBroadcast
     {
         $this->vote = $vote;
     }
-    
+
     /**
      * Data to broadcast with.
      *
@@ -33,7 +33,7 @@ class VoteWasUpdated implements ShouldBroadcast
      */
     public function broadcastWith()
     {
-        return ['vote' => $this->votes];
+        return ['vote' => $this->vote];
     }
 
     /**
@@ -43,6 +43,6 @@ class VoteWasUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }

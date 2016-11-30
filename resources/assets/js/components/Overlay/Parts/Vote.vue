@@ -8,7 +8,7 @@
     </div>
     <div class="vote-bar">
       <div class="vote-chunk" v-for="option in vote.options" v-show="option.votes > 0"
-           style="height: {{ option.percent }}%;">
+           :style="{ height: option.percent +'%' }">
         <div class="vote-percent clearfix">{{ option.percent_overlay }}</div>
         <div class="vote-progress"></div>
       </div>
@@ -27,34 +27,40 @@
 
     ready() {
       _settingsEcho.bind(this)()
-      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote')
+      _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote', function (self, e)
+      {
+        self.checkVoteBar()
+      })
+
+      this.checkVoteBar()
     },
+
     methods: {
       checkVoteBar() {
         if (this.settings.goal_mode == 'vote') {
-          var barHeight      = $('.vote-bar').height();
-          var combinedHeight = 0;
+          let barHeight      = $('.vote-bar').height()
+          let combinedHeight = 0
 
           $('.vote-chunk').each(function ()
           {
             if ($(this).css('display') != 'none') {
-              combinedHeight = combinedHeight + $(this).height();
+              combinedHeight = combinedHeight + $(this).height()
             }
-          });
+          })
 
           if (combinedHeight > barHeight) {
-            var difference  = combinedHeight - barHeight;
-            var targetChunk = $('.vote-chunk:last-of-type');
-            var newHeight   = targetChunk.height() - difference;
+            let difference  = combinedHeight - barHeight
+            let targetChunk = $('.vote-chunk:last-of-type')
+            let newHeight   = targetChunk.height() - difference
 
-            $('.vote-chunk:last-of-type').height(newHeight);
+            $('.vote-chunk:last-of-type').height(newHeight)
           }
           if (combinedHeight < barHeight) {
-            var difference  = combinedHeight - barHeight;
-            var targetChunk = $('.vote-chunk:last-of-type');
-            var newHeight   = targetChunk.height() + difference;
+            let difference  = barHeight - combinedHeight
+            let targetChunk = $('.vote-chunk:last-of-type')
+            let newHeight   = targetChunk.height() + difference
 
-            $('.vote-chunk:last-of-type').height(newHeight);
+            $('.vote-chunk:last-of-type').height(newHeight)
           }
         }
       }

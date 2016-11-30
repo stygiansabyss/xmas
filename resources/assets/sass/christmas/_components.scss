@@ -31,9 +31,10 @@
     .vote-question {
       background:      $vote-question-background;
       background-size: 100% 100%;
+      min-width:       180px;
       position:        absolute;
       top:             4px;
-      right:           4px;
+      right:           -9px;
 
       .vote-text {
         padding:   10px;
@@ -74,7 +75,7 @@
           position: relative;
           right:    0;
           bottom:   0;
-          width:    110px;
+          width:    108px;
           height:   100%;
         }
 
@@ -165,7 +166,7 @@
     .goal-target {
       background: $goal-total-background;
       height:     145px;
-      width:      180px;
+      min-width:  180px;
       position:   absolute;
       top:        4px;
       right:      -9px;

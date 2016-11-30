@@ -27,24 +27,37 @@ import RaffleEdit from './components/Raffle/Edit.vue'
 import RaffleWatch from './components/Raffle/Watch.vue'
 import DonationList from './components/Donation/List.vue'
 import DonationSearch from './components/Donation/Search.vue'
+import VoteCreate from './components/Vote/Create.vue'
+import VoteEdit from './components/Vote/Edit.vue'
 
 window._settingsEcho = function ()
 {
   Echo.channel('christmas')
       .listen('.App.Services.Administrating.Events.SettingChanged', (e) =>
       {
-        Vue.set(this.settings, e.setting.name, e.setting.value);
-      });
+        Vue.set(this.settings, e.setting.name, e.setting.value)
+      })
 };
 
-window._christmasEcho = function (service, event, thing)
+window._setterEcho = function (channel, id, service, event, thing)
+{
+  Echo.channel(channel +'.'+ id)
+      .listen('.App.Services.' + service + '.Events.' + event, (e) =>
+      {
+        this[thing] = e[thing]
+      })
+}
+
+window._christmasEcho = function (service, event, thing, callback)
 {
   Echo.channel('christmas')
       .listen('.App.Services.' + service + '.Events.' + event, (e) =>
       {
-        this[thing] = e[thing];
-      });
-};
+        this[thing] = e[thing]
+
+        callback(this, e)
+      })
+}
 
 var app = new Vue({
   el: 'body',
@@ -78,5 +91,7 @@ var app = new Vue({
     'raffle-watch':       RaffleWatch,
     'donation-list':      DonationList,
     'donation-search':    DonationSearch,
+    'vote-create':        VoteCreate,
+    'vote-edit':          VoteEdit,
   }
 });

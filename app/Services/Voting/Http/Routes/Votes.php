@@ -22,7 +22,7 @@ class Votes extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -37,28 +37,28 @@ class Votes extends BaseRoutes implements Routes
     {
         $router->get('create')
                ->name('vote.create')
-               ->uses('Votes@create');
+               ->uses('Vote@create');
         $router->post('create')
                ->name('vote.create')
-               ->uses('Votes@store');
+               ->uses('Vote@store');
 
         $router->get('edit/{id}')
                ->name('vote.edit')
-               ->uses('Votes@edit');
+               ->uses('Vote@edit');
         $router->post('edit/{id}')
                ->name('vote.edit')
-               ->uses('Votes@update');
+               ->uses('Vote@update');
 
         $router->get('{voteId}/status/{statusId}')
                ->name('vote.status')
-               ->uses('Votes@status');
+               ->uses('Vote@status');
 
         $router->get('{voteId}/acceptance/{statusId}')
                ->name('vote.acceptance')
-               ->uses('Votes@acceptance');
+               ->uses('Vote@acceptance');
 
         $router->get('/')
                ->name('vote.index')
-               ->uses('Votes@index');
+               ->uses('Vote@index');
     }
 }
