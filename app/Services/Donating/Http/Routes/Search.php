@@ -6,7 +6,7 @@ use NukaCode\Core\Contracts\Routes;
 use NukaCode\Core\Providers\Routes as BaseRoutes;
 use Illuminate\Routing\Router;
 
-class Donations extends BaseRoutes implements Routes
+class Search extends BaseRoutes implements Routes
 {
     public function namespacing()
     {
@@ -35,16 +35,16 @@ class Donations extends BaseRoutes implements Routes
 
     public function routes(Router $router)
     {
-        $router->get('read/{id}')
-               ->name('donation.read')
-               ->uses('Donation@read');
+        $router->get('search')
+               ->name('donation.search')
+               ->uses('Search@search');
 
-        $router->get('read/all')
-               ->name('donation.read.all')
-               ->uses('Donation@readAll');
+        $router->any('find')
+               ->name('donation.find')
+               ->uses('Search@find');
 
-        $router->get('/')
-               ->name('donation.index')
-               ->uses('Donation@index');
+        $router->post('edit')
+               ->name('donation.edit')
+               ->uses('Search@update');
     }
 }

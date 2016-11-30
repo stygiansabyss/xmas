@@ -51,5 +51,19 @@ class DonationSeeder extends Seeder
 
             Tweet::create($data);
         }
+
+        // Donations
+        for ($i = 0; $i < 5; $i++) {
+            $data = [
+                'hb_id'         => $faker->uuid,
+                'amount'        => $faker->numberBetween(1, 1500),
+                'name'          => $faker->userName,
+                'email'         => $faker->email,
+                'comment'       => $faker->words(100, 1),
+                'hb_created_at' => $faker->dateTime->format('Y-m-d H:i:s'),
+            ];
+
+            Donation::create($data);
+        }
     }
 }

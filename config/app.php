@@ -189,6 +189,7 @@ return [
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Camroncade\Timezone\TimezoneServiceProvider::class,
     ],
 
     /*

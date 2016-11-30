@@ -23,7 +23,8 @@
         "maatwebsite/excel": "^2.1",
         "intervention/image": "^2.3",
         "predis/predis": "^1.1",
-        "adamwathan/bootforms": "^0.8.2"
+        "adamwathan/bootforms": "^0.8.2",
+        "camroncade/timezone": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

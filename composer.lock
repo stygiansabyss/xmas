@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f41cc0ddbe389116c709b6b7d649d948",
-    "content-hash": "eae5a4a22080fc3ba90acdaedc6a967d",
+    "hash": "8602e30de54cdd5952000fcbb53add47",
+    "content-hash": "69afc3342dbc3355a7b77a3931e3173c",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -144,6 +144,47 @@
                 "webprofiler"
             ],
             "time": "2016-11-21 12:49:15"
+        },
+        {
+            "name": "camroncade/timezone",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/camroncade/timezone.git",
+                "reference": "9d0c12bb96efbfeb97f122b40aca66f804ae98db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/camroncade/timezone/zipball/9d0c12bb96efbfeb97f122b40aca66f804ae98db",
+                "reference": "9d0c12bb96efbfeb97f122b40aca66f804ae98db",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.2",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Camroncade\\Timezone\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Camron Cade",
+                    "email": "camron@camroncade.com"
+                }
+            ],
+            "description": "Helps manage timezones in Laravel. Includes <select> form builder for timezones.",
+            "homepage": "http://www.camroncade.com/managing-timezones-with-laravel/",
+            "time": "2015-05-20 20:32:03"
         },
         {
             "name": "classpreloader/classpreloader",

@@ -24,15 +24,16 @@ class RouteServiceProvider extends ServiceProvider
         \App\Services\Donating\Http\Routes\Api::class,
         \App\Services\Donating\Http\Routes\Donations::class,
         \App\Services\Donating\Http\Routes\Incentives::class,
+        \App\Services\Donating\Http\Routes\Search::class,
 
         \App\Services\Raffling\Http\Routes\Raffles::class,
         \App\Services\Raffling\Http\Routes\Tiers::class,
         \App\Services\Raffling\Http\Routes\Winners::class,
-    
+
         \App\Services\Goals\Http\Routes\Goals::class,
 
         \App\Services\Voting\Http\Routes\Votes::class,
-        
+
         \App\Services\StreamLabs\Http\Routes\Admin::class,
         \App\Services\StreamLabs\Http\Routes\Alerts::class,
     ];

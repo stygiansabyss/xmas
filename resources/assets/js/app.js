@@ -26,6 +26,7 @@ import RaffleCreate from './components/Raffle/Create.vue'
 import RaffleEdit from './components/Raffle/Edit.vue'
 import RaffleWatch from './components/Raffle/Watch.vue'
 import DonationList from './components/Donation/List.vue'
+import DonationSearch from './components/Donation/Search.vue'
 
 window._settingsEcho = function ()
 {
@@ -76,5 +77,6 @@ var app = new Vue({
     'raffle-edit':        RaffleEdit,
     'raffle-watch':       RaffleWatch,
     'donation-list':      DonationList,
+    'donation-search':    DonationSearch,
   }
 });
