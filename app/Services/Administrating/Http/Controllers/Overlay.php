@@ -5,9 +5,9 @@ namespace App\Services\Administrating\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Services\Administrating\Models\Asset;
 use App\Services\Administrating\Models\Setting;
-use App\Services\Goals\Models\Goal;
-use App\Services\Donating\Models\Incentive;
 use App\Services\Donating\Models\Total;
+use App\Services\Goals\Models\Goal;
+use App\Services\Incentivizing\Models\Incentive;
 use App\Services\Raffling\Models\Raffle;
 use App\Services\Voting\Models\Vote;
 

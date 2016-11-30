@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Donating\Events;
+namespace App\Services\Incentivizing\Events;
 
-use App\Services\Donating\Models\Incentive;
+use App\Services\Incentivizing\Models\Incentive;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -19,7 +19,7 @@ class IncentiveWasUpdated implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @param \App\Services\Donating\Models\Incentive $incentive
+     * @param \App\Services\Incentivizing\Models\Incentive $incentive
      */
     public function __construct(Incentive $incentive)
     {

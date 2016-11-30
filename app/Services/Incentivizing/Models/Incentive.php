@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Donating\Models;
+namespace App\Services\Incentivizing\Models;
 
 use App\Models\BaseModel;
 
@@ -68,7 +68,7 @@ class Incentive extends BaseModel
     public function reached()
     {
         $this->reached_at = carbonParse('now');
-        $this->save();
+        return $this->save();
     }
 
     public function donationReceived()

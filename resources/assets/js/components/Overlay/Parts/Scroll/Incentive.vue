@@ -15,7 +15,7 @@
 
     ready() {
       _settingsEcho.bind(this)()
-      _christmasEcho.bind(this)('Donating', 'IncentiveWasUpdated', 'incentive')
+      _christmasEcho.bind(this)('Incentivizing', 'IncentiveWasUpdated', 'incentive')
     }
   }
 </script>

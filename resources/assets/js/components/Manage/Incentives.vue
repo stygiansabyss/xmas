@@ -4,8 +4,11 @@
       <div class="panel-title clearfix">
         <div class="pull-left">Current Incentive</div>
         <div class="pull-right">
-          <a href="/incentives" class="btn btn-xs btn-default">
+          <a href="/incentive" class="btn btn-xs btn-default">
             <i class="fa fa-bars"></i>
+          </a>
+          <a href="/incentive/edit/{{ incentive.id }}" class="btn btn-xs btn-info" v-if="incentive != null">
+            <i class="fa fa-edit"></i>
           </a>
           <a @click="incentiveShow = ! incentiveShow" class="btn btn-xs btn-info">
             <i class="fa fa-plus"></i>
@@ -14,13 +17,11 @@
       </div>
     </div>
     <div class="panel-body" v-show="incentiveShow">
-      <form>
+      <form class="form-horizontal">
         <div v-if="incentive === null">
           <div class="form-group">
             <div class="col-md-12">
-              <a href="/incentive/create" class="btn btn-block btn-info">
-                Create a new Incentive
-              </a>
+              <a href="/incentive/create" class="btn btn-block btn-info">Create a new Incentive</a>
             </div>
           </div>
         </div>
@@ -50,8 +51,8 @@
             <div class="col-md-9">
               <div class="form-control-static">
                 <div class="progress" style="margin-bottom: 0;">
-                  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ incentive.percent }}"
-                       aria-valuemin="0" aria-valuemax="100" style="width: {{ incentive.percent }}%;">
+                  <div class="progress-bar progress-bar-primary" role="progressbar" :aria-valuenow="incentive.percent"
+                       aria-valuemin="0" aria-valuemax="100" :style="{ width: incentive.percent +'%' }">
                     {{ incentive.percent }}%
                   </div>
                 </div>
@@ -79,5 +80,9 @@
         incentiveShow: true,
       }
     },
+
+    ready() {
+      _christmasEcho.bind(this)('Incentivizing', 'IncentiveWasUpdated', 'incentive')
+    }
   }
 </script>

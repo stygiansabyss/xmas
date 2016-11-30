@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Donating\Http\Routes;
+namespace App\Services\Incentivizing\Http\Routes;
 
 use NukaCode\Core\Contracts\Routes;
 use NukaCode\Core\Providers\Routes as BaseRoutes;
@@ -10,7 +10,7 @@ class Incentives extends BaseRoutes implements Routes
 {
     public function namespacing()
     {
-        return 'App\Services\Donating\Http\Controllers';
+        return 'App\Services\Incentivizing\Http\Controllers';
     }
 
     public function prefix()
@@ -22,7 +22,7 @@ class Incentives extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -37,24 +37,24 @@ class Incentives extends BaseRoutes implements Routes
     {
         $router->get('create')
                ->name('incentive.create')
-               ->uses('Incentives@create');
+               ->uses('Incentive@create');
         $router->post('create')
                ->name('incentive.create')
-               ->uses('Incentives@store');
+               ->uses('Incentive@store');
 
         $router->get('edit/{id}')
                ->name('incentive.edit')
-               ->uses('Incentives@edit');
+               ->uses('Incentive@edit');
         $router->post('edit/{id}')
                ->name('incentive.edit')
-               ->uses('Incentives@update');
+               ->uses('Incentive@update');
 
         $router->get('reached/{id?}')
                ->name('incentive.reached')
-               ->uses('Incentives@reached');
+               ->uses('Incentive@reached');
 
         $router->get('/')
                ->name('incentive.index')
-               ->uses('Incentives@index');
+               ->uses('Incentive@index');
     }
 }
