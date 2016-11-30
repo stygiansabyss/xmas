@@ -9,7 +9,7 @@
     <div class="goal-bar">
       <div class="goal-percent">{{ goal.percent }}%</div>
       <div class="goal-progress" :class="{ 'reached': goal.percent >= 100 }"
-           style="height: calc({{ goal.percent }}% - 9px);"></div>
+           :style="{ height: goal.percent +'%' }"></div>
     </div>
   </div>
 </template>

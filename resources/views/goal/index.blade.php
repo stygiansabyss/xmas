@@ -2,8 +2,11 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th>Starting</th>
         <th>Goal</th>
-        <th>Reached</th>
+        <th>Difference</th>
+        <th>% Complete</th>
+        <th>Reached On</th>
         <th>Duration</th>
         <th style="width: 100px;">
           <a href="{{ route('goal.create') }}" class="btn btn-primary pull-right">
@@ -16,7 +19,10 @@
       @if ($goals->count() > 0)
         @foreach ($goals as $goal)
           <tr>
+            <td>{{ $goal->start_value }}</td>
             <td>{{ $goal->goal }}</td>
+            <td>{{ $goal->difference }}</td>
+            <td>{{ $goal->percent }}</td>
             <td>{{ $goal->reached_at_short }}</td>
             <td>{{ $goal->duration }}</td>
             <td class="text-right">

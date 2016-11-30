@@ -22,6 +22,7 @@ class Goal extends BaseModel
     protected $appends = [
         'percent',
         'duration',
+        'difference',
         'reached_at_short',
     ];
 
@@ -86,7 +87,7 @@ class Goal extends BaseModel
 
         $percent = percent($raised, $total);
 
-        if ($percent > 100) {
+        if ($percent > 100 || $total == 0) {
             $percent = 100;
         } elseif ($percent < 0) {
             $percent = 0;
@@ -112,6 +113,11 @@ class Goal extends BaseModel
         }
 
         return carbonParse($this->reached_at)->diffForHumans(carbonParse($this->created_at), true);
+    }
+
+    public function getDifferenceAttribute()
+    {
+        return number_format(($this->attributes['goal'] - $this->attributes['start_value'])  / 100);
     }
 
     public function reached()
