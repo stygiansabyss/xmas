@@ -8,7 +8,7 @@
     </div>
     <div class="goal-bar">
       <div class="goal-percent">{{ goal.percent }}%</div>
-      <div class="goal-progress" :class="{ 'reached': goal.percent >= 100 }"
+      <div class="goal-progress" :class="{ 'reached': goal.reached_at != null }"
            :style="{ height: goal.percent +'%' }"></div>
     </div>
   </div>
