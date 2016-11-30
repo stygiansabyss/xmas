@@ -1,6 +1,6 @@
 <template>
   <div class="vote"
-       v-if="settings.goal_mode == 'vote' && vote != null"
+       v-if="settings.goal_mode == 'vote' && vote != null && vote.status == 1"
        transition="fade"
   >
     <div class="vote-question">

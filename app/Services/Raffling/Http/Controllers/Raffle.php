@@ -7,9 +7,17 @@ use App\Services\Raffling\Events\RaffleApproved;
 use App\Services\Raffling\Events\RaffleEntryAdded;
 use App\Services\Raffling\Models\Raffle as RaffleModel;
 use App\Services\Raffling\Models\Tier;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Raffle extends BaseController
 {
+    const INACTIVE = 0;
+
+    const ACTIVE = 1;
+
+    const FINISHED = 2;
+
     /**
      * @var \App\Services\Raffling\Models\Raffle
      */
@@ -43,21 +51,16 @@ class Raffle extends BaseController
 
     public function create()
     {
-        $this->setJavascriptData('csrfToken', csrf_token());
-
         return $this->view();
     }
 
     public function store()
     {
-        //ppd(request()->all());
         $raffle = $this->raffles->generate(request());
 
         event(new RaffleEntryAdded($raffle));
 
-        return ['success' => true];
-        //redirect(route('administrating.dashboard'))
-        //    ->with('message', 'New raffle created');
+        return response()->json('success', 200);
     }
 
     public function edit($id)
@@ -81,15 +84,63 @@ class Raffle extends BaseController
             ->with('message', 'Raffle updated');
     }
 
+    public function status($id, $statusId)
+    {
+        $raffle = $this->raffles->find($id);
+        $raffle->setStatus($statusId);
+
+        if ($statusId == Raffle::FINISHED) {
+            // Generate spreadsheet
+            $tiers = $raffle->tiers;
+
+            $donationsArray = [];
+
+            foreach ($tiers as $tier) {
+                foreach ($tier->winners as $winner) {
+                    $data = [
+                        'tier'       => $tier->minimum,
+                        'reward'     => $tier->reward,
+                        'id'         => $winner->hb_id,
+                        'name'       => $winner->name,
+                        'amount'     => $winner->amount,
+                        'email'      => $winner->email,
+                        'comment'    => $winner->comment,
+                        'created_at' => (string)$winner->hb_created_at,
+                    ];
+
+                    $donationsArray[] = $data;
+                }
+            }
+
+            Excel::create('raffle_winners_' . Str::slug($raffle->name, '_'), function ($excel) use ($donationsArray) {
+                $excel->sheet('Donations', function ($sheet) use ($donationsArray) {
+                    // Generate the sheet from the DB results.
+                    $sheet->fromArray($donationsArray);
+
+                    // Make the header stand out.
+                    $sheet->row(1, function ($row) {
+                        $row->setBackground('#000000');
+                        $row->setFontColor('#ffffff');
+                        $row->setFontWeight('bold');
+                        $row->setAlignment('center');
+                    });
+                });
+            })->save('xls', public_path('spreadsheets'))->download('xls');
+        }
+
+        return redirect(route('administrating.dashboard'))
+            ->with('message', 'Raffle updated');
+    }
+
     public function preview($id)
     {
         $tiers = $this->raffles->find($id)->tiers()->whereHas('winners', function ($query) {
             $query->where('status', 1);
         })->get();
 
-        $this->setViewData(compact('tiers'));
+        $this->setViewData(compact('tiers', 'id'));
 
-        //$this->setViewLayout('layouts.dark');
+        $this->setViewLayout('layouts.donation');
         
         return $this->view();
     }
@@ -101,6 +152,8 @@ class Raffle extends BaseController
         })->get();
     
         $this->setJavascriptData(compact('tiers'));
+
+        $this->setViewLayout('layouts.donation');
         
         return $this->view();
     }
@@ -113,6 +166,7 @@ class Raffle extends BaseController
 
         event(new RaffleApproved($tiers));
 
-        return redirect(route('raffle.winners', [$id]))->with('message', 'Raffle approved for view.');
+        return redirect(route('raffle.winners.show', [$id]))
+            ->with('message', 'Raffle approved for view.');
     }
 }

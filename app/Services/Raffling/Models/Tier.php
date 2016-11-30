@@ -25,6 +25,7 @@ class Tier extends BaseModel
 
     protected $appends = [
         'entries',
+        'simple_amount',
         'winner_count',
         'unshown_winners',
         'email',
@@ -38,6 +39,11 @@ class Tier extends BaseModel
     public function scopeFinished($query)
     {
         return $query->where('status', self::FINISHED);
+    }
+
+    public function getSimpleAmountAttribute()
+    {
+        return substr($this->attributes['minimum'], 0, -2);
     }
 
     public function setMinimumAttribute($value)

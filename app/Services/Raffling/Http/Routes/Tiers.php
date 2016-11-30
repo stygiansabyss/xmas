@@ -37,6 +37,6 @@ class Tiers extends BaseRoutes implements Routes
     {
         $router->get('{tierId}/status/{statusId}')
                ->name('raffle.tier.status')
-               ->uses('Tiers@status');
+               ->uses('Tier@status');
     }
 }

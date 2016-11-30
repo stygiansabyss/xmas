@@ -12,7 +12,7 @@
             <div class="col-md-9">
                 <div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" v-model="form.minimum" required="required" number/>
+                    <input type="text" class="form-control" v-model="form.simple_amount" />
                     <span class="input-group-addon">.00</span>
                 </div>
             </div>
@@ -35,5 +35,4 @@
   export default {
     props: ['index', 'form'],
   }
-
 </script>

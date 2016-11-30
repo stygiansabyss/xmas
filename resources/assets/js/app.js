@@ -25,6 +25,7 @@ import OverlayVertical from './components/Overlay/Vertical.vue'
 import RaffleCreate from './components/Raffle/Create.vue'
 import RaffleEdit from './components/Raffle/Edit.vue'
 import RaffleWatch from './components/Raffle/Watch.vue'
+import RaffleWinner from './components/Raffle/Winner.vue'
 import DonationList from './components/Donation/List.vue'
 import DonationSearch from './components/Donation/Search.vue'
 import VoteCreate from './components/Vote/Create.vue'
@@ -41,7 +42,7 @@ window._settingsEcho = function ()
 
 window._setterEcho = function (channel, id, service, event, thing)
 {
-  Echo.channel(channel +'.'+ id)
+  Echo.channel(channel + '.' + id)
       .listen('.App.Services.' + service + '.Events.' + event, (e) =>
       {
         this[thing] = e[thing]
@@ -89,6 +90,7 @@ var app = new Vue({
     'raffle-create':      RaffleCreate,
     'raffle-edit':        RaffleEdit,
     'raffle-watch':       RaffleWatch,
+    'raffle-winner':      RaffleWinner,
     'donation-list':      DonationList,
     'donation-search':    DonationSearch,
     'vote-create':        VoteCreate,

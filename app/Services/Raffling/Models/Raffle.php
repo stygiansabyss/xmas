@@ -70,8 +70,7 @@ class Raffle extends BaseModel
     {
         foreach ($tiers as $tier) {
             $tierData = [
-                'raffle_id' => $this->id,
-                'minimum'   => $tier['minimum'],
+                'minimum'   => $tier['simple_amount'],
                 'reward'    => $tier['reward'],
             ];
 
@@ -87,7 +86,7 @@ class Raffle extends BaseModel
         foreach ($tiers as $tier) {
             $tierData = [
                 'raffle_id' => $this->id,
-                'minimum'   => $tier['minimum'],
+                'minimum'   => $tier['simple_amount'],
                 'reward'    => $tier['reward'],
             ];
 
@@ -130,6 +129,6 @@ class Raffle extends BaseModel
 
     public function tiers()
     {
-        return $this->hasMany(Tier::class, 'raffle_id')->orderBy('level', 'desc');
+        return $this->hasMany(Tier::class, 'raffle_id')->orderBy('level', 'asc');
     }
 }

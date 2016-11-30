@@ -5,7 +5,7 @@
       <div class="form-group">
         <label class="col-md-3 control-label">Raffle Name</label>
         <div class="col-md-9">
-          <input type="text" v-model="form.name" class="form-control" />
+          <input type="text" v-model="form.name" class="form-control" required="required" />
         </div>
       </div>
       <tier v-for="tier in tierCount" :index="tier" :form="form.tiers[tier]"></tier>
@@ -27,7 +27,7 @@
 </template>
 <style>
   .form-control-static a:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 </style>
 <script>
@@ -36,12 +36,13 @@
   export default {
     data() {
       return {
-        tierCount: app.raffle.tiers.length,
+        raffle:       app.raffle,
+        tierCount:    app.raffle.tiers.length,
         newTierCount: 0,
-        form:      {
-          _token: Laravel.csrfToken,
-          name:   app.raffle.name,
-          tiers:  app.raffle.tiers,
+        form:         {
+          _token:    Laravel.csrfToken,
+          name:      app.raffle.name,
+          tiers:     app.raffle.tiers,
           new_tiers: [],
         }
       }
@@ -61,15 +62,14 @@
       },
 
       onSubmit() {
-        this.$http.post('', this.form)
+        this.$http.post('/raffle/edit/' + this.raffle.id, this.form)
             .then((response) =>
             {
-                if(response.ok)
-                {
-                    window.location.href = '/raffle';
-                } else {
-                    window.alert('Error ' + response.status + ' when saving Raffle.');
-                }
+              if (response.ok) {
+                window.location.href = '/raffle';
+              } else {
+                window.alert('Error ' + response.status + ' when saving Raffle.');
+              }
             })
       }
     }

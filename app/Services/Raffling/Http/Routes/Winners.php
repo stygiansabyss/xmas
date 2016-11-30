@@ -15,7 +15,7 @@ class Winners extends BaseRoutes implements Routes
 
     public function prefix()
     {
-        return $this->getContext('default') . '/raffle/winners';
+        return $this->getContext('default') . '/raffle/winner';
     }
 
     public function middleware()
@@ -37,18 +37,18 @@ class Winners extends BaseRoutes implements Routes
     {
         $router->post('select/{id}')
                ->name('raffle.winners.select')
-               ->uses('Winners@select');
+               ->uses('Winner@select');
 
         $router->post('status/{statusId}/{tierId}/{donationId}')
                ->name('raffle.winners.status')
-               ->uses('Winners@status');
+               ->uses('Winner@status');
 
         $router->post('deny/{tierId}/{donationId}')
                ->name('raffle.winners.deny')
-               ->uses('Winners@deny');
+               ->uses('Winner@deny');
 
         $router->get('{id}')
                ->name('raffle.winners.show')
-               ->uses('Winners@show');
+               ->uses('Winner@show');
     }
 }

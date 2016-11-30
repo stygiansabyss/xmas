@@ -57,7 +57,7 @@ class Raffles extends BaseRoutes implements Routes
                ->name('raffle.preview')
                ->uses('Raffle@preview');
 
-        $router->post('approve/{id}')
+        $router->get('approve/{id}')
                ->name('raffle.approve')
                ->uses('Raffle@approve');
 
