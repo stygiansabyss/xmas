@@ -4,7 +4,7 @@ php:
   - 7.0
 
 notifications:
-  slack: nukacode:HyFrc2QLi5PC5fPxadm07O5v
+  slack: yogsmods:7SIPj1h3Mvo3QbPRGFlCmp7V
 
 matrix:
   fast_finish: true
