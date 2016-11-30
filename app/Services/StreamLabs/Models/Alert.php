@@ -53,16 +53,4 @@ class Alert extends BaseModel
     {
         return self::getByAmount($donation->amount_raw);
     }
-    
-    public function update(array $attributes = [], array $options = [])
-    {
-        $attributes['exact_flag'] = isset($attributes['exact_flag']);
-        return parent::update($attributes, $options);
-    }
-    
-    public static function create(array $attributes = [])
-    {
-        $attributes['exact_flag'] = isset($attributes['exact_flag']);
-        return parent::create($attributes);
-    }
 }

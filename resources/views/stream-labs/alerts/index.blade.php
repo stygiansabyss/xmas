@@ -22,10 +22,10 @@
                     {{ $alert->name }}
                 </td>
                 <td class="text-center">
-                    {{ $alert->sound_href }}
+                    {{ last(explode('/', $alert->sound_href)) }}
                 </td>
                 <td class="text-center">
-                    {{ $alert->image_href }}
+                    {{ last(explode('/', $alert->image_href)) }}
                 </td>
                 <td class="text-center">
                     {{ $alert->minimum_amount }}

@@ -1,53 +1,28 @@
 <div class="container-fluid">
-    {!! Form::open() !!}
-    <div class="lead">Edit Alert: {{ $alert->name }}</div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Name</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('name', $alert->name, ['class' => 'form-control']) !!}
-            <p class="help-block">A friendly name to keep track of the different alert amounts.</p>
+    <div class="lead">Create New Alert</div>
+    {!! BootForm::openHorizontal(['xs' => [4, 8], 'md' => [2, 10]]) !!}
+        {!! BootForm::text('Name', 'name', $alert->name)
+            ->helpBlock('A friendly name to keep track of the different alert amounts.') !!}
+
+        {!! BootForm::text('URL to Sound', 'sound_href', $alert->sound_href)
+            ->helpBlock('Any file type supported by StreamLabs is supported.') !!}
+
+        {!! BootForm::text('URL to Image', 'image_href', $alert->image_href)
+            ->helpBlock('Any file type supported by StreamLabs is supported.') !!}
+
+        {!! BootForm::text('Amount', 'minimum_amount', $alert->minimum_amount)
+            ->helpBlock('Amount required for this alert (Without currency signs, e.g. <code>25.50</code>)') !!}
+
+        {!! BootForm::select('Exact amount?', 'exact_flag', ['No', 'Yes'], $alert->exact_flag)
+            ->helpBlock('Does the donation need to match the amount (Yes) or be greater than or equal to it (No)?') !!}
+
+        {!! BootForm::text('Template', 'template', $alert->template)
+            ->helpBlock('<code>{name}</code> for donor name and <code>{amount}</code> for donor amount (includes $ automatically). Use * for special text (e.g. *{name}* )') !!}
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-md-offset-2 col-sm-8 col-md-10">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                <a href="{{ route('stream-labs.alerts.index') }}" class="btn btn-default">Cancel</a>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">URL to Sound</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('sound_href', $alert->sound_href, ['class' => 'form-control']) !!}
-            <p class="help-block">Any file type supported by StreamLabs is supported.</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">URL to Image</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('image_href', $alert->image_href, ['class' => 'form-control']) !!}
-            <p class="help-block">Any file type supported by StreamLabs is supported.</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Amount</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('minimum_amount', $alert->minimum_amount, ['class' => 'form-control']) !!}
-            <p class="help-block">Amount required for this alert (Without currency signs, e.g. <code>25.50</code>)</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Exact amount?</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::checkbox('exact_flag', null, $alert->exact_flag ? ['checked' => 'checked'] : []) !!}
-            <p class="help-block">Does the donation need to match the amount (check) or be greater than or equal to it (uncheck)?</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Template</label>
-        <div class="col-xs-8 col-md-10">
-            {!! Form::text('template', $alert->template, ['class' => 'form-control']) !!}
-            <p class="help-block"><code>{name}</code> for donor name and <code>{amount}</code> for donor amount (includes $ automatically). Use * for special text (e.g. *{name}* )</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-md-offset-2 col-sm-8 col-md-10">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-            <a href="{{ route('stream-labs.token.index') }}" class="btn btn-default">Cancel</a>
-        </div>
-    </div>
-    {!! Form::close() !!}
+    {!! BootForm::close() !!}
 </div>
