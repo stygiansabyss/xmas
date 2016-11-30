@@ -27,7 +27,9 @@
             <td>{{ $goal->duration }}</td>
             <td class="text-right">
               <div class="btn-group">
-                <a href="{{ route('goal.edit', $goal->id) }}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('goal.edit', $goal->id) }}" class="btn btn-xs btn-info">
+                  <i class="fa fa-edit"></i>
+                </a>
               </div>
             </td>
           </tr>

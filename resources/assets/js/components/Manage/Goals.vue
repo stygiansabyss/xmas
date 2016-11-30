@@ -7,6 +7,9 @@
           <a href="/goal" class="btn btn-xs btn-default">
             <i class="fa fa-bars"></i>
           </a>
+          <a href="/goal/edit/{{ goal.id }}" class="btn btn-xs btn-info" v-if="goal != null">
+            <i class="fa fa-edit"></i>
+          </a>
           <a @click="goalShow = ! goalShow" class="btn btn-xs btn-info">
             <i class="fa fa-plus"></i>
           </a>
@@ -50,7 +53,7 @@
             <div class="col-md-8">
               <div class="form-control-static">
                 <div class="progress" style="margin-bottom: 0;">
-                  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ goal.percent }}"
+                  <div class="progress-bar progress-bar-primary" role="progressbar" :aria-valuenow="goal.percent"
                        aria-valuemin="0" aria-valuemax="100" :style="{ width: goal.percent +'%' }">
                     {{ goal.percent }}%
                   </div>

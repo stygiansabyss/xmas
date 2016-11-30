@@ -69,6 +69,8 @@ class Goal extends BaseController
     {
         $goal = $this->goals->find($id);
         $goal->update(request()->all());
+
+        event(new GoalWasUpdated($this->goals->find($id)));
         
         return redirect(route('administrating.dashboard'))
             ->with('message', 'Goal updated');
@@ -78,6 +80,8 @@ class Goal extends BaseController
     {
         $goal = $this->goals->find($id);
         $goal->reached();
+
+        event(new GoalWasUpdated($this->goals->find($id)));
         
         return redirect(route('administrating.dashboard'))
             ->with('message', 'Goal finished!');
