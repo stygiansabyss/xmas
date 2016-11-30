@@ -25,6 +25,7 @@ import OverlayVertical from './components/Overlay/Vertical.vue'
 import RaffleCreate from './components/Raffle/Create.vue'
 import RaffleEdit from './components/Raffle/Edit.vue'
 import RaffleWatch from './components/Raffle/Watch.vue'
+import DonationList from './components/Donation/List.vue'
 
 window._settingsEcho = function ()
 {
@@ -74,5 +75,6 @@ var app = new Vue({
     'raffle-create':      RaffleCreate,
     'raffle-edit':        RaffleEdit,
     'raffle-watch':       RaffleWatch,
+    'donation-list':      DonationList,
   }
 });

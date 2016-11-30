@@ -22,7 +22,7 @@ class Donations extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
+            //'auth',
         ];
     }
 
@@ -37,21 +37,21 @@ class Donations extends BaseRoutes implements Routes
     {
         $router->get('read/{id}')
                ->name('donation.read')
-               ->uses('Donations@read');
+               ->uses('Donation@read');
 
         $router->post('search')
                ->name('donation.search')
-               ->uses('Donations@search');
+               ->uses('Donation@search');
 
         $router->get('edit')
                ->name('donation.edit')
-               ->uses('Donations@edit');
+               ->uses('Donation@edit');
         $router->post('edit')
                ->name('donation.edit')
-               ->uses('Donations@update');
+               ->uses('Donation@update');
 
         $router->get('/')
                ->name('donation.index')
-               ->uses('Donations@index');
+               ->uses('Donation@index');
     }
 }
