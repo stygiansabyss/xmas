@@ -1,6 +1,9 @@
 <template>
   <div class="container donation-list">
     <div class="list-group">
+      <div class="list-group-item" v-if="donations.length === 0">
+        No messages to display at this time.
+      </div>
       <div class="list-group-item row"
            v-for="donation in donations"
            transition="donation-fade"
