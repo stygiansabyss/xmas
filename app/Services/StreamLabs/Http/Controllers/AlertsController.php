@@ -46,21 +46,6 @@ class AlertsController extends BaseController
         return redirect(route('stream-labs.alerts.index'))
             ->with('message', 'StreamLabs alert created');
     }
-    
-    public function test()
-    {
-        $faker = \Faker\Factory::create();
-        $data = [
-            'hb_id'         => $faker->uuid,
-            'amount'        => request('amount'),
-            'name'          => $faker->userName,
-            'email'         => $faker->email,
-            'comment'       => $faker->paragraph(2),
-            'hb_created_at' => $faker->dateTime->format('Y-m-d H:i:s'),
-        ];
-        
-        \App\Services\Donating\Models\Donation::create($data);
-    }
 
     public function edit($id)
     {
