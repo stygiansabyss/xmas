@@ -2,7 +2,7 @@
 
 namespace App\Services\Donating\Models\Observers;
 
-use App\Services\Donating\Models\Incentive;
+use App\Services\Incentivizing\Models\Incentive;
 use App\Services\Raffling\Models\Tier;
 use App\Services\StreamLabs\Jobs\AlertStreamLabs;
 use App\Services\Voting\Models\Vote;

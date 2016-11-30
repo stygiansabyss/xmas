@@ -57,5 +57,8 @@ class Alerts extends BaseRoutes implements Routes
         $router->get('/')
                ->name('stream-labs.alerts.index')
                ->uses('AlertsController@index');
+        $router->get('test')
+               ->name('stream-labs.alerts.test')
+               ->uses('AlertsController@test');
     }
 }

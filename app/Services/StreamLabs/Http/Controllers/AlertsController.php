@@ -4,6 +4,7 @@ namespace App\Services\StreamLabs\Http\Controllers;
 
 use App\Apis\StreamLabs\Alerts;
 use App\Http\Controllers\BaseController;
+use App\Services\StreamLabs\Jobs\AlertStreamLabs;
 use App\Services\StreamLabs\Models\Alert;
 use App\Services\StreamLabs\Providers\Auth;
 
@@ -44,6 +45,21 @@ class AlertsController extends BaseController
 
         return redirect(route('stream-labs.alerts.index'))
             ->with('message', 'StreamLabs alert created');
+    }
+    
+    public function test()
+    {
+        $faker = \Faker\Factory::create();
+        $data = [
+            'hb_id'         => $faker->uuid,
+            'amount'        => request('amount'),
+            'name'          => $faker->userName,
+            'email'         => $faker->email,
+            'comment'       => $faker->paragraph(2),
+            'hb_created_at' => $faker->dateTime->format('Y-m-d H:i:s'),
+        ];
+        
+        \App\Services\Donating\Models\Donation::create($data);
     }
 
     public function edit($id)
