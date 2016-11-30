@@ -61,8 +61,6 @@ class Incentive extends BaseController
         $incentive = $this->incentives->find($id);
         $incentive->update(request()->all());
 
-        event(new IncentiveWasUpdated($this->incentives->find($id)));
-
         return redirect(route('administrating.dashboard'))
             ->with('message', 'Incentive updated');
     }
