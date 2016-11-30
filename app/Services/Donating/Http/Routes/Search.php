@@ -43,8 +43,12 @@ class Search extends BaseRoutes implements Routes
                ->name('donation.find')
                ->uses('Search@find');
 
-        $router->post('edit')
+        $router->post('edit/{id}')
                ->name('donation.edit')
                ->uses('Search@update');
+
+        $router->post('edit')
+               ->name('donation.edit.all')
+               ->uses('Search@updateAll');
     }
 }

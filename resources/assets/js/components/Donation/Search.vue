@@ -43,7 +43,7 @@
                   v-show="donations.length > 0"
                   id="shownButton"
           >
-            Mark Shown
+            Mark All Shown
             <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
           </a>
           <a
@@ -53,7 +53,7 @@
                   v-show="donations.length > 0"
                   id="readButton"
           >
-            Mark Read
+            Mark All Read
             <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
           </a>
           <a
@@ -63,7 +63,7 @@
                   v-show="donations.length > 0"
                   id="readShownButton"
           >
-            Mark Both
+            Mark All Both
             <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
           </a>
         </div>
@@ -106,6 +106,58 @@
               <td>{{ donation.shown_flag }}</td>
               <td>{{ donation.read_flag }}</td>
               <td>{{ donation.created_at_readable }}</td>
+              <td>
+                <div class="btn-group-vertical btn-block" style="margin-top: 5px;">
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-info': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'shown')"
+                  >
+                    Mark Shown
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-info': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'read')"
+                  >
+                    Mark Read
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-info': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'both')"
+                  >
+                    Mark Both
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-danger': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'not_read')"
+                  >
+                    Mark Not Read
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-danger': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'not_shown')"
+                  >
+                    Mark Not Shown
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                  <a
+                          class="btn btn-block btn-sm"
+                          :class="{ 'btn-danger': runningUpdate == false }"
+                          @click="markDonation(donation.id, $index, 'neither')"
+                  >
+                    Mark Neither
+                    <i class="fa fa-spinner fa-spin" v-show="runningUpdate == true"></i>
+                  </a>
+                </div>
+              </td>
             </tr>
             <tr v-if="donations.length == 0">
               <td colspan="9">No donations found matching criteria.</td>
@@ -169,6 +221,7 @@
         }
       },
       markDonations(type) {
+        console.log('updating all')
         if (this.runningUpdate == false) {
           this.runningUpdate = true;
 
@@ -181,10 +234,33 @@
             set:    type,
             _token: Laravel.csrfToken
           }
-          this.$http.post('donation/edit', request)
+          this.$http.post('/donation/edit', request)
               .then((data) =>
               {
                 this.$set('donations', data.body);
+
+                this.runningUpdate = false;
+              }, (error) =>
+              {
+                this.errorMessage = error.body.error
+
+                this.runningUpdate = false;
+              });
+        }
+      },
+      markDonation(id, index, type) {
+        console.log('updating single')
+        if (this.runningUpdate == false) {
+          this.runningUpdate = true;
+
+          let request = {
+            set:    type,
+            _token: Laravel.csrfToken
+          }
+          this.$http.post('/donation/edit/'+ id, request)
+              .then((data) =>
+              {
+                this.$set('donations['+ index +']', data.body);
 
                 this.runningUpdate = false;
               }, (error) =>

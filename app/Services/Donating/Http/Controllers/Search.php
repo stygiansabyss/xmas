@@ -34,7 +34,41 @@ class Search extends BaseController
         return $this->view('donation.search');
     }
 
-    public function update()
+    public function update($id)
+    {
+        $set  = request('set');
+
+        $donation = $this->donations->find($id);
+
+        switch ($set) {
+            case 'shown':
+                $donation->markShown();
+                break;
+            case 'read':
+                $donation->markRead();
+                break;
+            case 'both':
+                $donation->markRead();
+                $donation->markShown();
+                break;
+            case 'not_read':
+                $donation->markNotRead();
+                break;
+            case 'not_shown':
+                $donation->markNotShown();
+                break;
+            case 'neither':
+                $donation->markNotRead();
+                $donation->markNotShown();
+                break;
+        }
+
+        $donation = $this->donations->find($id);
+
+        return response()->json($donation);
+    }
+
+    public function updateAll()
     {
         $set  = request('set');
 
@@ -133,6 +167,7 @@ class Search extends BaseController
     {
         $word      = request('word');
         $donations = $this->donations->whereRaw("INSTR(`name`, '$word')")
+                                     ->orwhereRaw("INSTR(`email`, '$word')")
                                      ->orwhereRaw("INSTR(`comment`, '$word')")
                                      ->get();
 

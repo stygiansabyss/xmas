@@ -43,6 +43,18 @@ class Donation extends BaseModel
         $this->save();
     }
 
+    public function markNotRead()
+    {
+        $this->read_flag = 0;
+        $this->save();
+    }
+
+    public function markNotShown()
+    {
+        $this->shown_flag = 0;
+        $this->save();
+    }
+
     public function getCreatedAtReadableAttribute()
     {
         return $this->hb_created_at->format('F jS, Y \a\t H:ia');
