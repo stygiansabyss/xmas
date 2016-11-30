@@ -74,6 +74,11 @@
 
             this.checkDonations()
           })
+          .listen('.App.Services.Donating.Events.DonationsWereReset', (e) =>
+          {
+            this.donations = []
+            this.checkDonations()
+          })
 
       Echo.channel('christmas')
           .listen('.App.Services.Donating.Events.TotalWasChanged', (e) =>

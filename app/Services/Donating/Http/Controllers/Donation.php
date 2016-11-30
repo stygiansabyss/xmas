@@ -3,6 +3,7 @@
 namespace App\Services\Donating\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
+use App\Services\Donating\Events\DonationsWereReset;
 use App\Services\Donating\Events\DonationWasRead;
 use App\Services\Donating\Models\Donation as DonationModel;
 
@@ -45,5 +46,16 @@ class Donation extends BaseController
         $donation->markRead();
 
         event(new DonationWasRead($donation));
+    }
+
+    public function readAll()
+    {
+        $this->donations->where('read_flag', 0)->get()
+                        ->update(['read_flag' => 1]);
+
+        event(new DonationsWereReset());
+
+        return redirect(route('administrating.dashboard'))
+            ->with('message', 'All donations marked as read.');
     }
 }

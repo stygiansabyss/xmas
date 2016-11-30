@@ -47,7 +47,7 @@ class MenuComposer
                 $link->url  = route('donation.search');
             });
         });
-    
+
         $leftMenu->dropDown('stream-labs', 'Stream Labs', function (DropDown $dropDown) {
             $dropDown->link('stream-labs_token', function (Link $link) {
                 $link->name = 'Tokens';
@@ -106,5 +106,11 @@ class MenuComposer
     private function generateRightMenu()
     {
         $rightMenu = \Menu::getMenu('rightMenu');
+
+        $rightMenu->link('all_read', function (Link $link) {
+            $link->name  = 'Mark All Donations Read';
+            $link->url   = route('donation.read.all');
+            $link->class = 'confirm-continue';
+        });
     }
 }

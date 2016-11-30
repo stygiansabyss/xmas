@@ -39,6 +39,10 @@ class Donations extends BaseRoutes implements Routes
                ->name('donation.read')
                ->uses('Donation@read');
 
+        $router->get('read/all')
+               ->name('donation.read.all')
+               ->uses('Donation@readAll');
+
         $router->post('search')
                ->name('donation.search')
                ->uses('Donation@search');
