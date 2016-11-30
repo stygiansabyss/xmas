@@ -23,10 +23,17 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="api_token" class="control-label col-xs-4 col-md-2">Minimum Amount</label>
+        <label for="api_token" class="control-label col-xs-4 col-md-2">Amount</label>
         <div class="col-xs-8 col-md-10">
             {!! Form::text('minimum_amount', null, ['class' => 'form-control']) !!}
-            <p class="help-block">Minimum amount required to reach this alert (Without currency signs, e.g. <code>25.50</code>)</p>
+            <p class="help-block">Amount required for this alert (Without currency signs, e.g. <code>25.50</code>)</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="api_token" class="control-label col-xs-4 col-md-2">Exact amount?</label>
+        <div class="col-xs-8 col-md-10">
+            {!! Form::checkbox('exact', null) !!}
+            <p class="help-block">Does the donation need to match the amount (check) or be greater than or equal to it (uncheck)?</p>
         </div>
     </div>
     <div class="form-group">

@@ -15,6 +15,7 @@ class Alert extends BaseModel
         'sound_href',
         'image_href',
         'minimum_amount',
+        'exact',
         'template',
     ];
     
@@ -39,7 +40,11 @@ class Alert extends BaseModel
     
     public static function getByAmount($amount)
     {
-        $alert = self::where('minimum_amount', '<=', $amount)->orderBy('minimum_amount', 'desc')->get();
+        $alert = self::where('exact', true)->where('minimum_amount', $amount)->first();
+        
+        if (is_null($alert)) {
+            $alert = self::where('minimum_amount', '<=', $amount)->where('exact', false)->orderBy('minimum_amount', 'desc')->get();
+        }
         
         return $alert->count() ? $alert->first() : new self;
     }
@@ -47,5 +52,17 @@ class Alert extends BaseModel
     public static function getByDonation(Donation $donation)
     {
         return self::getByAmount($donation->amount_raw);
+    }
+    
+    public function update(array $attributes = [], array $options = [])
+    {
+        $attributes['exact'] = isset($attributes['exact']);
+        return parent::update($attributes, $options);
+    }
+    
+    public static function create(array $attributes = [])
+    {
+        $attributes['exact'] = isset($attributes['exact']);
+        return parent::create($attributes);
     }
 }

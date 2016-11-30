@@ -5,7 +5,8 @@
             <th>Name</th>
             <th class="text-center">Sound URL</th>
             <th class="text-center">Image URL</th>
-            <th class="text-center">Minimum Donation Amount (USD)</th>
+            <th class="text-center">Donation Amount (USD)</th>
+            <th class="text-center">Type</th>
             <th class="text-center">Template</th>
             <th class="text-right">
                 <a href="{{ route('stream-labs.alerts.create') }}" class="btn btn-primary">
@@ -28,6 +29,9 @@
                 </td>
                 <td class="text-center">
                     {{ $alert->minimum_amount }}
+                </td>
+                <td class="text-center">
+                    {{ $alert->exact ? 'Exact' : 'Minimum' }}
                 </td>
                 <td class="text-center">
                     {{ $alert->template }}
