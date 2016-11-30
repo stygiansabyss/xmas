@@ -66,7 +66,7 @@ class MenuComposer
 
         $leftMenu->link('spreadsheets', function (Link $link) {
             $link->name = 'Spreadsheets';
-            $link->url  = null;
+            $link->url  = route('spreadsheet.list');
         });
     }
 

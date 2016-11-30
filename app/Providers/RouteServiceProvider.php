@@ -16,10 +16,11 @@ class RouteServiceProvider extends ServiceProvider
         \App\Http\Routes\Home::class,
         //\App\Http\Routes\Admin::class,
 
-        \App\Services\Administrating\Http\Routes\Setting::class,
         \App\Services\Administrating\Http\Routes\Assets::class,
         \App\Services\Administrating\Http\Routes\Dashboard::class,
         \App\Services\Administrating\Http\Routes\Overlay::class,
+        \App\Services\Administrating\Http\Routes\Setting::class,
+        \App\Services\Administrating\Http\Routes\Spreadsheets::class,
 
         \App\Services\Donating\Http\Routes\Api::class,
         \App\Services\Donating\Http\Routes\Donations::class,
