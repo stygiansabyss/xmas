@@ -32,7 +32,7 @@
     <div class="form-group">
         <label for="api_token" class="control-label col-xs-4 col-md-2">Exact amount?</label>
         <div class="col-xs-8 col-md-10">
-            {!! Form::checkbox('exact', null) !!}
+            {!! Form::checkbox('exact_flag', null) !!}
             <p class="help-block">Does the donation need to match the amount (check) or be greater than or equal to it (uncheck)?</p>
         </div>
     </div>

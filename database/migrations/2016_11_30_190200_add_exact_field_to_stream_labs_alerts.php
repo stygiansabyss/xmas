@@ -14,7 +14,7 @@ class AddExactFieldToStreamLabsAlerts extends Migration
     public function up()
     {
         Schema::table('stream_labs_alerts', function (Blueprint $table) {
-            $table->boolean('exact')->after('minimum_amount');
+            $table->boolean('exact_flag')->after('minimum_amount');
         });
     }
 
@@ -26,7 +26,7 @@ class AddExactFieldToStreamLabsAlerts extends Migration
     public function down()
     {
         Schema::table('stream_labs_alerts', function (Blueprint $table) {
-            $table->dropColumn(['exact']);
+            $table->dropColumn(['exact_flag']);
         });
     }
 }

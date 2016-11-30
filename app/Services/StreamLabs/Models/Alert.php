@@ -15,7 +15,7 @@ class Alert extends BaseModel
         'sound_href',
         'image_href',
         'minimum_amount',
-        'exact',
+        'exact_flag',
         'template',
     ];
     
@@ -40,10 +40,10 @@ class Alert extends BaseModel
     
     public static function getByAmount($amount)
     {
-        $alert = self::where('exact', true)->where('minimum_amount', $amount)->first();
+        $alert = self::where('exact_flag', true)->where('minimum_amount', $amount)->first();
         
         if (is_null($alert)) {
-            $alert = self::where('minimum_amount', '<=', $amount)->where('exact', false)->orderBy('minimum_amount', 'desc')->get();
+            $alert = self::where('minimum_amount', '<=', $amount)->where('exact_flag', false)->orderBy('minimum_amount', 'desc')->get();
         }
         
         return $alert->count() ? $alert->first() : new self;
@@ -54,15 +54,8 @@ class Alert extends BaseModel
         return self::getByAmount($donation->amount_raw);
     }
     
-    public function update(array $attributes = [], array $options = [])
+    public function setExactFlagAttribute($value)
     {
-        $attributes['exact'] = isset($attributes['exact']);
-        return parent::update($attributes, $options);
-    }
-    
-    public static function create(array $attributes = [])
-    {
-        $attributes['exact'] = isset($attributes['exact']);
-        return parent::create($attributes);
+        $attributes['exact_flag'] = request()->has('exact_flag');
     }
 }

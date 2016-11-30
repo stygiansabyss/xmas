@@ -31,7 +31,7 @@
                     {{ $alert->minimum_amount }}
                 </td>
                 <td class="text-center">
-                    {{ $alert->exact ? 'Exact' : 'Minimum' }}
+                    {{ $alert->exact_flag ? 'Exact' : 'Minimum' }}
                 </td>
                 <td class="text-center">
                     {{ $alert->template }}
