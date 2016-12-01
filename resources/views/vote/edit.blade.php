@@ -1,1 +1,0 @@
-<vote-edit></vote-edit>

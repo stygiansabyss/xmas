@@ -1,1 +1,0 @@
-<donation-list></donation-list>

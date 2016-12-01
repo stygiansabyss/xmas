@@ -1,1 +1,0 @@
-<vote-create></vote-create>
