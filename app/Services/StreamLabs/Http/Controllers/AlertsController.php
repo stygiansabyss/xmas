@@ -67,7 +67,8 @@ class AlertsController extends BaseController
 
     public function delete($id)
     {
-        $this->alerts->delete($id);
+        $alert = $this->alerts->find($id);
+        $alert->delete();
 
         return redirect(route('stream-labs.alerts.index'))
             ->with('message', 'StreamLabs alert deleted');
