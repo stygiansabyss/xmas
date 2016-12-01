@@ -35,9 +35,4 @@ class Donation
         
         dispatch(new AlertStreamLabs($model));
     }
-
-    public function updating($model)
-    {
-        unset($model->hb_created_at);
-    }
 }
