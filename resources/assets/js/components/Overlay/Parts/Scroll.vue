@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll" transition="marquee">
+  <div class="scroll">
     <scroll-text v-if="settings.scroll_mode === 'text'"></scroll-text>
     <scroll-raffle v-if="settings.scroll_mode === 'raffle'"></scroll-raffle>
     <scroll-vote v-if="settings.scroll_mode === 'vote'"></scroll-vote>

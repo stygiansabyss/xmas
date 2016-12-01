@@ -221,38 +221,12 @@
     background-color: $scroll-background;
     position:         absolute;
     left:             10px;
-    bottom:           20px;
+    bottom:           24px;
     height:           53px;
     width:            1189px;
-    padding:          5px;
     font-size:        45px;
-    white-space:      nowrap;
     overflow:         hidden;
     text-transform:   uppercase;
-    box-sizing:       border-box;
-
-    .tweets {
-      display: inline-block;
-
-      span {
-        color: $scroll-text-color;
-      }
-
-      a {
-        color: $scroll-link-color;
-      }
-    }
-
-    //.plain-text {
-    //  width:      100%;
-    //  text-align: center;
-    //  margin-top: -7px;
-    //}
-
-    .incentive {
-      width:      100%;
-      text-align: center;
-    }
   }
 
   .total {

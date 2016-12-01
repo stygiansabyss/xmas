@@ -43,6 +43,10 @@ class Donations extends BaseRoutes implements Routes
                ->name('donation.read.all')
                ->uses('Donation@readAll');
 
+        $router->get('overlay')
+               ->name('donation.overlay')
+               ->uses('Donation@overlay');
+
         $router->get('/')
                ->name('donation.index')
                ->uses('Donation@index');

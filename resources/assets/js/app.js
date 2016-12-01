@@ -31,12 +31,16 @@ import DonationSearch from './components/Donation/Search.vue'
 import VoteCreate from './components/Vote/Create.vue'
 import VoteEdit from './components/Vote/Edit.vue'
 
-window._settingsEcho = function ()
+window._settingsEcho = function (callback)
 {
   Echo.channel('christmas')
       .listen('.App.Services.Administrating.Events.SettingChanged', (e) =>
       {
         Vue.set(this.settings, e.setting.name, e.setting.value)
+
+        if (callback) {
+          callback(this, e)
+        }
       })
 };
 
@@ -56,7 +60,9 @@ window._christmasEcho = function (service, event, thing, callback)
       {
         this[thing] = e[thing]
 
-        callback(this, e)
+        if (callback) {
+          callback(this, e)
+        }
       })
 }
 

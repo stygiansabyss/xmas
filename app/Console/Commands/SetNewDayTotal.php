@@ -51,7 +51,7 @@ class SetNewDayTotal extends Command
         $date = Carbon::now('GMT');
 
         if ($date->format('H') != '00') {
-            return true;
+            //return true;
         }
 
         $total = $this->total->orderBy('id', 'desc')->first();
@@ -70,7 +70,7 @@ class SetNewDayTotal extends Command
     {
         ini_set('memory_limit', '64M');
 
-        $donations = Donation::select(['hb_id', 'name', 'email', 'comment', 'hb_created_at'])
+        $donations = Donation::select(['hb_id', 'name', 'email', 'comment', 'amount', 'hb_created_at'])
                              ->where('hb_created_at', '>', date('Y-m-d 00:00:00', strtotime('yesterday')))
                              ->where('hb_created_at', '<', date('Y-m-d 00:00:00'))
                              ->get();

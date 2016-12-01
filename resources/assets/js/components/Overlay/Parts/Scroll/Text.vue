@@ -1,6 +1,15 @@
 <template>
-  <div class="plain-text" :class="settings.scroll_speed" transition="fade">
-    {{ settings.scroll_text }}
+  <div>
+    <div v-show="this.settings.scroll_speed != '0'">
+      <div class="text-marquee text-center">
+        {{ settings.scroll_text }}
+      </div>
+    </div>
+    <div v-show="this.settings.scroll_speed == '0'">
+      <div class="text-center">
+        {{ settings.scroll_text }}
+      </div>
+    </div>
   </div>
 </template>
 <style></style>
@@ -13,7 +22,22 @@
     },
 
     ready() {
-      _settingsEcho.bind(this)()
+      this.setMarquee()
+
+      _settingsEcho.bind(this)(function (self, e)
+      {
+        self.setMarquee()
+      })
     },
+
+    methods: {
+      setMarquee() {
+        $('.text-marquee').simplemarquee({
+          speed:              this.settings.scroll_speed,
+          delayBetweenCycles: 0,
+          cycles:             'infinity',
+        }).simplemarquee('update')
+      },
+    }
   }
 </script>

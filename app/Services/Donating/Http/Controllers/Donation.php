@@ -58,4 +58,17 @@ class Donation extends BaseController
         return redirect(route('administrating.dashboard'))
             ->with('message', 'All donations marked as read.');
     }
+
+    public function overlay()
+    {
+        if (cache()->has('donation:show:call')) {
+            $donations = cache('donation:show:call');
+        } else {
+            $donations = $this->donations->getDonationsForScroll();
+
+            cache('donation:show:call', $donations, .5);
+        }
+
+        return response()->json($donations);
+    }
 }

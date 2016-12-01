@@ -25,7 +25,7 @@ class Setting extends BaseController
 
     public function update()
     {
-        foreach (array_filter(request('settings')) as $id => $value) {
+        foreach (request('settings') as $id => $value) {
             if ($id === 0) {
                 continue;
             }

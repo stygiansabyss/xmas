@@ -22,6 +22,8 @@ window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
 window.Vue = require('vue');
 require('vue-resource');
 
+window.simplemarquee = require('./marquee')
+
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
  * the outgoing requests issued by this application. The CSRF middleware
