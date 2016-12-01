@@ -123,7 +123,7 @@ class Donation extends BaseModel
 
     public static function getDonationsForScroll()
     {
-        $donations = static::where('shown_flag', 0)->withComment()->orderBy('hb_created_at', 'asc')->take(2)->get();
+        $donations = static::where('shown_flag', 0)->withComment()->orderBy('hb_created_at', 'asc')->take(5)->get();
 
         if ($donations->count() == 0) {
             $donations = static::orderBy('hb_created_at', 'asc')->withComment()->take(10)->get();

@@ -74,7 +74,7 @@
             speed:              this.settings.scroll_speed,
             delayBetweenCycles: 0,
             cycles:             'infinity',
-            gap:                1189,
+            space:              1189,
           }).simplemarquee('update')
         }
       },
