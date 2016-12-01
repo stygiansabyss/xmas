@@ -8,6 +8,8 @@ class Tweet extends BaseModel
 {
     protected $table = 'tweets';
 
+    protected $connection = 'mysql4mb';
+
     protected $fillable = [
         'twitter_id',
         'text',
