@@ -32,11 +32,13 @@
 
     methods: {
       setMarquee() {
-        $('.text-marquee').simplemarquee({
-          speed:              this.settings.scroll_speed,
-          delayBetweenCycles: 0,
-          cycles:             'infinity',
-        }).simplemarquee('update')
+        $('.text-marquee')
+                .simplemarquee('destroy')
+                .simplemarquee({
+                  speed:              this.settings.scroll_speed,
+                  delayBetweenCycles: 0,
+                  cycles:             'infinity',
+                }).simplemarquee('update')
       },
     }
   }
