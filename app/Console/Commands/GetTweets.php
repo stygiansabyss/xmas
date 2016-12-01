@@ -72,10 +72,7 @@ class GetTweets extends Command
                     'twitter_created_at' => (string)Carbon::parse($tweet->created_at),
                 ];
 
-                Tweet::updateOrCreate(
-                    ['twitter_id' => $tweet->id],
-                    $data
-                );
+                Tweet::firstCreate($data);
             }
         }
 
