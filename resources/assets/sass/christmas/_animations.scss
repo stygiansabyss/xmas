@@ -1,0 +1,100 @@
+.marquee-faster {
+  -webkit-animation: marquee 15s linear;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-fast {
+  -webkit-animation: marquee 35s linear;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-medium {
+  -webkit-animation: marquee 120s linear;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-slow {
+  -webkit-animation: marquee 240s linear;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-slower {
+  -webkit-animation: marquee 320s linear;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-faster-loop {
+  -webkit-animation: marquee 15s linear infinite;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-fast-loop {
+  -webkit-animation: marquee 35s linear infinite;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-medium-loop {
+  -webkit-animation: marquee 120s linear infinite;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-slow-loop {
+  -webkit-animation: marquee 240s linear infinite;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+.marquee-slower-loop {
+  -webkit-animation: marquee 320s linear infinite;
+  padding-left:      100%;
+  display:           inline-block;
+  position:          relative;
+  bottom:            8px;
+  text-indent:       0;
+}
+
+@-webkit-keyframes marquee {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform:         translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(-100%, 0);
+    transform:         translate(-100%, 0);
+  }
+}

@@ -1,0 +1,175 @@
+.donation {
+  font-size:      1.8rem;
+  padding-bottom: 1.5rem;
+  display:        flex;
+  flex-direction: row;
+
+  .donated {
+    flex: 1;
+  }
+
+  .message {
+    flex:          4;
+    padding:       .5rem;
+    margin-left:   10px;
+    margin-right:  10px;
+    border-radius: $bs-datetimepicker-border-radius;
+
+    .title {
+      color: $gray-light;
+    }
+
+    &.success {
+      background-color: transparentize($brand-success, .8) !important;
+    }
+
+    &.warning {
+      background-color: transparentize($brand-warning, .8) !important;
+    }
+  }
+
+  .actions {
+    flex: 1;
+
+    .buttons {
+      display:        flex;
+      flex-direction: row;
+      height:         100%;
+
+      .statcard {
+        flex:   1;
+        cursor: pointer;
+
+        &:first-child {
+          border-radius: $bs-datetimepicker-border-radius 0 0 $bs-datetimepicker-border-radius;
+        }
+
+        &:last-child {
+          border-radius: 0 $bs-datetimepicker-border-radius $bs-datetimepicker-border-radius 0;
+        }
+
+        .statcard-content {
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+
+.statcard {
+  padding:        1rem;
+  text-align:     center;
+  height:         100%;
+  display:        flex;
+  flex-direction: column;
+  border-radius:  $bs-datetimepicker-border-radius;
+
+  .icon-image {
+    width:         100%;
+    color:         white;
+    text-align:    center;
+    font-size:     1.7em;
+    padding:       25px 0;
+    border-radius: 3px;
+  }
+
+  .donator {
+    color:          $twitter;
+    text-transform: uppercase;
+  }
+
+  .amount {
+    color:     $white;
+    font-size: 2.9rem;
+  }
+
+  .details {
+    color:     $white;
+    font-size: 1.8rem;
+  }
+
+  &.info, &.success {
+    .donator {
+      color: $brand-primary;
+    }
+  }
+
+  &.warning {
+    .donator {
+      color: $brand-danger;
+    }
+  }
+}
+
+.datacard {
+  border-radius: 4px;
+  color:         #ffffff;
+  padding:       .3rem;
+
+  .data-label {
+    font-size: 1rem;
+  }
+
+  .data-value {
+    font-size: 2rem;
+  }
+
+  &.blue {
+    background-color: #7fa6b4;
+    border:           1px solid darken(#7fa6b4, 10);
+
+    .progress {
+      background-color: darken(#7fa6b4, 10);
+
+      .progress-meter {
+        background-color: darken(#7fa6b4, 20);
+      }
+    }
+  }
+
+  &.purple {
+    background-color: #9a91b4;
+    border:           1px solid darken(#9a91b4, 10);
+
+    .progress {
+      background-color: darken(#9a91b4, 10);
+
+      .progress-meter {
+        background-color: darken(#9a91b4, 20);
+      }
+    }
+  }
+
+  &.orange {
+    background-color: #d4a59b;
+    border:           1px solid darken(#d4a59b, 10);
+
+    .progress {
+      background-color: darken(#d4a59b, 10);
+
+      .progress-meter {
+        background-color: darken(#d4a59b, 20);
+      }
+    }
+  }
+
+  &.red {
+    background-color: #c6828f;
+    border:           1px solid darken(#c6828f, 10);
+
+    .progress {
+      background-color: darken(#c6828f, 10);
+
+      .progress-meter {
+        background-color: darken(#c6828f, 20);
+      }
+    }
+  }
+
+  .progress {
+    min-width: 100%;
+    padding:   0;
+    margin:    2px -5px;
+    height:    2px;
+  }
+}
