@@ -45,7 +45,7 @@ class Donation extends BaseController
         $donation = $this->donations->find($id);
         $donation->markRead();
 
-        event(new DonationWasRead($donation));
+        event(new DonationWasRead($this->donations->find($id)));
     }
 
     public function readAll()

@@ -105,7 +105,7 @@ class GetDonations extends Command
                 'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
             ];
 
-            Donation::create($data);
+            Donation::updateOrCreate(['hb_id' => $donation->id], $data);
         }
     }
 
