@@ -102,7 +102,7 @@ class GetDonations extends Command
                 'hb_id'         => $donation->id,
                 'name'          => $donation->donorName,
                 'email'         => $donation->email,
-                'amount'        => $donation->donationAmount,
+                'amount'        => $this->getRealAmount($donation->donationAmount),
                 'comment'       => Str::limit($comment['clean'], 500),
                 'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
             ];
@@ -166,5 +166,14 @@ class GetDonations extends Command
                 event(new VoteWasUpdated($activeVote));
             }
         }
+    }
+
+    private function getRealAmount($value)
+    {
+        if (strpos($value, '.') !== false) {
+            return str_replace('.', '', $value);
+        }
+
+        return $value . '00';
     }
 }
