@@ -91,24 +91,24 @@ class GetDonations extends Command
      */
     private function storeDonations($censor)
     {
-        $donations = $this->client->donations();
+        $donations = collector($this->client->donations());
 
-        foreach ($donations as $donation) {
-            if (Donation::where('hb_id', $donation->id)->count() == 0) {
-                $comment = $censor->censorString($donation->donorComment);
+        $donations = $donations->filter(function ($donation) {
+            return Donation::where('hb_id', $donation->id)->count() === 0;
+        })->map(function ($donation) use ($censor) {
+            $comment = $censor->censorString($donation->donorComment);
 
-                $data = [
-                    'hb_id'         => $donation->id,
-                    'name'          => $donation->donorName,
-                    'email'         => $donation->email,
-                    'amount'        => $donation->donationAmount,
-                    'comment'       => Str::limit($comment['clean'], 500),
-                    'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
-                ];
+            return [
+                'hb_id'         => $donation->id,
+                'name'          => $donation->donorName,
+                'email'         => $donation->email,
+                'amount'        => $donation->donationAmount,
+                'comment'       => Str::limit($comment['clean'], 500),
+                'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
+            ];
+        })->toArray();
 
-                Donation::create($data);
-            }
-        }
+        Donation::insert($donations);
     }
 
     /**
