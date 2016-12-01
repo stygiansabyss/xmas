@@ -49,12 +49,17 @@ class AlertStreamLabs implements ShouldQueue
 
         $alert = Alert::getByDonation($this->donation);
         
+        if($alert === false || $this->donation->name === 'No name provided')
+        {
+            return;
+        }
+        
         $message = str_replace(['{name}', '{amount}'], [$this->donation->name, $this->donation->amount], $alert->template);
         
         (new Alerts)
             ->setDetails($this->channel)
             ->createAlert([
-                'message'    => $message ?: "*{$this->donation->name}* donated {$this->donation->amount}. Thanks!",
+                'message'    => $message,
                 'sound_href' => $alert->sound_href,
                 'image_href' => $alert->image_href,
             ]);

@@ -48,7 +48,7 @@ class Alert extends BaseModel
                          ->get();
         }
 
-        return $alert->count() ? $alert->first() : new self;
+        return $alert->count() ? $alert->first() : false;
     }
 
     public static function getByDonation(Donation $donation)
