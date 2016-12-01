@@ -41,7 +41,7 @@ class CreateChristmasTables extends Migration
             $table->text('comment')->nullable();
             $table->boolean('read_flag')->default(0);
             $table->boolean('shown_flag')->default(0);
-            $table->timestamp('hb_created_at');
+            $table->timestamp('hb_created_at')->default(null);
             $table->timestamps();
         });
         Schema::create('donation_goals', function (Blueprint $table) {
