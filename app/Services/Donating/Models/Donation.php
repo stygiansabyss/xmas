@@ -8,6 +8,8 @@ class Donation extends BaseModel
 {
     protected $table = 'donations';
 
+    protected $connection = 'mysql4mb';
+
     protected static $observer = \App\Services\Donating\Models\Observers\Donation::class;
 
     protected $fillable = [

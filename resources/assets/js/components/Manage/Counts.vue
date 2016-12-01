@@ -40,5 +40,24 @@
         readCount:    app.readCount,
       }
     },
+
+    ready() {
+      Echo.channel('christmas')
+          .listen('.App.Services.Donating.Events.TotalWasUpdated', (e) =>
+          {
+            this.total      = e.total
+            this.commentCount = e.commentCount
+            this.shownCount   = e.shownCount
+            this.readCount    = e.readCount
+          })
+
+      socket.on('christmas:App\\Events\\TotalWasChanged', function (message)
+      {
+        self.$set('total', message.total);
+        self.$set('commentCount', message.commentCount);
+        self.$set('shownCount', message.shownCount);
+        self.$set('readCount', message.readCount);
+      });
+    }
   }
 </script>
