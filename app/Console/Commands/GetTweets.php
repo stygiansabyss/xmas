@@ -58,21 +58,23 @@ class GetTweets extends Command
             $censor->badwords = config('censor.badwords');
 
             foreach ($tweets as $tweet) {
-                $text = $censor->censorString($tweet->text);
+                if (Tweet::where('twitter_id', $tweet->id)->count() == 0) {
+                    $text = $censor->censorString($tweet->text);
 
-                $patterns = [
-                    'url'      => '(?xi)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))',
-                    'long_url' => '>(([[:alnum:]]+:\/\/)|www\.)?([^[:space:]]{12,22})([^[:space:]]*)([^[:space:]]{12,22})([[:alnum:]#?\/&=])<',
-                ];
+                    $patterns = [
+                        'url'      => '(?xi)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))',
+                        'long_url' => '>(([[:alnum:]]+:\/\/)|www\.)?([^[:space:]]{12,22})([^[:space:]]*)([^[:space:]]{12,22})([[:alnum:]#?\/&=])<',
+                    ];
 
-                $data = [
-                    'twitter_id'         => $tweet->id,
-                    'text'               => preg_replace('#' . $patterns['url'] . '#', '', $text['clean']),
-                    'name'               => $tweet->user->screen_name,
-                    'twitter_created_at' => (string)Carbon::parse($tweet->created_at),
-                ];
+                    $data = [
+                        'twitter_id'         => $tweet->id,
+                        'text'               => preg_replace('#' . $patterns['url'] . '#', '', $text['clean']),
+                        'name'               => $tweet->user->screen_name,
+                        'twitter_created_at' => (string)Carbon::parse($tweet->created_at),
+                    ];
 
-                Tweet::firstCreate($data);
+                    Tweet::create($data);
+                }
             }
         }
 
