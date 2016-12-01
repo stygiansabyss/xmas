@@ -19,7 +19,7 @@
       Echo.channel('christmas')
           .listen('.App.Services.Donating.Events.TotalWasChanged', (e) =>
           {
-            this.total        = e.total
+            this.total = e.total
           })
     }
   }

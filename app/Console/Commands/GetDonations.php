@@ -63,9 +63,9 @@ class GetDonations extends Command
 
         $censor = $this->setUpCensor();
 
-        $this->storeDonations($censor);
-
         $this->updateTotal();
+
+        $this->storeDonations($censor);
 
         $this->updateGames();
     }
