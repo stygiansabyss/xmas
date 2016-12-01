@@ -9,3 +9,6 @@
 Homestead.yaml
 Homestead.json
 .env
+
+!/public/css/dark.css
+!/public/css/dark.css.map
