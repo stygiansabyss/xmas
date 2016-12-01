@@ -38,7 +38,7 @@ class Api extends BaseRoutes implements Routes
 
         $router->get('day-start')
                ->name('api.day-start')
-               ->uses('Api@start');
+               ->uses('Api@dayStart');
 
         $router->post('milestone')
                ->name('api.milestone')
