@@ -101,6 +101,11 @@
 
         this.$http.get('/donation/read/' + id);
 
+        this.donations = this.donations.filter((item) =>
+        {
+          return item.id != id;
+        })
+
         this.checkDonations()
       },
 
