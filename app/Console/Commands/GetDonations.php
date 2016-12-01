@@ -3,13 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Apis\HumbleBundle\Client;
-use App\Services\Donating\Events\IncentiveWasUpdated;
 use App\Services\Donating\Events\TotalWasChanged;
 use App\Services\Donating\Models\Donation;
+use App\Services\Donating\Models\Total;
 use App\Services\Goals\Events\GoalWasUpdated;
 use App\Services\Goals\Models\Goal;
-use App\Services\Donating\Models\Incentive;
-use App\Services\Donating\Models\Total;
+use App\Services\Incentivizing\Events\IncentiveWasUpdated;
+use App\Services\Incentivizing\Models\Incentive;
 use App\Services\Raffling\Events\RaffleEntryAdded;
 use App\Services\Raffling\Models\Tier;
 use App\Services\Voting\Events\VoteWasUpdated;
@@ -94,15 +94,15 @@ class GetDonations extends Command
         $donations = $this->client->donations();
 
         foreach ($donations as $donation) {
-            $comment = $censor->censorString($donation['donorComment']);
+            $comment = $censor->censorString($donation->donorComment);
 
             $data = [
-                'hb_id'         => $donation['id'],
-                'name'          => $donation['donorName'],
-                'email'         => $donation['email'],
-                'amount'        => $donation['donationAmount'],
+                'hb_id'         => $donation->id,
+                'name'          => $donation->donorName,
+                'email'         => $donation->email,
+                'amount'        => $donation->donationAmount,
                 'comment'       => Str::limit($comment['clean'], 500),
-                'hb_created_at' => (string)Carbon::createFromTimestamp($donation['timestamp']),
+                'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
             ];
 
             Donation::create($data);
@@ -115,6 +115,10 @@ class GetDonations extends Command
     private function updateTotal()
     {
         $pubNub = $this->client->getTotal();
+
+        if (! isset($pubNub[0][0])) {
+            return true;
+        }
 
         $total         = Total::orderBy('id', 'desc')->first();
         $total->raised = $pubNub[0][0]['stats']['rawtotal'];

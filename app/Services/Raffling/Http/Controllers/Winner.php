@@ -3,8 +3,8 @@
 namespace App\Services\Raffling\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
-use App\Services\Raffling\Models\Raffle;
-use App\Services\Raffling\Models\Tier;
+use App\Services\Raffling\Models\Raffle as RaffleModel;
+use App\Services\Raffling\Models\Tier as TierModel;
 
 class Winner extends BaseController
 {
@@ -24,7 +24,7 @@ class Winner extends BaseController
      * @param \App\Services\Raffling\Models\Raffle $raffles
      * @param \App\Services\Raffling\Models\Tier   $tiers
      */
-    public function __construct(Raffle $raffles, Tier $tiers)
+    public function __construct(RaffleModel $raffles, TierModel $tiers)
     {
         $this->raffles = $raffles;
         $this->tiers   = $tiers;

@@ -3,7 +3,7 @@
 namespace App\Services\Donating\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
-use App\Services\Donating\Models\Donation;
+use App\Services\Donating\Models\Donation as DonationModel;
 use Illuminate\Support\Facades\DB;
 
 class Search extends BaseController
@@ -18,7 +18,7 @@ class Search extends BaseController
      *
      * @param \App\Services\Donating\Models\Donation $donations
      */
-    public function __construct(Donation $donations)
+    public function __construct(DonationModel $donations)
     {
         $this->donations = $donations;
     }

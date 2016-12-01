@@ -51,7 +51,7 @@ class SetNewDayTotal extends Command
         $date = Carbon::now('GMT');
 
         if ($date->format('H') != '00') {
-            //return true;
+            return true;
         }
 
         $total = $this->total->orderBy('id', 'desc')->first();

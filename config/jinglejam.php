@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'pubNubLink' => 'http://humble.pubnub.com/subscribe/6b5eeae3-796b-11df-8b2d-ef048cc31d2e/humbleyogscast_jinglejam_2015/0/14489895746846930?uuid=4b35e920-e979-4a4e-8556-737e913041e9&pnsdk=PubNub-JS-Web%2F3%2E5%2E4',
+    'apiLink' => env('HUMBLE_BUNDLE_API'),
+    'pubNubLink' => env('HUMBLE_BUNDLE_PUB_NUB'),
     'settings'   => [
         'scroll_mode'    => [
             'twitter'   => 'Twitter Feed',

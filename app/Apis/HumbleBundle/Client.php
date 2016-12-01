@@ -3,21 +3,22 @@
 namespace App\Apis\HumbleBundle;
 
 use App\Apis\BaseClient;
+use GuzzleHttp\Exception\ConnectException;
 
 class Client extends BaseClient
 {
-    protected $url = 'http://www.humblebundle.com/hbycjj2016';
+    protected $url = 'link';
 
     protected $cacheKey = 'hb:cursor';
 
     public function donations()
     {
         $response  = $this->getDonations();
-        $donations = $response['data'];
+        $donations = $response->data;
 
-        while (count($response['data']) == 100) {
+        while (count($response->data) == 100) {
             $response  = $this->getDonations();
-            $donations = array_merge($donations, $response['data']);
+            $donations = array_merge($donations, $response->data);
         }
 
         return $donations;
@@ -34,15 +35,22 @@ class Client extends BaseClient
             $cursor = cache($this->cacheKey);
         }
 
-        $response = $this->get('?cursor=' . $cursor)->json();
+        $response = $this->get(config('jinglejam.apiLink') .'?cursor=' . $cursor);
+        $response = json_decode($response->getBody()->getContents());
 
-        cache()->forever($this->cacheKey, $response['cursor']);
+        cache()->forever($this->cacheKey, $response->cursor);
 
         return $response;
     }
 
     public function getTotal()
     {
-        return $this->get(config('jinglejam.pubNubLink'))->json();
+        try {
+            $response = $this->get(config('jinglejam.pubNubLink'), ['timeout' => 5]);
+
+            return json_decode($response->getBody()->getContents());
+        } catch (ConnectException $exception) {
+            return [];
+        }
     }
 }

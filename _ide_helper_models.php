@@ -17,6 +17,7 @@ namespace App\Services\Administrating\Models{
  * @property string $path
  * @property int $width
  * @property int $height
+ * @property bool $charity_flag
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property mixed $deleted_at
@@ -25,6 +26,7 @@ namespace App\Services\Administrating\Models{
  * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset wherePath($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset whereWidth($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset whereHeight($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset whereCharityFlag($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\Administrating\Models\Asset whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
@@ -106,64 +108,6 @@ namespace App\Services\Donating\Models{
 
 namespace App\Services\Donating\Models{
 /**
- * App\Services\Donating\Models\Goal
- *
- * @property int $id
- * @property int $start_value
- * @property int $goal
- * @property \Carbon\Carbon $reached_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read mixed $reached_at_short
- * @property-read mixed $percent
- * @property-read mixed $duration
- * @property mixed $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereStartValue($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereGoal($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereReachedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Goal active()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
- */
-	class Goal extends \Eloquent {}
-}
-
-namespace App\Services\Donating\Models{
-/**
- * App\Services\Donating\Models\Incentive
- *
- * @property int $id
- * @property int $target
- * @property int $count
- * @property string $reward
- * @property \Carbon\Carbon $reached_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read mixed $reached_at_short
- * @property-read mixed $percent
- * @property-read mixed $duration
- * @property mixed $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereTarget($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereCount($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereReward($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereReachedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Services\Donating\Models\Incentive active()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
- * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
- */
-	class Incentive extends \Eloquent {}
-}
-
-namespace App\Services\Donating\Models{
-/**
  * App\Services\Donating\Models\Total
  *
  * @property int $id
@@ -184,6 +128,65 @@ namespace App\Services\Donating\Models{
  * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
  */
 	class Total extends \Eloquent {}
+}
+
+namespace App\Services\Goals\Models{
+/**
+ * App\Services\Goals\Models\Goal
+ *
+ * @property int $id
+ * @property int $start_value
+ * @property int $goal
+ * @property \Carbon\Carbon $reached_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $reached_at_short
+ * @property-read mixed $percent
+ * @property-read mixed $duration
+ * @property-read mixed $difference
+ * @property mixed $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereStartValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereGoal($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereReachedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Goals\Models\Goal active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ */
+	class Goal extends \Eloquent {}
+}
+
+namespace App\Services\Incentivizing\Models{
+/**
+ * App\Services\Incentivizing\Models\Incentive
+ *
+ * @property int $id
+ * @property int $target
+ * @property int $count
+ * @property string $reward
+ * @property \Carbon\Carbon $reached_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $reached_at_short
+ * @property-read mixed $percent
+ * @property-read mixed $duration
+ * @property mixed $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereTarget($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereCount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereReward($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereReachedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Incentivizing\Models\Incentive active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ */
+	class Incentive extends \Eloquent {}
 }
 
 namespace App\Services\Raffling\Models{
@@ -224,6 +227,7 @@ namespace App\Services\Raffling\Models{
  * @property bool $level
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $simple_amount
  * @property-read mixed $unshown_winners
  * @property-read mixed $entries
  * @property-read mixed $winner_count
@@ -257,7 +261,9 @@ namespace App\Services\StreamLabs\Models{
  * @property string $name
  * @property string $sound_href
  * @property string $image_href
+ * @property string $template
  * @property int $minimum_amount
+ * @property bool $exact_flag
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read mixed $minimum_amount_raw
@@ -266,7 +272,9 @@ namespace App\Services\StreamLabs\Models{
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereSoundHref($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereImageHref($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereTemplate($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereMinimumAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereExactFlag($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Services\StreamLabs\Models\Alert whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
