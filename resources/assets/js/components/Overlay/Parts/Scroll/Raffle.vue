@@ -1,24 +1,30 @@
 <template>
-  <div>
-    <div v-show="this.settings.scroll_speed != '0'">
-      <div class="text-marquee">
+  <div v-if="raffle != null" transition="fade">
+    <div v-show="settings.scroll_speed != '0'">
+      <div class="text-marquee text-center">
         <div v-for="tier in raffle.tiers">
           Donate more than {{ tier.minimum }} for a chance to win {{ tier.reward }}
           <span><i class="fa fa-tree"></i></span>
         </div>
       </div>
     </div>
-    <div v-show="this.settings.scroll_speed == '0'">
-      <div class="text-center">
-        <div v-for="tier in raffle.tiers">
-          Donate more than {{ tier.minimum }} for a chance to win {{ tier.reward }}
-          <span><i class="fa fa-tree"></i></span>
+    <div v-show="settings.scroll_speed == '0'">
+      <div>
+        <div class="text-center">
+          <div v-for="tier in raffle.tiers">
+            Donate more than {{ tier.minimum }} for a chance to win {{ tier.reward }}
+            <span><i class="fa fa-tree"></i></span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<style></style>
+<style>
+  .text-marquee div div {
+    display: inline-block;
+  }
+</style>
 <script>
   export default {
     data() {
@@ -32,15 +38,18 @@
       this.setMarquee();
       _settingsEcho.bind(this)(function (self, e)
       {
-        if (self.settings.scroll_mode === 'raffle') {
-          self.setMarquee();
-        }
-      });
+        self.getRaffle()
+        self.setMarquee()
+      })
       _christmasEcho.bind(this)('Raffling', 'RaffleEntryAdded', 'raffle')
     },
 
     methods: {
       setMarquee() {
+        if (this.settings.scroll_mode != 'raffle') {
+          return true
+        }
+
         var jqEl = $('.text-marquee')
 
         if (jqEl.data('_simplemarquee')) {
@@ -55,6 +64,18 @@
           }).simplemarquee('update')
         }
       },
+
+      getRaffle() {
+        if (this.raffle != null) {
+          return true
+        }
+
+        this.$http.get('/raffle/overlay')
+            .then((data) =>
+            {
+              this.raffle = data.body
+            })
+      }
     }
   }
 </script>

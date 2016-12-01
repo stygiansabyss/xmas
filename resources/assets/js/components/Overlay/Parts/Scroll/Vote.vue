@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div v-show="this.settings.scroll_speed != '0'">
-      <div class="text-marquee">
+  <div v-show="vote != null" transition="fade">
+    <div v-show="settings.scroll_speed != '0'">
+      <div class="text-marquee text-center">
         Donate now with the words {{ vote.options_readable }} to vote!
       </div>
     </div>
-    <div v-show="this.settings.scroll_speed == '0'">
+    <div v-show="settings.scroll_speed == '0'">
       <div class="text-center">
         Donate now with the words {{ vote.options_readable }} to vote!
       </div>
@@ -27,15 +27,18 @@
 
       _settingsEcho.bind(this)(function (self, e)
       {
-        if (self.settings.scroll_mode === 'text') {
-          self.setMarquee();
-        }
+        self.getVote()
+        self.setMarquee();
       })
       _christmasEcho.bind(this)('Voting', 'VoteWasUpdated', 'vote')
     },
 
     methods: {
       setMarquee() {
+        if (this.settings.scroll_mode != 'vote') {
+          return true
+        }
+
         var jqEl = $('.text-marquee')
 
         if (jqEl.data('_simplemarquee')) {
@@ -50,6 +53,18 @@
           }).simplemarquee('update')
         }
       },
+
+      getVote() {
+        if (this.vote != null) {
+          return true
+        }
+
+        this.$http.get('/vote/overlay')
+            .then((data) =>
+            {
+              this.vote = data.body
+            })
+      }
     }
   }
 </script>

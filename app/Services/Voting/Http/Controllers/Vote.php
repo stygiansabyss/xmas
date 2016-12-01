@@ -92,4 +92,9 @@ class Vote extends BaseController
 
         return response()->json($vote);
     }
+
+    public function overlay()
+    {
+        return response()->json($this->votes->active()->first());
+    }
 }

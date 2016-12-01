@@ -121,7 +121,7 @@ class GetDonations extends Command
         }
 
         $total         = Total::orderBy('id', 'desc')->first();
-        $total->raised = $pubNub[0][0]['stats']['rawtotal'];
+        $total->raised = $pubNub[0][0]->stats->rawtotal;
         $total->save();
 
         event(new TotalWasChanged($total));

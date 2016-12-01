@@ -1,11 +1,11 @@
 <template>
-  <div class="incentive" transition="fade" style="margin-top: -4px;">
-    <div v-show="this.settings.scroll_speed != '0'">
-      <div class="text-marquee">
+  <div v-show="incentive != null" transition="fade">
+    <div v-show="settings.scroll_speed != '0'">
+      <div class="text-marquee text-center">
         {{ incentive.reward }}: {{ incentive.count }} / {{ incentive.target }}
       </div>
     </div>
-    <div v-show="this.settings.scroll_speed == '0'">
+    <div v-show="settings.scroll_speed == '0'">
       <div class="text-center">
         {{ incentive.reward }}: {{ incentive.count }} / {{ incentive.target }}
       </div>
@@ -23,18 +23,23 @@
     },
 
     ready() {
-      this.setMarquee();
+      this.setMarquee()
+
       _settingsEcho.bind(this)(function (self, e)
       {
-        if (self.settings.scroll_mode === 'incentive') {
+          self.getIncentive()
           self.setMarquee();
-        }
-      });
+      })
+
       _christmasEcho.bind(this)('Incentivizing', 'IncentiveWasUpdated', 'incentive')
     },
 
     methods: {
       setMarquee() {
+        if (this.settings.scroll_mode != 'incentive') {
+          return true
+        }
+
         var jqEl = $('.text-marquee')
 
         if (jqEl.data('_simplemarquee')) {
@@ -49,6 +54,18 @@
           }).simplemarquee('update')
         }
       },
+
+      getIncentive() {
+        if (this.incentive != null) {
+          return true
+        }
+
+        this.$http.get('/incentive/overlay')
+            .then((data) =>
+            {
+              this.incentive = data.body
+            })
+      }
     }
   }
 </script>

@@ -73,6 +73,10 @@ class Raffles extends BaseRoutes implements Routes
                ->name('raffle.status')
                ->uses('Raffle@status');
 
+        $router->get('overlay')
+               ->name('raffle.overlay')
+               ->uses('Raffle@overlay');
+
         $router->get('/')
                ->name('raffle.index')
                ->uses('Raffle@index');

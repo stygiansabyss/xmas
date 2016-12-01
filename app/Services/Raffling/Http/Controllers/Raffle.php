@@ -169,4 +169,9 @@ class Raffle extends BaseController
         return redirect(route('raffle.winners.show', [$id]))
             ->with('message', 'Raffle approved for view.');
     }
+
+    public function overlay()
+    {
+        return response()->json($this->raffles->active()->first());
+    }
 }

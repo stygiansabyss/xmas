@@ -75,4 +75,9 @@ class Incentive extends BaseController
         return redirect(route('administrating.dashboard'))
             ->with('message', 'Incentive finished!');
     }
+
+    public function overlay()
+    {
+        return response()->json($this->incentives->active()->first());
+    }
 }

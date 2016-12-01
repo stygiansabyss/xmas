@@ -53,6 +53,10 @@ class Incentives extends BaseRoutes implements Routes
                ->name('incentive.reached')
                ->uses('Incentive@reached');
 
+        $router->get('overlay')
+               ->name('incentive.overlay')
+               ->uses('Incentive@overlay');
+
         $router->get('/')
                ->name('incentive.index')
                ->uses('Incentive@index');

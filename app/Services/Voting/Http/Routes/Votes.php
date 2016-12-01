@@ -57,6 +57,10 @@ class Votes extends BaseRoutes implements Routes
                ->name('vote.acceptance')
                ->uses('Vote@acceptance');
 
+        $router->get('overlay')
+               ->name('vote.overlay')
+               ->uses('Vote@overlay');
+
         $router->get('/')
                ->name('vote.index')
                ->uses('Vote@index');

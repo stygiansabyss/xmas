@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div v-show="this.settings.scroll_speed != '0'">
-      <div class="text-marquee">
+  <div transition="fade">
+    <div v-show="settings.scroll_speed != '0'">
+      <div class="text-marquee text-center">
         {{ settings.scroll_text }}
       </div>
     </div>
-    <div v-show="this.settings.scroll_speed == '0'">
+    <div v-show="settings.scroll_speed == '0'">
       <div class="text-center">
         {{ settings.scroll_text }}
       </div>
