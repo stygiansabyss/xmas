@@ -16,20 +16,14 @@
       }
     },
     ready: function() {
-      Echo.channel('christmas')
-        .listen('.App.Services.Administrating.Events.SettingChanged', (e) => {
-            Vue.set(this.settings, e.setting.name, e.setting.value);
-            if (this.settings.scroll_mode == 'twitter')
-            {
-              this.setTweets();
-            }
-
-            if (this.settings.scroll_mode == 'donations')
-            {
-              this.setDonations();
-            }
-        });
-
+      this.setTweets();
+      _settingsEcho.bind(this)(function (self, e)
+      {
+        if(self.settings.scroll_mode === 'twitter')
+        {
+            self.setTweets();
+        }
+      })
     },
     methods: {
       getTweets() {
@@ -52,10 +46,25 @@
         this.$http.get('/tweets/overlay', function (data, status, request)
         {
           this.$set('tweets', data);
+          this.setMarquee();
         });
 
         this.getTweets();
-      }
+      },
+      setMarquee() {
+        var jqEl = $('.text-marquee');
+        if(jqEl.data('_simplemarquee')) {
+            var instance = jqEl.data('_simplemarquee');
+            instance._options.speed = this.settings.scroll_speed;
+            instance._setupAnimation();
+        } else {
+            jqEl.simplemarquee({
+              speed:              this.settings.scroll_speed,
+              delayBetweenCycles: 0,
+              cycles:             'infinity',
+            }).simplemarquee('update')
+        }
+      },
     }
   }
 </script>
