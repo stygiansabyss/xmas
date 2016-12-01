@@ -15,7 +15,12 @@
 
     ready() {
       _settingsEcho.bind(this)()
-      _christmasEcho.bind(this)('Donating', 'TotalWasChanged', 'total')
+
+      Echo.channel('christmas')
+          .listen('.App.Services.Donating.Events.TotalWasChanged', (e) =>
+          {
+            this.total        = e.total
+          })
     }
   }
 </script>

@@ -45,7 +45,7 @@
       Echo.channel('christmas')
           .listen('.App.Services.Donating.Events.TotalWasChanged', (e) =>
           {
-            this.total      = e.total
+            this.total        = e.total
             this.commentCount = e.commentCount
             this.shownCount   = e.shownCount
             this.readCount    = e.readCount
