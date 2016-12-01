@@ -1,69 +1,89 @@
 <template>
-  <div class="tweets" id="tweets" :class="settings.scroll_speed" transition="fade">
-    <div v-for="tweet in tweets" id="{{ tweet.id }}">
-      {{ tweet.text }} ~@{{ tweet.name }}
-      <span><i class="fa fa-twitter text-twitter"></i></span>
+  <div class="text-marquee">
+    <div>
+      <div v-for="tweet in tweets">
+        {{ tweet.text }} ~@{{ tweet.name }}
+        <span><i class="fa fa-twitter text-twitter"></i></span>
+      </div>
     </div>
   </div>
 </template>
-<style></style>
+<style>
+  .text-marquee div div {
+    display: inline-block;
+  }
+</style>
 <script>
   export default {
     data() {
       return {
         tweets:   app.tweets,
         settings: app.settings,
+        cycle:    0,
       }
     },
-    ready: function() {
-      this.setTweets();
-      _settingsEcho.bind(this)(function (self, e)
+    ready() {
+      if (this.settings.scroll_mode == 'twitter') {
+        this.setTweets()
+      }
+
+      setTimeout(() =>
       {
-        if(self.settings.scroll_mode === 'twitter')
-        {
-            self.setTweets();
-        }
-      })
+        this.setMarquee()
+      }, 500)
+
+      Echo.channel('christmas')
+          .listen('.App.Services.Administrating.Events.SettingChanged', (e) =>
+          {
+            let originalSetting = this.settings.scroll_mode
+
+            Vue.set(this.settings, e.setting.name, e.setting.value)
+
+            if (originalSetting != 'twitter'
+                && this.settings.scroll_mode == 'twitter') {
+              this.setTweets()
+
+              setTimeout(() =>
+              {
+                this.setMarquee()
+              }, 500)
+            }
+          })
     },
     methods: {
-      getTweets() {
-        self = this;
+      setMarquee() {
+        let jqEl = $('.text-marquee')
 
-        $('#tweets').bind('animationend webkitAnimationEnd', function ()
-        {
-
-          $('#tweets').removeClass(self.settings.scroll_speed).hide();
-
-          setTimeout(function ()
+        if (jqEl.data('_simplemarquee')) {
+          var instance            = jqEl.data('_simplemarquee')
+          instance._options.speed = this.settings.scroll_speed
+          instance.update(false)
+        } else {
+          jqEl.bind('cycle', () =>
           {
-            $('#tweets').show().addClass(self.settings.scroll_speed);
-          }, 1);
+            if (this.cycle == 2) {
+              this.setTweets()
+            }
 
-          self.setTweets();
-        });
+            if (this.cycle != 2) {
+              this.cycle = this.cycle + 1
+            }
+          })
+
+          jqEl.simplemarquee({
+            speed:              this.settings.scroll_speed,
+            delayBetweenCycles: 0,
+            cycles:             'infinity',
+            gap:                1189,
+          }).simplemarquee('update')
+        }
       },
       setTweets() {
-        this.$http.get('/tweets/overlay', function (data, status, request)
-        {
-          this.$set('tweets', data);
-          this.setMarquee();
-        });
-
-        this.getTweets();
-      },
-      setMarquee() {
-        var jqEl = $('.text-marquee');
-        if(jqEl.data('_simplemarquee')) {
-            var instance = jqEl.data('_simplemarquee');
-            instance._options.speed = this.settings.scroll_speed;
-            instance._setupAnimation();
-        } else {
-            jqEl.simplemarquee({
-              speed:              this.settings.scroll_speed,
-              delayBetweenCycles: 0,
-              cycles:             'infinity',
-            }).simplemarquee('update')
-        }
+        this.$http.get('/tweet/overlay')
+            .then((data) =>
+            {
+              this.$set('tweets', data.body)
+            })
       },
     }
   }

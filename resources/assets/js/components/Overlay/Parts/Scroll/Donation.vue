@@ -1,13 +1,15 @@
 <template>
-  <div class="marquee">
-    <div v-for="donation in donations">
-      {{ donation.comment }} ~<span style="color: #54515b;">{{ donation.name }}</span>
-      <span><i class="fa fa-tree"></i></span>
+  <div class="text-marquee">
+    <div>
+      <div v-for="donation in donations">
+        {{ donation.comment }} ~<span style="color: #54515b;">{{ donation.name }}</span>
+        <span><i class="fa fa-tree"></i></span>
+      </div>
     </div>
   </div>
 </template>
 <style>
-  .marquee div {
+  .text-marquee div div {
     display: inline-block;
   }
 </style>
@@ -17,6 +19,7 @@
       return {
         donations: app.donations,
         settings:  app.settings,
+        cycle:     0,
       }
     },
 
@@ -39,9 +42,12 @@
 
             if (originalSetting != 'donations'
                 && this.settings.scroll_mode == 'donations') {
-              $('.marquee').marquee('destroy')
-
               this.setDonations()
+
+              setTimeout(() =>
+              {
+                this.setMarquee()
+              }, 500)
             }
           })
           .listen('.App.Services.Donating.Events.DonationWasReceived', (e) =>
@@ -53,18 +59,31 @@
 
     methods: {
       setMarquee() {
-        let self = this
+        let jqEl = $('.text-marquee')
 
-        $('.marquee')
-                .bind('finished', function ()
-                {
-                  self.setDonations()
-                })
-                .marquee({
-                  duration:         this.settings.scroll_speed,
-                  delayBeforeStart: 0,
-                  duplicated:       false,
-                })
+        if (jqEl.data('_simplemarquee')) {
+          var instance            = jqEl.data('_simplemarquee')
+          instance._options.speed = this.settings.scroll_speed
+          instance.update(false)
+        } else {
+          jqEl.bind('cycle', () =>
+          {
+            if (this.cycle == 2) {
+              this.setDonations()
+            }
+
+            if (this.cycle != 2) {
+              this.cycle = this.cycle + 1
+            }
+          })
+
+          jqEl.simplemarquee({
+            speed:              this.settings.scroll_speed,
+            delayBetweenCycles: 0,
+            cycles:             'infinity',
+            gap:                1189,
+          }).simplemarquee('update')
+        }
       },
       setDonations() {
         this.$http.get('/donation/overlay')

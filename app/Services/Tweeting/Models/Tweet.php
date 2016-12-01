@@ -36,7 +36,7 @@ class Tweet extends BaseModel
         $tweets = static::where('shown_flag', 0)->orderBy('twitter_created_at', 'asc')->take(5)->get();
 
         if ($tweets->count() == 0) {
-            $tweets = static::orderBy('twitter_created_at', 'desc')->take(10)->get();
+            $tweets = static::orderBy('twitter_created_at', 'asc')->take(10)->get();
         }
 
         $tweets->markShown();

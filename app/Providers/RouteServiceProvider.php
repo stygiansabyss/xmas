@@ -36,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
 
         \App\Services\Voting\Http\Routes\Votes::class,
 
+        \App\Services\Tweeting\Http\Routes\Tweets::class,
+
         \App\Services\StreamLabs\Http\Routes\Admin::class,
         \App\Services\StreamLabs\Http\Routes\Alerts::class,
     ];
