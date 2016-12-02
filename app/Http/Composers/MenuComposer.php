@@ -16,8 +16,8 @@ class MenuComposer
 
     public function __construct()
     {
-        $this->admin    = auth()->user()->can('administrate');
-        $this->streamer = auth()->user()->can('access');
+        $this->admin    = auth()->check() && auth()->user()->can('administrate');
+        $this->streamer = auth()->check() && auth()->user()->can('access');
     }
 
     /**
