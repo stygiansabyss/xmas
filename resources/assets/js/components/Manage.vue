@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <ul class="list-inline">
           <li>People on this page:</li>
-          <li v-for="user in users | orderBy 'level'" :class="user.color" :title="user.title">
+          <li v-for="user in users | orderBy 'level'" track-by="id" :class="user.color" :title="user.title">
             {{ user.name}}
             <i class="fa fa-fw" :class="user.icon"></i>
           </li>
@@ -57,13 +57,14 @@
           })
           .joining((user) =>
           {
-            console.log('joining')
-            console.log(user)
+            this.users.push(user)
           })
           .leaving((user) =>
           {
-            console.log('leaving')
-            console.log(user)
+            this.users = this.users.filter((item) =>
+            {
+              return item.id !== user.id;
+            })
           })
     },
 
