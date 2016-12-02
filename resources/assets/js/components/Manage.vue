@@ -1,6 +1,17 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline">
+          <li>People on this page:</li>
+          <li v-for="user in users | orderBy 'level'" :class="user.color" :title="user.title">
+            {{ user.name}}
+            <i class="fa fa-fw" :class="user.icon"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-4">
         <manage-counts></manage-counts>
         <manage-settings></manage-settings>
@@ -16,7 +27,11 @@
     </div>
   </div>
 </template>
-
+<style>
+  .text-twitch {
+    color: #64459b !important;
+  }
+</style>
 <script>
   import Counts from './Manage/Counts.vue'
   import Settings from './Manage/Settings.vue'
@@ -26,6 +41,32 @@
   import Votes from './Manage/Votes.vue'
 
   export default {
+    data() {
+      return {
+        users: []
+      }
+    },
+
+    ready() {
+      console.log('here')
+
+      Echo.join('manage')
+          .here((users) =>
+          {
+            this.users = users
+          })
+          .joining((user) =>
+          {
+            console.log('joining')
+            console.log(user)
+          })
+          .leaving((user) =>
+          {
+            console.log('leaving')
+            console.log(user)
+          })
+    },
+
     components: {
       'manage-counts':     Counts,
       'manage-settings':   Settings,

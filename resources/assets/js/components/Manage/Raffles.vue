@@ -5,7 +5,7 @@
         <div class="pull-left">Current Raffle</div>
         <div class="pull-right">
           <a class="btn btn-xs btn-inverse"
-             v-show="raffle != null && raffle.status == 0"
+             v-if="raffle != null && raffle.status == 0"
              @click="toggleRaffleStatus(raffle.id, 1)"
              title="Set Active"
           >
@@ -13,22 +13,22 @@
           </a>
           <a href="/raffle/{{ raffle.id }}/status/2"
              class="btn btn-xs btn-success"
-             v-show="raffle != null"
+             v-if="raffle != null"
              @click="toggleRaffleStatus(raffle.id, 2)"
              title="Set Finished"
           >
             <i class="fa fa-check-circle"></i>
           </a>
-          <a href="/raffle/watch/{{ raffle.id }}" class="btn btn-xs btn-warning" v-show="raffle != null">
+          <a href="/raffle/watch/{{ raffle.id }}" class="btn btn-xs btn-warning" v-if="raffle != null">
             <i class="fa fa-eye"></i>
           </a>
-          <a href="/raffle/winner/{{ raffle.id }}" class="btn btn-xs btn-warning" v-show="raffle != null">
+          <a href="/raffle/winner/{{ raffle.id }}" class="btn btn-xs btn-warning" v-if="raffle != null">
             <i class="fa fa-trophy"></i>
           </a>
           <a href="/raffle" class="btn btn-xs btn-default">
             <i class="fa fa-bars"></i>
           </a>
-          <a href="/raffle/edit/{{ raffle.id }}" class="btn btn-xs btn-info" v-show="raffle != null">
+          <a href="/raffle/edit/{{ raffle.id }}" class="btn btn-xs btn-info" v-if="raffle != null">
             <i class="fa fa-edit"></i>
           </a>
           <a @click="raffleShow = ! raffleShow" class="btn btn-xs btn-info">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <table class="table table-striped table-hover" v-show="raffle !== null && raffleShow">
+    <table class="table table-striped table-hover" v-if="raffle !== null && raffleShow">
       <thead>
         <tr>
           <td><strong>Amount</strong></td>
@@ -53,14 +53,14 @@
           <td class="text-center">{{ tier.winner_count }}</td>
           <td class="text-right">
             <a class="btn btn-xs btn-default"
-               v-show="tier.status == 0"
+               v-if="tier.status == 0"
                @click="toggleTierStatus(tier.id, 1)"
                title="Set Active"
             >
               <i class="fa fa-ban"></i>
             </a>
             <a class="btn btn-xs btn-success"
-               v-show="tier.status == 1"
+               v-if="tier.status == 1"
                @click="toggleTierStatus(tier.id, 0)"
                title="Set Inactive"
             >
@@ -70,7 +70,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="panel-footer" v-show="raffle !== null">
+    <div class="panel-footer" v-if="raffle !== null">
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
           <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,7 +90,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body" v-show="raffle === null && raffleShow">
+    <div class="panel-body" v-if="raffle === null && raffleShow">
       <a href="/raffle/create" class="btn btn-block btn-info">Create a new Raffle</a>
     </div>
   </div>

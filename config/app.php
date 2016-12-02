@@ -170,12 +170,13 @@ return [
          */
         NukaCode\Core\Providers\ViewServiceProvider::class,
         NukaCode\Menu\MenuServiceProvider::class,
+        NukaCode\Users\Providers\UsersServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -190,6 +191,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Camroncade\Timezone\TimezoneServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*

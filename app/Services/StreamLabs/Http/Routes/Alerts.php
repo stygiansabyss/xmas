@@ -22,7 +22,8 @@ class Alerts extends BaseRoutes implements Routes
     {
         return [
             'web',
-            //'auth',
+            'auth',
+            'acl:administrate',
             'active:stream-labs_alerts',
         ];
     }

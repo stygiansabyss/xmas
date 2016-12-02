@@ -22,7 +22,8 @@ class Search extends BaseRoutes implements Routes
     {
         return [
             'web',
-            //'auth',
+            'auth',
+            'acl:access',
         ];
     }
 

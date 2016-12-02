@@ -22,7 +22,8 @@ class Dashboard extends BaseRoutes implements Routes
     {
         return [
             'web',
-            //'auth',
+            'auth',
+            'acl:access',
             'active:manage'
         ];
     }

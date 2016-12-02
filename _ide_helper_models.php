@@ -8,6 +8,53 @@
  */
 
 
+namespace App\Models{
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $password
+ * @property string $email
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $display_name
+ * @property string $timezone
+ * @property string $location
+ * @property string $url
+ * @property string $remember_token
+ * @property bool $super_flag
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ * @property-read \NukaCode\Database\Collection|\NukaCode\Users\Models\Role[] $roles
+ * @property-read \NukaCode\Database\Collection|\NukaCode\Users\Models\User\Social[] $socials
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUsername($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereLastName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereDisplayName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereTimezone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereLocation($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereSuperFlag($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Users\Models\User orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ */
+	class User extends \Eloquent {}
+}
+
 namespace App\Services\Administrating\Models{
 /**
  * App\Services\Administrating\Models\Asset
@@ -62,6 +109,31 @@ namespace App\Services\Administrating\Models{
  * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
  */
 	class Setting extends \Eloquent {}
+}
+
+namespace App\Services\Authorizing\Models{
+/**
+ * App\Services\Authorizing\Models\Access
+ *
+ * @property int $id
+ * @property string $email
+ * @property int $role_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\User $user
+ * @property-read \NukaCode\Users\Models\Role $role
+ * @property mixed $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Authorizing\Models\Access whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Authorizing\Models\Access whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Authorizing\Models\Access whereRoleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Authorizing\Models\Access whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Services\Authorizing\Models\Access whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByCreatedAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel orderByNameAsc()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel active()
+ * @method static \Illuminate\Database\Query\Builder|\NukaCode\Core\Models\BaseModel inactive()
+ */
+	class Access extends \Eloquent {}
 }
 
 namespace App\Services\Donating\Models{

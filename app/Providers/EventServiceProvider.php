@@ -13,8 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\Twitch\TwitchExtendSocialite@handle',
+        ],
+        \NukaCode\Users\Events\UserLoggedIn::class            => [
+            \App\Services\Authorizing\Listeners\DetermineAccess::class,
         ],
     ];
 

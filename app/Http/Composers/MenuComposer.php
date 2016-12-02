@@ -10,6 +10,16 @@ use NukaCode\Menu\Link;
 
 class MenuComposer
 {
+    private $admin = false;
+
+    private $streamer = false;
+
+    public function __construct()
+    {
+        $this->admin    = auth()->user()->can('administrate');
+        $this->streamer = auth()->user()->can('access');
+    }
+
     /**
      * Bind data to the view.
      *
@@ -30,44 +40,59 @@ class MenuComposer
     {
         $leftMenu = \Menu::getMenu('leftMenu');
 
-        $leftMenu->link('manage', function (Link $link) {
-            $link->name = 'Manage';
-            $link->url  = route('administrating.dashboard');
-        });
-
-        $this->overlayDropDown($leftMenu);
-
-        $leftMenu->dropDown('donation', 'Donations', function (DropDown $dropDown) {
-            $dropDown->link('donation_index', function (Link $link) {
-                $link->name = 'Donations';
-                $link->url  = route('donation.index');
+        if ($this->streamer) {
+            $leftMenu->link('manage', function (Link $link) {
+                $link->name = 'Manage';
+                $link->url  = route('administrating.dashboard');
             });
-            $dropDown->link('donation_search', function (Link $link) {
-                $link->name = 'Donation Bulk Edit';
-                $link->url  = route('donation.search');
-            });
-        });
+        }
 
-        $leftMenu->dropDown('stream-labs', 'Stream Labs', function (DropDown $dropDown) {
-            $dropDown->link('stream-labs_token', function (Link $link) {
-                $link->name = 'Tokens';
-                $link->url  = route('stream-labs.token.index');
-            });
-            $dropDown->link('stream-labs_alerts', function (Link $link) {
-                $link->name = 'Alerts';
-                $link->url  = route('stream-labs.alerts.index');
-            });
-        });
+        if ($this->streamer) {
+            $this->overlayDropDown($leftMenu);
+        }
 
-        $leftMenu->link('assets', function (Link $link) {
-            $link->name = 'Assets';
-            $link->url  = route('administrating.asset');
-        });
+        if ($this->streamer) {
+            $leftMenu->dropDown('donation', 'Donations', function (DropDown $dropDown) {
+                $dropDown->link('donation_index', function (Link $link) {
+                    $link->name = 'Donations';
+                    $link->url  = route('donation.index');
+                });
+                $dropDown->link('donation_search', function (Link $link) {
+                    $link->name = 'Donation Bulk Edit';
+                    $link->url  = route('donation.search');
+                });
+            });
+        }
 
-        $leftMenu->link('spreadsheets', function (Link $link) {
-            $link->name = 'Spreadsheets';
-            $link->url  = route('spreadsheet.list');
-        });
+        if ($this->admin) {
+            $leftMenu->dropDown('stream-labs', 'Stream Labs', function (DropDown $dropDown) {
+                $dropDown->link('stream-labs_token', function (Link $link) {
+                    $link->name = 'Tokens';
+                    $link->url  = route('stream-labs.token.index');
+                });
+                $dropDown->link('stream-labs_alerts', function (Link $link) {
+                    $link->name = 'Alerts';
+                    $link->url  = route('stream-labs.alerts.index');
+                });
+            });
+        }
+
+        if ($this->admin) {
+            $leftMenu->link('assets', function (Link $link) {
+                $link->name = 'Assets';
+                $link->url  = route('administrating.asset');
+            });
+
+            $leftMenu->link('access', function (Link $link) {
+                $link->name = 'Access';
+                $link->url  = route('access.index');
+            });
+
+            $leftMenu->link('spreadsheets', function (Link $link) {
+                $link->name = 'Spreadsheets';
+                $link->url  = route('spreadsheet.list');
+            });
+        }
     }
 
     private function overlayDropDown($leftMenu)
@@ -107,10 +132,24 @@ class MenuComposer
     {
         $rightMenu = \Menu::getMenu('rightMenu');
 
-        $rightMenu->link('all_read', function (Link $link) {
-            $link->name  = 'Mark All Donations Read';
-            $link->url   = route('donation.read.all');
-            $link->class = 'confirm-continue';
-        });
+        if (auth()->guest()) {
+            $rightMenu->link('login', function (Link $link) {
+                $link->name = 'Login';
+                $link->url  = route('auth.login');
+            });
+        } else {
+            if ($this->admin) {
+                $rightMenu->link('all_read', function (Link $link) {
+                    $link->name  = 'Mark All Donations Read';
+                    $link->url   = route('donation.read.all');
+                    $link->class = 'confirm-continue';
+                });
+            }
+
+            $rightMenu->link('logout', function (Link $link) {
+                $link->name = 'Logout';
+                $link->url  = route('auth.logout');
+            });
+        }
     }
 }

@@ -53,5 +53,6 @@ class Kernel extends HttpKernel
         'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'active'     => \NukaCode\Menu\Middleware\MenuMiddleware::class,
+        'acl'        => \App\Http\Middleware\CheckPermission::class,
     ];
 }

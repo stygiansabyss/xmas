@@ -22,6 +22,8 @@ class RouteServiceProvider extends ServiceProvider
         \App\Services\Administrating\Http\Routes\Setting::class,
         \App\Services\Administrating\Http\Routes\Spreadsheets::class,
 
+        \App\Services\Authorizing\Http\Routes\Access::class,
+
         \App\Services\Donating\Http\Routes\Api::class,
         \App\Services\Donating\Http\Routes\Donations::class,
         \App\Services\Donating\Http\Routes\Search::class,

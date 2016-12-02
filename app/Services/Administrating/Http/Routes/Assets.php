@@ -22,7 +22,8 @@ class Assets extends BaseRoutes implements Routes
     {
         return [
             'web',
-            //'auth',
+            'auth',
+            'acl:access',
             'active:asset'
         ];
     }

@@ -1,7 +1,7 @@
 {
-	"appKey": "ql75fbol6co3cgec4tfeql23so4jihpfnok2rk32tq22ggcrp6j0phcrj5j2",
-	"authHost": null,
+	"appKey": "eborcbathemea4kep2k9r6th4nh0045mh1b1kd9gtf10ok8h9jgebb19i0os",
 	"authEndpoint": "/broadcasting/auth",
+	"authHost": null,
 	"database": "redis",
 	"databaseConfig": {
 		"redis": {},
@@ -10,10 +10,12 @@
 		}
 	},
 	"devMode": false,
-	"host": "",
+	"host": "http://xmas.dev",
 	"port": "6001",
+	"protocol": "http",
 	"referrers": [],
-	"socketio": {},
 	"sslCertPath": "",
-	"sslKeyPath": ""
+	"sslKeyPath": "",
+	"verifyAuthPath": true,
+	"verifyAuthServer": true
 }

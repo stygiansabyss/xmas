@@ -1,4 +1,4 @@
-window._ = require('lodash');
+window._ = require('lodash')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -6,12 +6,12 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass/assets/javascripts/bootstrap');
-require('bootbox');
-require('bootstrap-notify');
+window.$ = window.jQuery = require('jquery')
+require('bootstrap-sass/assets/javascripts/bootstrap')
+require('bootbox')
+require('bootstrap-notify')
 
-window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
+window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js')
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -19,8 +19,8 @@ window.jasny = require('jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = require('vue');
-require('vue-resource');
+window.Vue = require('vue')
+require('vue-resource')
 
 window.simplemarquee = require('./marquee')
 
@@ -32,10 +32,10 @@ window.simplemarquee = require('./marquee')
 
 Vue.http.interceptors.push(function (request, next)
 {
-  request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken;
+  request.headers['X-CSRF-TOKEN'] = Laravel.csrfToken
 
-  next();
-});
+  next()
+})
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -43,11 +43,11 @@ Vue.http.interceptors.push(function (request, next)
  * allows your team to easily build robust real-time web applications.
  */
 
-window.io = require('socket.io-client');
+window.io = require('socket.io-client')
 
-import Echo from "laravel-echo";
+import Echo from "laravel-echo"
 
 window.Echo = new Echo({
   broadcaster: 'socket.io',
   host:        Laravel.host + ':' + Laravel.socketPort
-});
+})
