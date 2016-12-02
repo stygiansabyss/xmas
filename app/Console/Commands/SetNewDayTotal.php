@@ -63,46 +63,6 @@ class SetNewDayTotal extends Command
 
         $this->total->create($data);
 
-        $this->makeSpreadsheet();
-    }
-
-    private function makeSpreadsheet()
-    {
-        ini_set('memory_limit', '64M');
-
-        $donations = Donation::select(['hb_id', 'name', 'email', 'comment', 'amount', 'hb_created_at'])
-                             ->where('hb_created_at', '>', date('Y-m-d 00:00:00', strtotime('yesterday')))
-                             ->where('hb_created_at', '<', date('Y-m-d 00:00:00'))
-                             ->get();
-
-        $donationsArray = [];
-
-        foreach ($donations as $donation) {
-            $data = [
-                'id'         => $donation->hb_id,
-                'name'       => $donation->name,
-                'email'      => $donation->email,
-                'amount'     => $donation->amount,
-                'comment'    => $donation->comment,
-                'created_at' => (string)$donation->hb_created_at,
-            ];
-
-            $donationsArray[] = $data;
-        }
-
-        Excel::create('donations_' . date('Y-m-d', strtotime('yesterday')), function ($excel) use ($donationsArray) {
-            $excel->sheet('Donations', function ($sheet) use ($donationsArray) {
-                // Generate the sheet from the DB results.
-                $sheet->fromArray($donationsArray);
-
-                // Make the header stand out.
-                $sheet->row(1, function ($row) {
-                    $row->setBackground('#000000');
-                    $row->setFontColor('#ffffff');
-                    $row->setFontWeight('bold');
-                    $row->setAlignment('center');
-                });
-            });
-        })->save('xls', public_path('spreadsheets'));
+        $this->call('jj:spreadsheet', ['date' => 'yesterday']);
     }
 }

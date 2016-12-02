@@ -93,11 +93,9 @@ class Raffle extends BaseController
             // Generate spreadsheet
             $tiers = $raffle->tiers;
 
-            $donationsArray = [];
-
-            foreach ($tiers as $tier) {
-                foreach ($tier->winners as $winner) {
-                    $data = [
+            $winners = $tiers->flatMap(function ($tier) {
+                return $tier->winners->map(function ($winner) use ($tier) {
+                    return [
                         'tier'       => $tier->minimum,
                         'reward'     => $tier->reward,
                         'id'         => $winner->hb_id,
@@ -107,15 +105,13 @@ class Raffle extends BaseController
                         'comment'    => $winner->comment,
                         'created_at' => (string)$winner->hb_created_at,
                     ];
+                });
+            })->toArray();
 
-                    $donationsArray[] = $data;
-                }
-            }
-
-            Excel::create('raffle_winners_' . Str::slug($raffle->name, '_'), function ($excel) use ($donationsArray) {
-                $excel->sheet('Donations', function ($sheet) use ($donationsArray) {
+            Excel::create('raffle_winners_' . Str::slug($raffle->name, '_'), function ($excel) use ($winners) {
+                $excel->sheet('Donations', function ($sheet) use ($winners) {
                     // Generate the sheet from the DB results.
-                    $sheet->fromArray($donationsArray);
+                    $sheet->fromArray($winners);
 
                     // Make the header stand out.
                     $sheet->row(1, function ($row) {
@@ -141,20 +137,20 @@ class Raffle extends BaseController
         $this->setViewData(compact('tiers', 'id'));
 
         $this->setViewLayout('layouts.donation');
-        
+
         return $this->view();
     }
-    
+
     public function watch($id)
     {
         $tiers = $this->raffles->find($id)->tiers()->whereHas('winners', function ($query) {
             $query->where('status', 1);
         })->get();
-    
+
         $this->setJavascriptData(compact('tiers'));
 
         $this->setViewLayout('layouts.donation');
-        
+
         return $this->view();
     }
 

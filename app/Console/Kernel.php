@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\GetDonations::class,
         \App\Console\Commands\GetTweets::class,
+        \App\Console\Commands\MakeSpreadsheet::class,
         \App\Console\Commands\SetNewDayTotal::class,
     ];
 
