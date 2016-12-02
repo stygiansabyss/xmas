@@ -106,6 +106,10 @@
       }
     },
 
+    ready() {
+      _christmasEcho.bind(this)('Raffling', 'RaffleEntryAdded', 'raffle')
+    },
+
     methods: {
       toggleTierStatus(tierId, statusId) {
         this.$http.get('/raffle/tier/' + tierId + '/status/' + statusId)
