@@ -43,6 +43,6 @@ class DonationWasReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel');
+        return new Channel('christmas');
     }
 }

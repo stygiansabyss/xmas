@@ -11,6 +11,8 @@ class Donation
 {
     public function created($model)
     {
+        logger()->info('Donation was received');
+        
         $activeIncentive = Incentive::active()->first();
 
         if ($activeIncentive != null) {
