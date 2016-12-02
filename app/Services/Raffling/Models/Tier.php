@@ -82,6 +82,10 @@ class Tier extends BaseModel
 
     public function donationReceived($donation)
     {
+        logger()->info('Donation Received by Tier '. $this->id);
+        logger()->info('Donation: '. print_r($donation, 1));
+        logger()->info('Tier: '. print_r($this, 1));
+        
         if ($donation->amountRaw > $this->attributes['minimum']) {
             $this->donations()->attach($donation->id);
         }
