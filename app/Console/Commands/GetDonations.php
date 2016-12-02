@@ -91,24 +91,21 @@ class GetDonations extends Command
      */
     private function storeDonations($censor)
     {
-        $donations = collector($this->client->donations());
+        collector($this->client->donations())
+            ->filter(function ($donation) {
+                return Donation::where('hb_id', $donation->id)->count() === 0;
+            })->each(function ($donation) use ($censor) {
+                $comment = $censor->censorString($donation->donorComment);
 
-        $donations = $donations->filter(function ($donation) {
-            return Donation::where('hb_id', $donation->id)->count() === 0;
-        })->map(function ($donation) use ($censor) {
-            $comment = $censor->censorString($donation->donorComment);
-
-            return [
-                'hb_id'         => $donation->id,
-                'name'          => $donation->donorName,
-                'email'         => $donation->email,
-                'amount'        => $this->getRealAmount($donation->donationAmount),
-                'comment'       => Str::limit($comment['clean'], 500),
-                'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
-            ];
-        })->toArray();
-
-        Donation::insert($donations);
+                Donation::create([
+                    'hb_id'         => $donation->id,
+                    'name'          => $donation->donorName,
+                    'email'         => $donation->email,
+                    'amount'        => $donation->donationAmount,
+                    'comment'       => Str::limit($comment['clean'], 500),
+                    'hb_created_at' => (string)Carbon::createFromTimestamp($donation->timestamp),
+                ]);
+            });
     }
 
     /**
@@ -166,14 +163,5 @@ class GetDonations extends Command
                 event(new VoteWasUpdated($activeVote));
             }
         }
-    }
-
-    private function getRealAmount($value)
-    {
-        if (strpos($value, '.') !== false) {
-            return str_replace('.', '', $value);
-        }
-
-        return $value . '00';
     }
 }

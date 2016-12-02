@@ -11,8 +11,6 @@ class Donation
 {
     public function created($model)
     {
-        logger()->info('Donation was received');
-        
         $activeIncentive = Incentive::active()->first();
 
         if ($activeIncentive != null) {
@@ -20,8 +18,6 @@ class Donation
         }
 
         $activeTiers = Tier::active()->get();
-
-        logger()->info(print_r($activeTiers, 1));
 
         if ($activeTiers != null) {
             foreach ($activeTiers as $activeTiers) {
