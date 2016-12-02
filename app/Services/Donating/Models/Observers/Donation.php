@@ -19,6 +19,8 @@ class Donation
 
         $activeTiers = Tier::active()->get();
 
+        logger()->info(print_r($activeTiers, 1));
+
         if ($activeTiers != null) {
             foreach ($activeTiers as $activeTiers) {
                 $activeTiers->donationReceived($model);

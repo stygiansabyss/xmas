@@ -3,6 +3,7 @@
 namespace App\Services\Raffling\Events;
 
 use App\Services\Raffling\Models\Raffle;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -43,6 +44,6 @@ class RaffleEntryAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['christmas'];
+        return new Channel('christmas');
     }
 }
