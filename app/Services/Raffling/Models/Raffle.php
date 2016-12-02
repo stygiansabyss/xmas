@@ -40,7 +40,7 @@ class Raffle extends BaseModel
         foreach ($tiers as $tier) {
             $tierData = [
                 'raffle_id' => $raffle->id,
-                'minimum'   => $tier['minimum'],
+                'minimum'   => $tier['simple_amount'],
                 'reward'    => $tier['reward'],
             ];
 
