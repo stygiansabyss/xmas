@@ -22,8 +22,6 @@ class Tweets extends BaseRoutes implements Routes
     {
         return [
             'web',
-            'auth',
-            'acl:access',
         ];
     }
 
