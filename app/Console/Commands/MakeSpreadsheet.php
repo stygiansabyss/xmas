@@ -70,7 +70,7 @@ class MakeSpreadsheet extends Command
             ];
         })->toArray();
 
-        Excel::create($date->format('Y-m-d') .'_donations', function ($excel) use ($donations) {
+        Excel::create($date->format('d_m_Y') .'_donations', function ($excel) use ($donations) {
             $excel->sheet('Donations', function ($sheet) use ($donations) {
                 // Generate the sheet from the DB results.
                 $sheet->fromArray($donations);

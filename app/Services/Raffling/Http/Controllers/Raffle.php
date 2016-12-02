@@ -108,7 +108,7 @@ class Raffle extends BaseController
                 });
             })->toArray();
 
-            Excel::create(date('Y-m-d') .'_raffle_winners_' . Str::slug($raffle->name, '_'), function ($excel) use ($winners) {
+            Excel::create(date('d_m_Y') .'_raffle_winners_' . Str::slug($raffle->name, '_'), function ($excel) use ($winners) {
                 $excel->sheet('Donations', function ($sheet) use ($winners) {
                     // Generate the sheet from the DB results.
                     $sheet->fromArray($winners);
