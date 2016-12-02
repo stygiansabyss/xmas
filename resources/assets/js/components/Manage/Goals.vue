@@ -79,12 +79,14 @@
     data(){
       return {
         goal:     app.activeGoal,
+        total:    app.total,
         goalShow: true,
       }
     },
 
     ready() {
       _christmasEcho.bind(this)('Goals', 'GoalWasUpdated', 'goal')
+      _christmasEcho.bind(this)('Donating', 'TotalWasChanged', 'total')
     }
   }
 </script>
