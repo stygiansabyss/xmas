@@ -13,6 +13,10 @@ class Total extends BaseModel
         'raised',
         'reason',
     ];
+    
+    protected $appends = [
+        'raised_raw'
+    ];
 
     public function donationReceived($donation)
     {

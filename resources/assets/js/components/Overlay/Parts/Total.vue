@@ -1,10 +1,12 @@
 <template>
   <div class="total" v-if="settings.total_display == 1">
-    ${{ total.raised }}
+    $<animated-number :value="total.raised_raw / 100"></animated-number>
   </div>
 </template>
 <style></style>
 <script>
+  import AnimatedNumber from './AnimatedNumber.vue';
+
   export default {
     data() {
       return {
@@ -21,6 +23,10 @@
           {
             this.total = e.total
           })
+    },
+
+    components: {
+      'animated-number': AnimatedNumber,
     }
   }
 </script>
