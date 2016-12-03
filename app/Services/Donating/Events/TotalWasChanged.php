@@ -31,7 +31,7 @@ class TotalWasChanged implements ShouldBroadcast
      */
     public function __construct(Total $total)
     {
-        $this->total        = $total;
+        $this->total        = $total->append('raised_raw');
         $this->commentCount = Donation::withComment()->count();
         $this->shownCount   = Donation::shown()->count();
         $this->readCount    = Donation::read()->count();
