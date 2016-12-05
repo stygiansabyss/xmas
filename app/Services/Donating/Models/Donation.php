@@ -130,7 +130,7 @@ class Donation extends BaseModel
         $donations = static::where('shown_flag', 0)->withComment()->orderBy('hb_created_at', 'asc')->take(5)->get();
 
         if ($donations->count() == 0) {
-            $donations = static::orderBy('hb_created_at', 'asc')->withComment()->take(10)->get();
+            $donations = static::orderBy('hb_created_at', 'desc')->withComment()->take(10)->get();
         }
 
         $donations->markShown();
