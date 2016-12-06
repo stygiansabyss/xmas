@@ -89,7 +89,7 @@
         this.$http.get('/donation/overlay')
             .then((data) =>
             {
-              this.$set('donations', data.body)
+              this.donations = data.body
             })
       },
     }
