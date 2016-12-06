@@ -48,7 +48,7 @@ class MakeSpreadsheet extends Command
      */
     public function handle()
     {
-        ini_set('memory_limit', '64M');
+        ini_set('memory_limit', '256M');
 
         $date = Carbon::parse($this->argument('date'));
 
