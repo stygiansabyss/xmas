@@ -3,6 +3,7 @@
        v-if="settings.goal_mode == 'goal' && goal != null"
        transition="fade"
   >
+    <div class="goal-text">Goal</div>
     <div class="goal-target">
       <div class="goal-total">${{ goal.goal }}</div>
     </div>

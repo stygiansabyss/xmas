@@ -163,17 +163,27 @@
   }
 
   .goal {
+    .goal-text {
+      color:      $goal-total-color;
+      font-size:  40px;
+      position:   absolute;
+      top:        0;
+      right:      0;
+      text-align: center;
+      width:      162px;
+    }
+
     .goal-target {
       background: $goal-total-background;
-      height:     145px;
-      min-width:  180px;
+      height:     82px;
+      min-width:  190px;
       position:   absolute;
-      top:        4px;
-      right:      -9px;
+      top:        65px;
+      right:      0;
 
       .goal-total {
         position:  relative;
-        top:       57px;
+        top:       9px;
         left:      10px;
         color:     $goal-total-color;
         font-size: 40px;
