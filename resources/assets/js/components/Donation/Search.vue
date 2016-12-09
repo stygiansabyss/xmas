@@ -181,7 +181,7 @@
   export default {
     data() {
       return {
-        mode:          'length',
+        mode:          'date',
         start:         app.start,
         end:           app.end,
         length:        app.length,
