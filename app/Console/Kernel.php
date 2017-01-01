@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if (in_array(date('m'), ['11', '12'])) {
+        if (in_array(date('m'), ['1', '12'])) {
             $filePath = storage_path('logs/cronlog');
 
             $schedule->command('jj:donations')->everyMinute()->sendOutputTo($filePath .'_donations');
