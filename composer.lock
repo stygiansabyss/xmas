@@ -2002,16 +2002,16 @@
         },
         {
             "name": "nukacode/core",
-            "version": "3.0.11",
+            "version": "3.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NukaCode/core.git",
-                "reference": "a9f66d82aa7dcb32892bfd4717cce02db04cc95b"
+                "reference": "75b20903fb068a7df22cdec34ae729279fbaab3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NukaCode/core/zipball/a9f66d82aa7dcb32892bfd4717cce02db04cc95b",
-                "reference": "a9f66d82aa7dcb32892bfd4717cce02db04cc95b",
+                "url": "https://api.github.com/repos/NukaCode/core/zipball/75b20903fb068a7df22cdec34ae729279fbaab3c",
+                "reference": "75b20903fb068a7df22cdec34ae729279fbaab3c",
                 "shasum": ""
             },
             "require": {
@@ -2057,7 +2057,7 @@
                 }
             ],
             "description": "A core set of features for laravel sites.",
-            "time": "2016-12-05 14:51:40"
+            "time": "2016-12-09 18:04:11"
         },
         {
             "name": "nukacode/database",
